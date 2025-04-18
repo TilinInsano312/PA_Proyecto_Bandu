@@ -1,4 +1,4 @@
-package Modelos;
+package modelos.denuncia;
 
 public class Denuncia {
 

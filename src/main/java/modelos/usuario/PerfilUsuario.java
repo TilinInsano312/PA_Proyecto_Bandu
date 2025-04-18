@@ -1,4 +1,4 @@
-package Modelos;
+package modelos.usuario;
 
 public class PerfilUsuario extends Usuario {
 
