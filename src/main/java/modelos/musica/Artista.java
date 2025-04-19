@@ -1,7 +1,13 @@
 package modelos.musica;
 
 public class Artista {
-    private String nombre;
-    private String genero;
-    private String imagen;
+    private String nombreArtista;
+    private String generoArtista;
+    private String imagenArtista;
+
+    public Artista(String nombreArtista, String generoArtista, String imagenArtista) {
+        this.nombreArtista = nombreArtista;
+        this.generoArtista = generoArtista;
+        this.imagenArtista = imagenArtista;
+    }
 }
