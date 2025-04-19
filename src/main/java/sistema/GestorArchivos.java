@@ -45,4 +45,17 @@ public class GestorArchivos {
         }
     }
 
+    public static <T> void borrarObjeto(String nombreArchivo, Class<T> tipo, T objeto) {
+        List<T> listaObjetos = leerListaObjetos(nombreArchivo, tipo);
+        try{
+            listaObjetos.remove(objeto);
+            escribirListaObjetos(listaObjetos, tipo);
+            logger.info("Objeto borrado de forma satisfactoria");
+        } catch (Exception e) {
+            logger.warning("Error al borrar Objeto");
+        }
+
+    }
+
+
 }
