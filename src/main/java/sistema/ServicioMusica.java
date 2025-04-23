@@ -28,7 +28,7 @@ public class ServicioMusica {
 	private static final String tipo = "&type=";
 	private static final String parametros = "&market=ch&limit=1&offset=0&include_external=audio";
 
-	public static Album buscarAlbum(String busqueda) {
+	public Album buscarAlbum(String busqueda) {
 		busqueda = busqueda.replace(" ","+");
 		String urlConsulta = urlBusqueda+busqueda+tipo+"album"+parametros;
 
@@ -92,7 +92,7 @@ public class ServicioMusica {
         return new Album(albumName,artistName,genre,imageUrl);
     }
 
-	public static Artista buscarArtista(String busqueda) {
+	public Artista buscarArtista(String busqueda) {
 		busqueda = busqueda.replace(" ","+");
 		//Conexion
 		String urlConsulta = urlBusqueda+busqueda+tipo+"artist"+parametros;
@@ -137,7 +137,7 @@ public class ServicioMusica {
 		return new Artista(nombreArtista,genero,imagenUrl);
 	}
 
-	public static Cancion buscarCancion(String busqueda) {
+	public Cancion buscarCancion(String busqueda) {
 		busqueda = busqueda.replace(" ","+");
 		HttpClient client = HttpClient.newHttpClient();
 
@@ -201,46 +201,6 @@ public class ServicioMusica {
 		String genre = genres.isArray() && genres.size() > 0 ? String.join(", ", mapper.convertValue(genres, String[].class))
 				: "No disponible";
 		return new Cancion(songName,artistName,genre,imageUrl);
-	}
-
-	public void eliminarAlbum() {
-		// TODO - implement Sistema.ServicioMusica.eliminarAlbum
-		throw new UnsupportedOperationException();
-	}
-
-	public void eliminarArtista() {
-		// TODO - implement Sistema.ServicioMusica.eliminarArtista
-		throw new UnsupportedOperationException();
-	}
-
-	public void eliminarCancion() {
-		// TODO - implement Sistema.ServicioMusica.eliminarCancion
-		throw new UnsupportedOperationException();
-	}
-
-	public void obtenerImagen() {
-		// TODO - implement Sistema.ServicioMusica.obtenerImagen
-		throw new UnsupportedOperationException();
-	}
-
-	public void obtenerGenero() {
-		// TODO - implement Sistema.ServicioMusica.obtenerGenero
-		throw new UnsupportedOperationException();
-	}
-
-	public void obtenerAlbum() {
-		// TODO - implement Sistema.ServicioMusica.obtenerAlbum
-		throw new UnsupportedOperationException();
-	}
-
-	public void obtenerCancion() {
-		// TODO - implement Sistema.ServicioMusica.obtenerCancion
-		throw new UnsupportedOperationException();
-	}
-
-	public void obtenerArtista() {
-		// TODO - implement Sistema.ServicioMusica.obtenerArtista
-		throw new UnsupportedOperationException();
 	}
 
 }
