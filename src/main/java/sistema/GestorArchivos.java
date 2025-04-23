@@ -7,7 +7,7 @@ import modelos.usuario.PerfilUsuario;
 
 import java.io.File;
 import java.lang.reflect.Field;
-import java.util.Collections;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -43,7 +43,7 @@ public class GestorArchivos {
                     mapper.getTypeFactory().constructCollectionType(List.class, tipo));
         }catch(Exception e){
             logger.warning("Error al leer el archivo");
-            return Collections.emptyList();
+            return new ArrayList<>();
         }
     }
 
