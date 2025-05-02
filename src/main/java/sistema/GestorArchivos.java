@@ -2,7 +2,7 @@ package sistema;
 
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import modelos.usuario.PerfilUsuario;
+import modelos.usuario.Cliente;
 
 
 import java.io.File;
@@ -61,23 +61,23 @@ public class GestorArchivos {
     }
 
     //Metodo para modificar un PerfilUsuario
-    public static PerfilUsuario modificarUnAtributoPerfilUsuario(PerfilUsuario perfilUsuario,String nombreAtributo, Object nuevoValor) {
+    public static Cliente modificarUnAtributoPerfilUsuario(Cliente cliente, String nombreAtributo, Object nuevoValor) {
         String archivo  = "PerfilUsuario.json";
-        borrarObjeto(archivo, PerfilUsuario.class, perfilUsuario);
-        List<PerfilUsuario> listaPerfiles = leerListaObjetos(archivo, PerfilUsuario.class);
+        borrarObjeto(archivo, Cliente.class, cliente);
+        List<Cliente> listaPerfiles = leerListaObjetos(archivo, Cliente.class);
 
-        PerfilUsuario perfilModificar = perfilUsuario;
+        Cliente perfilModificar = cliente;
         try{
-            Field atributo = PerfilUsuario.class.getDeclaredField(nombreAtributo);
+            Field atributo = Cliente.class.getDeclaredField(nombreAtributo);
             atributo.setAccessible(true);
             atributo.set(perfilModificar, nuevoValor);
 
-            listaPerfiles.remove(perfilUsuario);
+            listaPerfiles.remove(cliente);
             listaPerfiles.add(perfilModificar);
 
-            escribirListaObjetos(listaPerfiles, PerfilUsuario.class);
+            escribirListaObjetos(listaPerfiles, Cliente.class);
             logger.info("Atributo modificado de forma satisfactoria");
-            return perfilUsuario;
+            return cliente;
         }catch (Exception e){
             logger.warning("Error al modificar el atributo: "+ nombreAtributo + ": " + e.getMessage());
         }

@@ -1,6 +1,6 @@
 package sistema;
 
-import modelos.usuario.PerfilUsuario;
+import modelos.usuario.Cliente;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -10,29 +10,29 @@ public class SistemaEmparejamiento {
 	public SistemaEmparejamiento() {//Constructor vacio
 	}
 	//usuario referencia
-	public List<PerfilUsuario> referencia(String usuario){
-		return GestorArchivos.leerListaObjetos("PerfilUsuario.json", PerfilUsuario.class).stream()
+	public List<Cliente> referencia(String usuario){
+		return GestorArchivos.leerListaObjetos("PerfilUsuario.json", Cliente.class).stream()
 				.filter(perfilUsuario -> perfilUsuario.getUsuario().equals((usuario))).toList();
 	}
 	//Todos los usuarios excepto el referencia
 
-	public List<PerfilUsuario> general(String usuario){
-		return GestorArchivos.leerListaObjetos("PerfilUsuario.json", PerfilUsuario.class).stream()
+	public List<Cliente> general(String usuario){
+		return GestorArchivos.leerListaObjetos("PerfilUsuario.json", Cliente.class).stream()
 				.filter(perfilUsuario -> !perfilUsuario.getUsuario().equals((usuario))).toList();
 	}
 	public Map<String, Integer> porAlbum(String usuario) {
 		Map<String, Integer> puntuacion = new HashMap<>();
 		//compara todos los usuarios del sistema con el usuario referencia
-		for (PerfilUsuario perfilUsuario : general(usuario)) {
+		for (Cliente cliente : general(usuario)) {
 			int contador = 0;
-			for (PerfilUsuario perfilUsuario1 : referencia(usuario)) {
-				for (Object o: perfilUsuario.getAlbums()) {
-					if (perfilUsuario1.getAlbums().contains(o)) {
+			for (Cliente cliente1 : referencia(usuario)) {
+				for (Object o: cliente.getAlbums()) {
+					if (cliente1.getAlbums().contains(o)) {
 						contador+=2;
 					}
 				}
 			}
-			puntuacion.put(perfilUsuario.getUsuario(), contador);
+			puntuacion.put(cliente.getUsuario(), contador);
 		}
 		return puntuacion;
 	}
@@ -40,16 +40,16 @@ public class SistemaEmparejamiento {
 	public Map<String, Integer> porArtista(String usuario) {
 		HashMap<String, Integer> puntuacion = new HashMap<>();
 		//compara todos los usuarios del sistema con el usuario referencia
-		for (PerfilUsuario perfilUsuario : general(usuario)) {
+		for (Cliente cliente : general(usuario)) {
 			int contador = 0;
-			for (PerfilUsuario perfilUsuario1 : referencia(usuario)) {
-				for (Object o : perfilUsuario.getArtistas()) {
-					if (perfilUsuario1.getArtistas().contains(o)) {
+			for (Cliente cliente1 : referencia(usuario)) {
+				for (Object o : cliente.getArtistas()) {
+					if (cliente1.getArtistas().contains(o)) {
 						contador+=3;
 					}
 				}
 			}
-			puntuacion.put(perfilUsuario.getUsuario(), contador);
+			puntuacion.put(cliente.getUsuario(), contador);
 		}
 		return puntuacion;
 	}
@@ -57,16 +57,16 @@ public class SistemaEmparejamiento {
 	public Map<String, Integer> porCancion(String usuario) {
 		HashMap<String, Integer> puntuacion = new HashMap<>();
 		//compara todos los usuarios del sistema con el usuario referencia
-		for (PerfilUsuario perfilUsuario : general(usuario)) {
+		for (Cliente cliente : general(usuario)) {
 			int contador = 0;
-			for (PerfilUsuario perfilUsuario1 : referencia(usuario)) {
-				for (Object o : perfilUsuario.getCanciones()) {
-					if (perfilUsuario1.getCanciones().contains(o)) {
+			for (Cliente cliente1 : referencia(usuario)) {
+				for (Object o : cliente.getCanciones()) {
+					if (cliente1.getCanciones().contains(o)) {
 						contador++;
 					}
 				}
 			}
-			puntuacion.put(perfilUsuario.getUsuario(), contador);
+			puntuacion.put(cliente.getUsuario(), contador);
 		}
 
 		return puntuacion;
@@ -75,14 +75,14 @@ public class SistemaEmparejamiento {
 	public Map<String, Integer> porCarrera(String usuario) {
 		HashMap<String, Integer> puntuacion = new HashMap<>();
 		//compara todos los usuarios del sistema con el usuario referencia
-		for (PerfilUsuario perfilUsuario : general(usuario)) {
+		for (Cliente cliente : general(usuario)) {
 			int contador = 0;
-			for (PerfilUsuario perfilUsuario1 : referencia(usuario)) {
-				if (perfilUsuario.getCarrera().equals(perfilUsuario1.getCarrera())) {
+			for (Cliente cliente1 : referencia(usuario)) {
+				if (cliente.getCarrera().equals(cliente1.getCarrera())) {
 					contador+=1;
 				}
 			}
-			puntuacion.put(perfilUsuario.getUsuario(), contador);
+			puntuacion.put(cliente.getUsuario(), contador);
 		}
 		return puntuacion;
 	}
@@ -90,14 +90,14 @@ public class SistemaEmparejamiento {
 	public Map<String, Integer> porOrientacion(String usuario) {
 		HashMap<String, Integer> puntuacion = new HashMap<>();
 		//compara todos los usuarios del sistema con el usuario referencia
-		for (PerfilUsuario perfilUsuario : general(usuario)) {
+		for (Cliente cliente : general(usuario)) {
 			int contador = 0;
-			for (PerfilUsuario perfilUsuario1 : referencia(usuario)) {
-				if (perfilUsuario.getOrientacion().equals(perfilUsuario1.getOrientacion())) {
+			for (Cliente cliente1 : referencia(usuario)) {
+				if (cliente.getOrientacion().equals(cliente1.getOrientacion())) {
 					contador+=1;
 				}
 			}
-			puntuacion.put(perfilUsuario.getUsuario(), contador);
+			puntuacion.put(cliente.getUsuario(), contador);
 		}
 		return puntuacion;
 	}
@@ -105,14 +105,14 @@ public class SistemaEmparejamiento {
 	public Map<String, Integer> porGenero(String usuario) {
 		HashMap<String, Integer> puntuacion = new HashMap<>();
 		//compara todos los usuarios del sistema con el usuario referencia
-		for (PerfilUsuario perfilUsuario : general(usuario)) {
+		for (Cliente cliente : general(usuario)) {
 			int contador = 0;
-			for (PerfilUsuario perfilUsuario1 : referencia(usuario)) {
-				if (perfilUsuario.getGenero().equals(perfilUsuario1.getGenero())) {
+			for (Cliente cliente1 : referencia(usuario)) {
+				if (cliente.getGenero().equals(cliente1.getGenero())) {
 					contador+=1;
 				}
 			}
-			puntuacion.put(perfilUsuario.getUsuario(), contador);
+			puntuacion.put(cliente.getUsuario(), contador);
 		}
 		return puntuacion;
 	}
