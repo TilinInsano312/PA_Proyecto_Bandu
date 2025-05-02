@@ -1,7 +1,7 @@
 package sistema;
 
 import modelos.denuncia.Denuncia;
-import modelos.usuario.PerfilUsuario;
+import modelos.usuario.Cliente;
 
 import java.util.List;
 import java.util.logging.Logger;
@@ -15,7 +15,7 @@ public class SistemaDenuncia {
 		List<Denuncia> listaDenuncias = GestorArchivos.leerListaObjetos("Denuncia.json",Denuncia.class);
 		if(esValida) {
 			listaDenuncias.add(denuncia);
-			GestorArchivos.borrarObjeto("PerfilUsuario.json", PerfilUsuario.class, denuncia.getPerfilDenunciado());
+			GestorArchivos.borrarObjeto("PerfilUsuario.json", Cliente.class, denuncia.getPerfilDenunciado());
 			GestorArchivos.escribirListaObjetos(listaDenuncias, Denuncia.class);
 			logger.info("La denuncia es válida.");
 		} else {

@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public class PerfilUsuario extends Usuario {
+public class Cliente extends Usuario {
 
 	private String nombre;
 	private String apellido;
@@ -23,8 +23,8 @@ public class PerfilUsuario extends Usuario {
 	List<Artista> artistas;
 	List<Album> albums;
 
-	public PerfilUsuario(String usuario, String contrasena, String email, String nombre, String apellido, int edad, String orientacion,
-						 String carrera, boolean mismaCarrera, String genero) {
+	public Cliente(String usuario, String contrasena, String email, String nombre, String apellido, int edad, String orientacion,
+				   String carrera, boolean mismaCarrera, String genero) {
 		super(usuario, contrasena, email);
 		this.nombre = nombre;
 		this.apellido = apellido;
@@ -40,7 +40,7 @@ public class PerfilUsuario extends Usuario {
 	}
 
 
-	public PerfilUsuario() {
+	public Cliente() {
 	}
 	// agregar a la lista
 	public void agregarGenerosMusicales(String generoMusical){
@@ -166,7 +166,7 @@ public class PerfilUsuario extends Usuario {
 		if (this == o) return true;
 		if (o == null || getClass() != o.getClass()) return false;
 		if (!super.equals(o)) return false;
-		PerfilUsuario that = (PerfilUsuario) o;
+		Cliente that = (Cliente) o;
 		return edad == that.edad && mismaCarrera == that.mismaCarrera && Objects.equals(nombre, that.nombre) && Objects.equals(apellido, that.apellido) && Objects.equals(carrera, that.carrera) && Objects.equals(orientacion, that.orientacion) && Objects.equals(genero, that.genero) && Objects.equals(generosMusicales, that.generosMusicales) && Objects.equals(canciones, that.canciones) && Objects.equals(artistas, that.artistas) && Objects.equals(albums, that.albums);
 	}
 
