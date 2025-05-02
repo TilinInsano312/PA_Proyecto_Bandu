@@ -11,33 +11,40 @@ import java.util.Objects;
 public class PerfilUsuario extends Usuario {
 
 	private String nombre;
-	private String apellida;
+	private String apellido;
 	private int edad;
 	private String carrera;
 	private boolean mismaCarrera;
 	private String orientacion;
 	private String genero;
+	private List<String> generosMusicales;
 
 	List<Cancion> canciones;
 	List<Artista> artistas;
 	List<Album> albums;
 
-	public PerfilUsuario(String usuario, String contrasena, String email, String nombre, String apellida, int edad, String orientacion,
+	public PerfilUsuario(String usuario, String contrasena, String email, String nombre, String apellido, int edad, String orientacion,
 						 String carrera, boolean mismaCarrera, String genero) {
 		super(usuario, contrasena, email);
 		this.nombre = nombre;
-		this.apellida = apellida;
+		this.apellido = apellido;
 		this.edad = edad;
 		this.orientacion = orientacion;
 		this.carrera = carrera;
 		this.mismaCarrera = mismaCarrera;
 		this.genero = genero;
+		this.generosMusicales = new ArrayList<>();
 		this.canciones=new ArrayList<>();
 		this.artistas=new ArrayList<>();
 		this.albums=new ArrayList<>();
 	}
 
+
 	public PerfilUsuario() {
+	}
+	// agregar a la lista
+	public void agregarGenerosMusicales(String generoMusical){
+		this.generosMusicales.add(generoMusical);
 	}
 	public void agregarAlbum(Album album){
 		this.albums.add(album);
@@ -81,12 +88,12 @@ public class PerfilUsuario extends Usuario {
 		this.nombre = nombre;
 	}
 
-	public String getApellida() {
-		return apellida;
+	public String getApellido() {
+		return apellido;
 	}
 
-	public void setApellida(String apellida) {
-		this.apellida = apellida;
+	public void setApellido(String apellido) {
+		this.apellido = apellido;
 	}
 
 	public String getCarrera() {
@@ -129,17 +136,25 @@ public class PerfilUsuario extends Usuario {
 		this.genero = genero;
 	}
 
+	public List<String> getGenerosMusicales() {
+		return generosMusicales;
+	}
+	public void setGenerosMusicales(List<String> generosMusicales) {
+		this.generosMusicales = generosMusicales;
+	}
+
 	@Override
 	public String toString() {
 		return super.toString() +
 				"PerfilUsuario{" +
 				"nombre='" + nombre + '\'' +
-				", apellida='" + apellida + '\'' +
+				", apellido='" + apellido + '\'' +
 				", edad=" + edad +
 				", carrera='" + carrera + '\'' +
 				", mismaCarrera=" + mismaCarrera +
 				", orientacion='" + orientacion + '\'' +
 				", genero='" + genero + '\'' +
+				", generosMusicales='" + generosMusicales + '\'' +
 				", albums=" + albums +
 				", artistas=" + artistas +
 				", canciones=" + canciones +
@@ -152,12 +167,11 @@ public class PerfilUsuario extends Usuario {
 		if (o == null || getClass() != o.getClass()) return false;
 		if (!super.equals(o)) return false;
 		PerfilUsuario that = (PerfilUsuario) o;
-		return edad == that.edad && mismaCarrera == that.mismaCarrera && Objects.equals(nombre, that.nombre) && Objects.equals(apellida, that.apellida) && Objects.equals(carrera, that.carrera) && Objects.equals(orientacion, that.orientacion) && Objects.equals(genero, that.genero);
+		return edad == that.edad && mismaCarrera == that.mismaCarrera && Objects.equals(nombre, that.nombre) && Objects.equals(apellido, that.apellido) && Objects.equals(carrera, that.carrera) && Objects.equals(orientacion, that.orientacion) && Objects.equals(genero, that.genero) && Objects.equals(generosMusicales, that.generosMusicales) && Objects.equals(canciones, that.canciones) && Objects.equals(artistas, that.artistas) && Objects.equals(albums, that.albums);
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(super.hashCode(), nombre, apellida, edad, carrera, mismaCarrera, orientacion, genero);
+		return Objects.hash(super.hashCode(), nombre, apellido, edad, carrera, mismaCarrera, orientacion, genero, generosMusicales, canciones, artistas, albums);
 	}
-
 }
