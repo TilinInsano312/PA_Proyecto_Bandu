@@ -18,44 +18,48 @@ public class ServicioMusica {
         try {
             ACCESS_TOKEN = "Bearer "+SpotifyToken.obtenerAccessToken();
         } catch (Exception e) {
-            throw new RuntimeException(e);
+            throw new IllegalArgumentException(e);
         }
     }
 	// url
-    private static final String urlBusqueda= "https://api.spotify.com/v1/search?q=";
-	private static final String urlArtista= "https://api.spotify.com/v1/artists/";
+    private static final String URLBUSQUEDA= "https://api.spotify.com/v1/search?q=";
+	private static final String URLARTIST= "https://api.spotify.com/v1/artists/";
 
-	private static final String tipo = "&type=";
-	private static final String parametros = "&market=ch&limit=1&offset=0&include_external=audio";
+	private static final String TIPO = "&type=";
+	private static final String PARAMETRO = "&market=ch&limit=1&offset=0&include_external=audio";
+	private static final HttpClient client = HttpClient.newHttpClient();
+	private static final String TEXTOGENERO = "genres";
 
-	public Album buscarAlbum(String busqueda) {
-		busqueda = busqueda.replace(" ","+");
-		String urlConsulta = urlBusqueda+busqueda+tipo+"album"+parametros;
-
-		//conexion
-		HttpClient client = HttpClient.newHttpClient();
+	public HttpResponse<String> respuestaHTTP(String url){
 		HttpRequest request = HttpRequest.newBuilder()
-				.uri(URI.create(urlConsulta))
+				.uri(URI.create(url))
 				.header("Authorization", ACCESS_TOKEN)
 				.GET()
 				.build();
-        HttpResponse<String> response = null;
-        try {
-            response = client.send(request, HttpResponse.BodyHandlers.ofString());
-        } catch (IOException | InterruptedException e) {
-            throw new RuntimeException(e);
-        }
-		//lectura del body
+		HttpResponse<String> response;
+		try {
+			response = client.send(request, HttpResponse.BodyHandlers.ofString());
+		} catch (IOException | InterruptedException e) {
+			Thread.currentThread().interrupt();
+			throw new IllegalArgumentException(e);
+		}
+        return response;
+	}
+
+	public Album buscarAlbum(String busqueda) {
+		busqueda = busqueda.replace(" ","+");
+		String urlConsulta = URLBUSQUEDA+busqueda+TIPO+"album"+PARAMETRO;
+
+		//conexion y lectura del body
         ObjectMapper mapper = new ObjectMapper();
-        JsonNode raiz = null;
+        JsonNode raiz;
         try {
-			raiz = mapper.readTree(response.body());
+			raiz = mapper.readTree(respuestaHTTP(urlConsulta).body());
         } catch (JsonProcessingException e) {
-            throw new RuntimeException(e);
+            throw new IllegalArgumentException(e);
         }
         JsonNode album = raiz.at("/albums/items/0");
 		if (album.isMissingNode()) {
-			System.out.println("No se encontró ningún álbum con ese offset.");
 			return null;
 		}
 
@@ -67,27 +71,17 @@ public class ServicioMusica {
 		String artistId = artist.get("id").asText();
 
 		// Obtener género del artista
-		HttpRequest artistRequest = HttpRequest.newBuilder()
-				.uri(URI.create(urlArtista + artistId))
-				.header("Authorization", ACCESS_TOKEN)
-				.GET()
-				.build();
 
-        HttpResponse<String> artistResponse = null;
+
+        JsonNode artistRoot;
         try {
-            artistResponse = client.send(artistRequest, HttpResponse.BodyHandlers.ofString());
-        } catch (IOException | InterruptedException e) {
-            throw new RuntimeException(e);
-        }
-        JsonNode artistRoot = null;
-        try {
-            artistRoot = mapper.readTree(artistResponse.body());
+            artistRoot = mapper.readTree(respuestaHTTP(URLARTIST + artistId).body());
         } catch (JsonProcessingException e) {
-            throw new RuntimeException(e);
+            throw new IllegalArgumentException(e);
         }
 
-        JsonNode genres = artistRoot.get("genres");
-		String genre = genres.isArray() && genres.size() > 0 ? genres.get(0).asText() : "No disponible";
+        JsonNode genres = artistRoot.get(TEXTOGENERO);
+		String genre = genres.isArray() && !genres.isEmpty() ? genres.get(0).asText() : null;
 
         return new Album(albumName,artistName,genre,imageUrl);
     }
@@ -95,77 +89,47 @@ public class ServicioMusica {
 	public Artista buscarArtista(String busqueda) {
 		busqueda = busqueda.replace(" ","+");
 		//Conexion
-		String urlConsulta = urlBusqueda+busqueda+tipo+"artist"+parametros;
-		HttpClient client = HttpClient.newHttpClient();
-
-		HttpRequest request = HttpRequest.newBuilder()
-				.uri(URI.create(urlConsulta))
-				.header("Authorization", ACCESS_TOKEN)
-				.GET()
-				.build();
-
-        HttpResponse<String> response = null;
-        try {
-            response = client.send(request, HttpResponse.BodyHandlers.ofString());
-        } catch (IOException | InterruptedException e) {
-            throw new RuntimeException(e);
-        }
+		String urlConsulta = URLBUSQUEDA+busqueda+TIPO+"artist"+PARAMETRO;
 
 		//lectura del body
         ObjectMapper mapper = new ObjectMapper();
-        JsonNode root = null;
+        JsonNode root;
         try {
-            root = mapper.readTree(response.body());
+            root = mapper.readTree(respuestaHTTP(urlConsulta).body());
         } catch (JsonProcessingException e) {
-            throw new RuntimeException(e);
+            throw new IllegalArgumentException(e);
         }
         JsonNode artist = root.at("/artists/items/0");
 		if (artist.isMissingNode()) {
-			System.out.println("No se encontró el artista.");
 			return null;
 		}
 
 		//instanciar las variables del body
 		String nombreArtista = artist.get("name").asText();
-		JsonNode generos = artist.get("genres");
-		String genero = generos.isArray() && generos.size() > 0 ? String.join(", ", mapper.convertValue(generos, String[].class))
-				: "No disponible";
+		JsonNode generos = artist.get(TEXTOGENERO);
+		String images = "images";
+		String genero = generos.isArray() && !generos.isEmpty() ? String.join(", ", mapper.convertValue(generos, String[].class))
+				: null;
 
-		String imagenUrl = artist.has("images") && artist.get("images").size() > 0 ? artist.get("images").get(0).get("url").asText()
-				: "No disponible";
+		String imagenUrl = artist.has(images) && !artist.get(images).isEmpty() ? artist.get(images).get(0).get("url").asText()
+				: null;
 
 		return new Artista(nombreArtista,genero,imagenUrl);
 	}
 
 	public Cancion buscarCancion(String busqueda) {
 		busqueda = busqueda.replace(" ","+");
-		HttpClient client = HttpClient.newHttpClient();
-
-		//conexion
-		String urlConsulta = urlBusqueda+busqueda+tipo+"track"+parametros;
-		HttpRequest trackRequest = HttpRequest.newBuilder()
-				.uri(URI.create(urlConsulta))
-				.header("Authorization", ACCESS_TOKEN)
-				.GET()
-				.build();
-        HttpResponse<String> trackResponse = null;
-        try {
-            trackResponse = client.send(trackRequest, HttpResponse.BodyHandlers.ofString());
-        } catch (IOException | InterruptedException e) {
-            throw new RuntimeException(e);
-        }
-
+		String urlConsulta = URLBUSQUEDA+busqueda+TIPO+"track"+PARAMETRO;
 		//lectura del body
         ObjectMapper mapper = new ObjectMapper();
-        JsonNode root = null;
+        JsonNode root;
         try {
-            root = mapper.readTree(trackResponse.body());
+            root = mapper.readTree(respuestaHTTP(urlConsulta).body());
         } catch (JsonProcessingException e) {
-            throw new RuntimeException(e);
+            throw new IllegalArgumentException(e);
         }
         JsonNode track = root.at("/tracks/items/0");
 		if (track.isMissingNode()) {
-			System.out.println("No se encontró la canción.");
 			return null;
 		}
 
@@ -177,29 +141,17 @@ public class ServicioMusica {
 		String artistId = artistNode.get("id").asText();
 
 		//busqueda de los generos
-		HttpRequest artistRequest = HttpRequest.newBuilder()
-				.uri(URI.create("https://api.spotify.com/v1/artists/" + artistId))
-				.header("Authorization", ACCESS_TOKEN)
-				.GET()
-				.build();
-        HttpResponse<String> artistResponse = null;
-		//lectura del body
+        JsonNode artistRoot;
         try {
-            artistResponse = client.send(artistRequest, HttpResponse.BodyHandlers.ofString());
-        } catch (IOException | InterruptedException e) {
-            throw new RuntimeException(e);
-        }
-        JsonNode artistRoot = null;
-        try {
-            artistRoot = mapper.readTree(artistResponse.body());
+            artistRoot = mapper.readTree(respuestaHTTP(URLARTIST + artistId).body());
         } catch (JsonProcessingException e) {
-            throw new RuntimeException(e);
+            throw new IllegalArgumentException(e);
         }
 
 		//instaciar los generos
-        JsonNode genres = artistRoot.get("genres");
-		String genre = genres.isArray() && genres.size() > 0 ? String.join(", ", mapper.convertValue(genres, String[].class))
-				: "No disponible";
+        JsonNode genres = artistRoot.get(TEXTOGENERO);
+		String genre = genres.isArray() && !genres.isEmpty() ? String.join(", ", mapper.convertValue(genres, String[].class))
+				: null;
 		return new Cancion(songName,artistName,genre,imageUrl);
 	}
 
