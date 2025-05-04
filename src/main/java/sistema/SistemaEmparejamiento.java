@@ -182,6 +182,31 @@ public class SistemaEmparejamiento {
 
 	/**
 	 *
+	 * El metodo compara el usuario de referencia con todos los usuarios del sistema y devuelve un mapa con la puntuacion de cada usuario segun el genero musical.
+	 *
+	 * @param usuario nombre del usuario con el que se quiere comparar
+	 * @return devuelve un mapa con todos los usuarios que no son el usuario ingresado en el parametro y la puntuacion de cada usuario segun el genero musical.
+	 */
+	public Map<String, Integer> porGenerosMusicales(String usuario) {
+		HashMap<String, Integer> puntuacion = new HashMap<>();
+		//compara todos los usuarios del sistema con el usuario referencia
+		for (Cliente cliente : general(usuario)) {
+			int contador = 0;
+			for (Cliente cliente1 : referencia(usuario)) {
+				for (String o : cliente.getGenerosMusicales()) {
+					if (cliente1.getGenerosMusicales().contains(o)) {
+						contador+=1;
+					}
+				}
+			}
+			puntuacion.put(cliente.getUsuario(), contador);
+		}
+		return puntuacion;
+	}
+
+
+	/**
+	 *
 	 * El metodo marca a los usuarios que tienen la misma carrera universitaria que el usuario ingresado.
 	 *
 	 * @param usuario nombre del usuario con el que se quiere comparar
