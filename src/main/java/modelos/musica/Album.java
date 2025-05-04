@@ -2,6 +2,14 @@ package modelos.musica;
 
 import java.util.Objects;
 
+/**
+ * Clase que representa un álbum en el sistema.
+ * Contiene atributos como nombre, artista, genero e imagen del álbum.
+ *
+ * @author Vicente Salazar, Sebastian Sandoval
+ * @version 1.0
+ */
+
 public class Album {
     private String nombreAlbum;
     private String artistaAlbum;
