@@ -2,6 +2,14 @@ package modelos.musica;
 
 import java.util.Objects;
 
+/**
+ * Clase que representa una cancion en el sistema.
+ * Contiene atributos como nombre, artista, genero e imagen de la canción.
+ *
+ * @author Vicente Salazar, Sebastian Sandoval
+ * @version 1.0
+ */
+
 public class Cancion {
     private String nombreCancion;
     private String artistaCancion;

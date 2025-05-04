@@ -2,6 +2,14 @@ package modelos.usuario;
 
 import java.util.Objects;
 
+/**
+ * Clase que representa un administrador en el sistema.
+ * Hereda de la clase Usuario y contiene un atributo adicional: nombre.
+ *
+ * @author Vicente Salazar, Sebastian Sandoval
+ * @version 1.0
+ */
+
 public class Admin extends Usuario {
 
 	private String nombre;

@@ -8,6 +8,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+/**
+ * Clase que representa un cliente en el sistema.
+ * Hereda de la clase Usuario y contiene atributos adicionales como nombre, apellido, edad, carrera, etc.
+ *
+ * @author Vicente Salazar, Sebastian Sandoval
+ * @version 2.0
+ */
 public class Cliente extends Usuario {
 
 	private String nombre;

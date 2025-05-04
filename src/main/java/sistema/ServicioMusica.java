@@ -12,6 +12,14 @@ import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 
+/**
+ * Clase que representa el servicio de musica en el sistema.
+ * Contiene metodos para buscar albumes, artistas y canciones en la API de Spotify.
+ *
+ * @author Vicente Salazar
+ * @version 2.0
+ */
+
 public class ServicioMusica {
 	private static final String ACCESS_TOKEN;
     static {
@@ -30,6 +38,16 @@ public class ServicioMusica {
 	private static final HttpClient client = HttpClient.newHttpClient();
 	private static final String TEXTOGENERO = "genres";
 
+	/**
+	 *
+	 * El metodo generaliza la accion de realizar una peticion HTTP a la API de Spotify y devuelve la respuesta.
+	 *
+	 * @param url url de la peticion
+	 * @return devuelve la respuesta de la peticion
+	 * @throws IllegalArgumentException si ocurre un error al realizar la peticion
+	 * @throws IOException si la peticion es interrumpida
+	 */
+
 	public HttpResponse<String> respuestaHTTP(String url){
 		HttpRequest request = HttpRequest.newBuilder()
 				.uri(URI.create(url))
@@ -45,6 +63,15 @@ public class ServicioMusica {
 		}
         return response;
 	}
+
+	/**
+	 *
+	 * El metodo busca un album en la API de Spotify y devuelve un objeto Album con la informacion del album.
+	 *
+	 * @param busqueda nombre del album a buscar
+	 * @return devuelve un objeto Album con la informacion del album
+	 * @throws IllegalArgumentException si ocurre un error al realizar la peticion
+	 */
 
 	public Album buscarAlbum(String busqueda) {
 		busqueda = busqueda.replace(" ","+");
@@ -71,8 +98,6 @@ public class ServicioMusica {
 		String artistId = artist.get("id").asText();
 
 		// Obtener género del artista
-
-
         JsonNode artistRoot;
         try {
             artistRoot = mapper.readTree(respuestaHTTP(URLARTIST + artistId).body());
@@ -85,6 +110,15 @@ public class ServicioMusica {
 
         return new Album(albumName,artistName,genre,imageUrl);
     }
+
+	/**
+	 *
+	 * El metodo busca un artista en la API de Spotify y devuelve un objeto Artista con la informacion del artista.
+	 *
+	 * @param busqueda nombre del artista a buscar
+	 * @return devuelve un objeto Artista con la informacion del artista
+	 * @throws IllegalArgumentException si ocurre un error al realizar la peticion
+	 */
 
 	public Artista buscarArtista(String busqueda) {
 		busqueda = busqueda.replace(" ","+");
@@ -116,6 +150,15 @@ public class ServicioMusica {
 
 		return new Artista(nombreArtista,genero,imagenUrl);
 	}
+
+	/**
+	 *
+	 * El metodo busca una cancion en la API de Spotify y devuelve un objeto Cancion con la informacion de la cancion.
+	 *
+	 * @param busqueda nombre de la cancion a buscar
+	 * @return devuelve un objeto Cancion con la informacion de la cancion
+	 * @throws IllegalArgumentException si ocurre un error al realizar la peticion
+	 */
 
 	public Cancion buscarCancion(String busqueda) {
 		busqueda = busqueda.replace(" ","+");

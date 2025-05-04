@@ -4,13 +4,21 @@ import modelos.usuario.Cliente;
 
 import java.util.Objects;
 
+/**
+ * Clase que representa una denuncia en el sistema.
+ * Contiene atributos como el perfil denunciado, la descripcion de la denuncia y el tipo de denuncia.
+ *
+ * @author Vicente Salazar, Sebastian Sandoval
+ * @version 1.0
+ */
+
 public class Denuncia {
 
 	private Cliente perfilDenunciado;
 	private String descripcion;
 	private String tipoDenuncia;
 
-	public Denuncia() {
+	public Denuncia() {// Constructor vacío
 	}
 
 	public Denuncia(Cliente perfilDenunciado, String descripcion, String tipoDenuncia) {
