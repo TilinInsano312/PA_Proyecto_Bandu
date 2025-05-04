@@ -111,7 +111,7 @@ public class GestorArchivos {
      * @throws Exception Si ocurre un error al modificar el atributo.
      */
     public static Cliente modificarUnAtributoPerfilUsuario(Cliente cliente, String nombreAtributo, Object nuevoValor) {
-        String archivo  = "PerfilUsuario.json";
+        String archivo  = "Cliente.json";
         borrarObjeto(archivo, Cliente.class, cliente);
         List<Cliente> listaPerfiles = leerListaObjetos(archivo, Cliente.class);
 

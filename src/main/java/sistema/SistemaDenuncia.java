@@ -27,7 +27,7 @@ public class SistemaDenuncia {
 	 * @return void
 	 */
 	//Metodo para validar denuncia, al ser valida se guarda la denuncia en el registro y se borra el perfil denunciado
-	public void validarDenuncia(Denuncia denuncia, boolean esValida) {
+	public static void validarDenuncia(Denuncia denuncia, boolean esValida) {
 		List<Denuncia> listaDenuncias = GestorArchivos.leerListaObjetos("Denuncia.json",Denuncia.class);
 		if(esValida) {
 			listaDenuncias.add(denuncia);
