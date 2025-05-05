@@ -49,19 +49,19 @@ public class ServicioMusica {
 	 */
 
 	public HttpResponse<String> respuestaHTTP(String url){
-		HttpRequest request = HttpRequest.newBuilder()
+		HttpRequest peticion = HttpRequest.newBuilder()
 				.uri(URI.create(url))
 				.header("Authorization", ACCESS_TOKEN)
 				.GET()
 				.build();
-		HttpResponse<String> response;
+		HttpResponse<String> respuesta;
 		try {
-			response = client.send(request, HttpResponse.BodyHandlers.ofString());
+			respuesta = client.send(peticion, HttpResponse.BodyHandlers.ofString());
 		} catch (IOException | InterruptedException e) {
 			Thread.currentThread().interrupt();
 			throw new IllegalArgumentException(e);
 		}
-        return response;
+        return respuesta;
 	}
 
 	/**
@@ -79,36 +79,36 @@ public class ServicioMusica {
 
 		//conexion y lectura del body
         ObjectMapper mapper = new ObjectMapper();
-        JsonNode raiz;
+        JsonNode root;
         try {
-			raiz = mapper.readTree(respuestaHTTP(urlConsulta).body());
+			root = mapper.readTree(respuestaHTTP(urlConsulta).body());
         } catch (JsonProcessingException e) {
             throw new IllegalArgumentException(e);
         }
-        JsonNode album = raiz.at("/albums/items/0");
+        JsonNode album = root.at("/albums/items/0");
 		if (album.isMissingNode()) {
 			return null;
 		}
 
 		//instaciar las variables del body
 		String albumName = album.get("name").asText();
-		String imageUrl = album.at("/images/0/url").asText();
-		JsonNode artist = album.at("/artists/0");
-		String artistName = artist.get("name").asText();
-		String artistId = artist.get("id").asText();
+		String imagenUrl = album.at("/images/0/url").asText();
+		JsonNode artista = album.at("/artists/0");
+		String artistaName = artista.get("name").asText();
+		String artistaId = artista.get("id").asText();
 
 		// Obtener género del artista
-        JsonNode artistRoot;
+        JsonNode artistaRoot;
         try {
-            artistRoot = mapper.readTree(respuestaHTTP(URLARTIST + artistId).body());
+            artistaRoot = mapper.readTree(respuestaHTTP(URLARTIST + artistaId).body());
         } catch (JsonProcessingException e) {
             throw new IllegalArgumentException(e);
         }
 
-        JsonNode genres = artistRoot.get(TEXTOGENERO);
-		String genre = genres.isArray() && !genres.isEmpty() ? genres.get(0).asText() : null;
+        JsonNode generosMusicales = artistaRoot.get(TEXTOGENERO);
+		String genero = generosMusicales.isArray() && !generosMusicales.isEmpty() ? generosMusicales.get(0).asText() : null;
 
-        return new Album(albumName,artistName,genre,imageUrl);
+        return new Album(albumName,artistaName,genero,imagenUrl);
     }
 
 	/**
@@ -133,19 +133,19 @@ public class ServicioMusica {
         } catch (JsonProcessingException e) {
             throw new IllegalArgumentException(e);
         }
-        JsonNode artist = root.at("/artists/items/0");
-		if (artist.isMissingNode()) {
+        JsonNode artista = root.at("/artists/items/0");
+		if (artista.isMissingNode()) {
 			return null;
 		}
 
 		//instanciar las variables del body
-		String nombreArtista = artist.get("name").asText();
-		JsonNode generos = artist.get(TEXTOGENERO);
-		String images = "images";
+		String nombreArtista = artista.get("name").asText();
+		JsonNode generos = artista.get(TEXTOGENERO);
+		String imagen = "images";
 		String genero = generos.isArray() && !generos.isEmpty() ? String.join(", ", mapper.convertValue(generos, String[].class))
 				: null;
 
-		String imagenUrl = artist.has(images) && !artist.get(images).isEmpty() ? artist.get(images).get(0).get("url").asText()
+		String imagenUrl = artista.has(imagen) && !artista.get(imagen).isEmpty() ? artista.get(imagen).get(0).get("url").asText()
 				: null;
 
 		return new Artista(nombreArtista,genero,imagenUrl);
@@ -177,25 +177,25 @@ public class ServicioMusica {
 		}
 
 		//instanciar variables del body
-		String songName = track.get("name").asText();
-		String imageUrl = track.at("/album/images/0/url").asText();
-		JsonNode artistNode = track.at("/artists/0");
-		String artistName = artistNode.get("name").asText();
-		String artistId = artistNode.get("id").asText();
+		String cancionName = track.get("name").asText();
+		String imagenUrl = track.at("/album/images/0/url").asText();
+		JsonNode artistaNode = track.at("/artists/0");
+		String artistaName = artistaNode.get("name").asText();
+		String artistaId = artistaNode.get("id").asText();
 
 		//busqueda de los generos
         JsonNode artistRoot;
         try {
-            artistRoot = mapper.readTree(respuestaHTTP(URLARTIST + artistId).body());
+            artistRoot = mapper.readTree(respuestaHTTP(URLARTIST + artistaId).body());
         } catch (JsonProcessingException e) {
             throw new IllegalArgumentException(e);
         }
 
 		//instaciar los generos
-        JsonNode genres = artistRoot.get(TEXTOGENERO);
-		String genre = genres.isArray() && !genres.isEmpty() ? String.join(", ", mapper.convertValue(genres, String[].class))
+        JsonNode generosMusicales = artistRoot.get(TEXTOGENERO);
+		String genero = generosMusicales.isArray() && !generosMusicales.isEmpty() ? String.join(", ", mapper.convertValue(generosMusicales, String[].class))
 				: null;
-		return new Cancion(songName,artistName,genre,imageUrl);
+		return new Cancion(cancionName,artistaName,genero,imagenUrl);
 	}
 
 }
