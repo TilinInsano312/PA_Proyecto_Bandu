@@ -25,7 +25,7 @@ public class SistemaEmparejamiento {
 	 * @return Lista de usuarios que tienen el mismo usuario que el usuario referencia
 	 */
 	public List<Cliente> referencia(String usuario){
-		return GestorArchivos.leerListaObjetos("PerfilUsuario.json", Cliente.class).stream()
+		return GestorArchivos.leerListaObjetos("Cliente.json", Cliente.class).stream()
 				.filter(perfilUsuario -> perfilUsuario.getUsuario().equals((usuario))).toList();
 	}
 
@@ -37,7 +37,7 @@ public class SistemaEmparejamiento {
 	 * @return Lista de Cliente que no tienen el mismo usuario que el parametro.
 	 */
 	public List<Cliente> general(String usuario){
-		return GestorArchivos.leerListaObjetos("PerfilUsuario.json", Cliente.class).stream()
+		return GestorArchivos.leerListaObjetos("Cliente.json", Cliente.class).stream()
 				.filter(perfilUsuario -> !perfilUsuario.getUsuario().equals((usuario))).toList();
 	}
 
