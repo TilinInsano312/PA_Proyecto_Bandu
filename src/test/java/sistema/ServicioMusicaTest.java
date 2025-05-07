@@ -13,7 +13,7 @@ class ServicioMusicaTest {
     ServicioMusica servicioMusica = new ServicioMusica();
     Cancion cancion = new Cancion("Despacito", "Luis Fonsi", "latin", "https://i.scdn.co/image/ab67616d0000b273ef0d4234e1a645740f77d59c");
     Album album = new Album("OK Computer", "Radiohead", "art rock", "https://i.scdn.co/image/ab67616d0000b273c8b444df094279e70d0ed856");
-    Artista artista = new Artista("Michael Jackson", "null", "https://i.scdn.co/image/ab6761610000e5eb997cc9a4aec335d46c9481fd");
+    Artista artista = new Artista("Michael Jackson", null, "https://i.scdn.co/image/ab6761610000e5eb997cc9a4aec335d46c9481fd");
 
     @Test
     void respuestaHTTP() {
