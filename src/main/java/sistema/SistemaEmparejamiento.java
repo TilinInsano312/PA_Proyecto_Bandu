@@ -1,144 +1,222 @@
 package sistema;
 
-import modelos.usuario.PerfilUsuario;
+import modelos.usuario.Cliente;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
+/**
+ * Clase que representa el sistema de emparejamiento en la aplicacion.
+ * Contiene metodos para comparar usuarios y obtener puntuaciones segun diferentes criterios.
+ *
+ * @author Vicente Salazar
+ * @version 1.0
+ */
 public class SistemaEmparejamiento {
-	public SistemaEmparejamiento() {
+
+	public SistemaEmparejamiento() {//Constructor vacio
 	}
-	//usuario referencia
-	public List referencia(String usuario){
-		return GestorArchivos.leerListaObjetos("PerfilUsuario.json", PerfilUsuario.class).stream()
+
+	/**
+	 *
+	 * El metodo toma un usuario y lo retorna en una lista de objetos de tipo Cliente.
+	 *
+	 * @param usuario nombre del usuario con el que se quiere comparar
+	 * @return Lista de usuarios que tienen el mismo usuario que el usuario referencia
+	 */
+	public List<Cliente> referencia(String usuario){
+		return GestorArchivos.leerListaObjetos("Cliente.json", Cliente.class).stream()
 				.filter(perfilUsuario -> perfilUsuario.getUsuario().equals((usuario))).toList();
 	}
-	//Todos los usuarios excepto el referencia
 
-	public List general(String usuario){
-		return GestorArchivos.leerListaObjetos("PerfilUsuario.json", PerfilUsuario.class).stream()
+	/**
+	 *
+	 * El metodo toma un usuario y lo retorna en una lista de objetos de tipo Cliente cuales son todos los clientes existentes excepto el usuario del parametro.
+	 *
+	 * @param usuario nombre del usuario con el que se quiere comparar
+	 * @return Lista de Cliente que no tienen el mismo usuario que el parametro.
+	 */
+	public List<Cliente> general(String usuario){
+		return GestorArchivos.leerListaObjetos("Cliente.json", Cliente.class).stream()
 				.filter(perfilUsuario -> !perfilUsuario.getUsuario().equals((usuario))).toList();
 	}
-	public HashMap<String, Integer> porAlbum(String usuario) {
-		HashMap<String, Integer> puntuacion = new HashMap<>();
+
+	/**
+	 *
+	 * El metodo compara el usuario de referencia con todos los usuarios del sistema y devuelve un mapa con la puntuacion de cada usuario segun el album.
+	 *
+	 * @param usuario nombre del usuario con el que se quiere comparar
+	 * @return devuelve un mapa con todos los usuarios que no son el usuario ingresado en el parametro y la puntuacion de cada usuario segun el album
+	 */
+	public Map<String, Integer> porAlbum(String usuario) {
+		Map<String, Integer> puntuacion = new HashMap<>();
 		//compara todos los usuarios del sistema con el usuario referencia
-		for (Object o : general(usuario)) {
-			PerfilUsuario perfilUsuario = (PerfilUsuario) o;
+		for (Cliente cliente : general(usuario)) {
 			int contador = 0;
-			for (Object o1 : referencia(usuario)) {
-				PerfilUsuario perfilUsuario1 = (PerfilUsuario) o1;
-				for (Object o2 : perfilUsuario.getAlbums()) {
-					if (perfilUsuario1.getAlbums().contains(o2)) {
+			for (Cliente cliente1 : referencia(usuario)) {
+				for (Object o: cliente.getAlbums()) {
+					if (cliente1.getAlbums().contains(o)) {
 						contador+=2;
 					}
 				}
 			}
-			puntuacion.put(perfilUsuario.getUsuario(), contador);
+			puntuacion.put(cliente.getUsuario(), contador);
 		}
-
 		return puntuacion;
 	}
 
-	public HashMap<String, Integer> porArtista(String usuario) {
+	/**
+	 *
+	 * El metodo compara el usuario de referencia con todos los usuarios del sistema y devuelve un mapa con la puntuacion de cada usuario segun el artista.
+	 *
+	 * @param usuario nombre del usuario con el que se quiere comparar
+	 * @return devuelve un mapa con todos los usuarios que no son el usuario ingresado en el parametro y la puntuacion de cada usuario segun el artista
+	 */
+	public Map<String, Integer> porArtista(String usuario) {
 		HashMap<String, Integer> puntuacion = new HashMap<>();
 		//compara todos los usuarios del sistema con el usuario referencia
-		for (Object o : general(usuario)) {
-			PerfilUsuario perfilUsuario = (PerfilUsuario) o;
+		for (Cliente cliente : general(usuario)) {
 			int contador = 0;
-			for (Object o1 : referencia(usuario)) {
-				PerfilUsuario perfilUsuario1 = (PerfilUsuario) o1;
-				for (Object o2 : perfilUsuario.getArtistas()) {
-					if (perfilUsuario1.getArtistas().contains(o2)) {
+			for (Cliente cliente1 : referencia(usuario)) {
+				for (Object o : cliente.getArtistas()) {
+					if (cliente1.getArtistas().contains(o)) {
 						contador+=3;
 					}
 				}
 			}
-			puntuacion.put(perfilUsuario.getUsuario(), contador);
+			puntuacion.put(cliente.getUsuario(), contador);
 		}
-
 		return puntuacion;
 	}
 
-	public HashMap<String, Integer> porCancion(String usuario) {
+	/**
+	 *
+	 * El metodo compara el usuario de referencia con todos los usuarios del sistema y devuelve un mapa con la puntuacion de cada usuario segun la cancion.
+	 *
+	 * @param usuario nombre del usuario con el que se quiere comparar
+	 * @return devuelve un mapa con todos los usuarios que no son el usuario ingresado en el parametro y la puntuacion de cada usuario segun la cancion
+	 */
+	public Map<String, Integer> porCancion(String usuario) {
 		HashMap<String, Integer> puntuacion = new HashMap<>();
 		//compara todos los usuarios del sistema con el usuario referencia
-		for (Object o : general(usuario)) {
-			PerfilUsuario perfilUsuario = (PerfilUsuario) o;
+		for (Cliente cliente : general(usuario)) {
 			int contador = 0;
-			for (Object o1 : referencia(usuario)) {
-				PerfilUsuario perfilUsuario1 = (PerfilUsuario) o1;
-				for (Object o2 : perfilUsuario.getCanciones()) {
-					if (perfilUsuario1.getCanciones().contains(o2)) {
+			for (Cliente cliente1 : referencia(usuario)) {
+				for (Object o : cliente.getCanciones()) {
+					if (cliente1.getCanciones().contains(o)) {
 						contador++;
 					}
 				}
 			}
-			puntuacion.put(perfilUsuario.getUsuario(), contador);
+			puntuacion.put(cliente.getUsuario(), contador);
 		}
 
 		return puntuacion;
 	}
 
-	public HashMap<String, Integer> porCarrera(String usuario) {
+	/**
+	 *
+	 * El metodo compara el usuario de referencia con todos los usuarios del sistema y devuelve un mapa con la puntuacion de cada usuario segun la carrera universitaria.
+	 *
+	 * @param usuario nombre del usuario con el que se quiere comparar
+	 * @return devuelve un mapa con todos los usuarios que no son el usuario ingresado en el parametro y la puntuacion de cada usuario segun la carrera universitaria
+	 */
+	public Map<String, Integer> porCarrera(String usuario) {
 		HashMap<String, Integer> puntuacion = new HashMap<>();
 		//compara todos los usuarios del sistema con el usuario referencia
-		for (Object o : general(usuario)) {
-			PerfilUsuario perfilUsuario = (PerfilUsuario) o;
+		for (Cliente cliente : general(usuario)) {
 			int contador = 0;
-			for (Object o1 : referencia(usuario)) {
-				PerfilUsuario perfilUsuario1 = (PerfilUsuario) o1;
-				if (perfilUsuario.getCarrera().equals(perfilUsuario1.getCarrera())) {
+			for (Cliente cliente1 : referencia(usuario)) {
+				if (cliente.getCarrera().equals(cliente1.getCarrera())) {
 					contador+=1;
 				}
 			}
-			puntuacion.put(perfilUsuario.getUsuario(), contador);
+			puntuacion.put(cliente.getUsuario(), contador);
 		}
-		System.out.println(puntuacion);
 		return puntuacion;
 	}
 
-	public HashMap<String, Integer> porOrientacion(String usuario) {
+	/**
+	 *
+	 * El metodo compara el usuario de referencia con todos los usuarios del sistema y devuelve un mapa con la puntuacion de cada usuario segun la orientacion sexual del usuario.
+	 *
+	 * @param usuario nombre del usuario con el que se quiere comparar
+	 * @return devuelve un mapa con todos los usuarios que no son el usuario ingresado en el parametro y la puntuacion de cada usuario segun la orientacion sexual
+	 */
+	public Map<String, Integer> porOrientacion(String usuario) {
 		HashMap<String, Integer> puntuacion = new HashMap<>();
 		//compara todos los usuarios del sistema con el usuario referencia
-		for (Object o : general(usuario)) {
-			PerfilUsuario perfilUsuario = (PerfilUsuario) o;
+		for (Cliente cliente : general(usuario)) {
 			int contador = 0;
-			for (Object o1 : referencia(usuario)) {
-				PerfilUsuario perfilUsuario1 = (PerfilUsuario) o1;
-				if (perfilUsuario.getOrientacion().equals(perfilUsuario1.getOrientacion())) {
+			for (Cliente cliente1 : referencia(usuario)) {
+				if (cliente.getOrientacion().equals(cliente1.getOrientacion())) {
 					contador+=1;
 				}
 			}
-			puntuacion.put(perfilUsuario.getUsuario(), contador);
+			puntuacion.put(cliente.getUsuario(), contador);
 		}
-		System.out.println(puntuacion);
 		return puntuacion;
 	}
 
-	public HashMap<String, Integer> porGenero(String usuario) {
+	/**
+	 *
+	 * El metodo compara el usuario de referencia con todos los usuarios del sistema y devuelve un mapa con la puntuacion de cada usuario segun el genero biologico.
+	 *
+	 * @param usuario nombre del usuario con el que se quiere comparar
+	 * @return devuelve un mapa con todos los usuarios que no son el usuario ingresado en el parametro y la puntuacion de cada usuario segun el genero biologico.
+	 */
+	public Map<String, Integer> porGenero(String usuario) {
 		HashMap<String, Integer> puntuacion = new HashMap<>();
 		//compara todos los usuarios del sistema con el usuario referencia
-		for (Object o : general(usuario)) {
-			PerfilUsuario perfilUsuario = (PerfilUsuario) o;
+		for (Cliente cliente : general(usuario)) {
 			int contador = 0;
-			for (Object o1 : referencia(usuario)) {
-				PerfilUsuario perfilUsuario1 = (PerfilUsuario) o1;
-				if (perfilUsuario.getGenero().equals(perfilUsuario1.getGenero())) {
+			for (Cliente cliente1 : referencia(usuario)) {
+				if (cliente.getGenero().equals(cliente1.getGenero())) {
 					contador+=1;
 				}
 			}
-			puntuacion.put(perfilUsuario.getUsuario(), contador);
+			puntuacion.put(cliente.getUsuario(), contador);
 		}
-		System.out.println(puntuacion);
 		return puntuacion;
 	}
-	//lee el hashmap de porCarrera() y enlista a todos los nombre de usuario que tienen hashvalor 1
-		public List descartarMismaCarrera(String usuario) {
+
+	/**
+	 *
+	 * El metodo compara el usuario de referencia con todos los usuarios del sistema y devuelve un mapa con la puntuacion de cada usuario segun el genero musical.
+	 *
+	 * @param usuario nombre del usuario con el que se quiere comparar
+	 * @return devuelve un mapa con todos los usuarios que no son el usuario ingresado en el parametro y la puntuacion de cada usuario segun el genero musical.
+	 */
+	public Map<String, Integer> porGenerosMusicales(String usuario) {
+		HashMap<String, Integer> puntuacion = new HashMap<>();
+		//compara todos los usuarios del sistema con el usuario referencia
+		for (Cliente cliente : general(usuario)) {
+			int contador = 0;
+			for (Cliente cliente1 : referencia(usuario)) {
+				for (String o : cliente.getGenerosMusicales()) {
+					if (cliente1.getGenerosMusicales().contains(o)) {
+						contador+=1;
+					}
+				}
+			}
+			puntuacion.put(cliente.getUsuario(), contador);
+		}
+		return puntuacion;
+	}
+
+
+	/**
+	 *
+	 * El metodo marca a los usuarios que tienen la misma carrera universitaria que el usuario ingresado.
+	 *
+	 * @param usuario nombre del usuario con el que se quiere comparar
+	 * @return devuelve una lista de usuarios que no tienen la misma carrera universitaria que el usuario ingresado.
+	 */
+		public List<String> descartarMismaCarrera(String usuario) {
 			return porCarrera(usuario).entrySet().stream()
 					.filter(entry -> entry.getValue() == 1)
 					.map(Map.Entry::getKey)
-					.collect(Collectors.toList());
+					.toList();
 		}
 
 }

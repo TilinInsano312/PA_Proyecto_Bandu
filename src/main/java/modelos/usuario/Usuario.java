@@ -2,6 +2,13 @@ package modelos.usuario;
 
 import java.util.Objects;
 
+/**
+ * Clase que representa un usuario en el sistema.
+ * Contiene atributos como usuario, contrasena y email.
+ *
+ * @author Vicente Salazar, Sebastian Sandoval
+ * @version 1.0
+ */
 public class Usuario {
 
 	private String usuario;
