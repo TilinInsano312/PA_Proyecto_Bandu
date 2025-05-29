@@ -1,9 +1,9 @@
-package sistema;
+package com.banduu.sistema;
 
-import modelos.denuncia.Denuncia;
-import modelos.usuario.Cliente;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
+import com.banduu.modelos.denuncia.Denuncia;
+import com.banduu.modelos.usuario.Cliente;
+import com.banduu.sistema.GestorArchivos;
+import com.banduu.sistema.SistemaDenuncia;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -15,6 +15,6 @@ class SistemaDenunciaTest {
     @Test
     void validarDenuncia() {
         SistemaDenuncia.validarDenuncia(denuncia,true);
-        assertEquals(denuncia,GestorArchivos.leerListaObjetos("Denuncia.json", Denuncia.class).get(0));
+        assertEquals(denuncia, GestorArchivos.leerListaObjetos("Denuncia.json", Denuncia.class).get(0));
     }
 }

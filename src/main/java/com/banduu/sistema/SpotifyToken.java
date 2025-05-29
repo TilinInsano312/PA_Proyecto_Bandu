@@ -1,4 +1,4 @@
-package sistema;
+package com.banduu.sistema;
 
 import java.io.IOException;
 import java.net.URI;

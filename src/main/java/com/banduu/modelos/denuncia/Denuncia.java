@@ -1,6 +1,6 @@
-package modelos.denuncia;
+package com.banduu.modelos.denuncia;
 
-import modelos.usuario.Cliente;
+import com.banduu.modelos.usuario.Cliente;
 
 import java.util.Objects;
 

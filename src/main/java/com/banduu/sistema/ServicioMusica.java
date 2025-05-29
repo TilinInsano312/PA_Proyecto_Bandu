@@ -1,10 +1,10 @@
-package sistema;
+package com.banduu.sistema;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import modelos.musica.Album;
-import modelos.musica.Artista;
-import modelos.musica.Cancion;
+import com.banduu.modelos.musica.Album;
+import com.banduu.modelos.musica.Artista;
+import com.banduu.modelos.musica.Cancion;
 
 import java.io.IOException;
 import java.net.*;

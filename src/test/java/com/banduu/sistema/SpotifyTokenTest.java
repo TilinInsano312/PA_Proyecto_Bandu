@@ -1,5 +1,6 @@
-package sistema;
+package com.banduu.sistema;
 
+import com.banduu.sistema.SpotifyToken;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;

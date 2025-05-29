@@ -1,10 +1,9 @@
-package sistema;
+package com.banduu.sistema;
 
-import modelos.musica.Album;
-import modelos.musica.Artista;
-import modelos.musica.Cancion;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
+import com.banduu.modelos.musica.Album;
+import com.banduu.modelos.musica.Artista;
+import com.banduu.modelos.musica.Cancion;
+import com.banduu.sistema.ServicioMusica;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
