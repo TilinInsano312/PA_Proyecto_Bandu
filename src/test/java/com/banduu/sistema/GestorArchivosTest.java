@@ -1,8 +1,7 @@
 package com.banduu.sistema;
 
-import com.banduu.modelos.musica.Cancion;
-import com.banduu.modelos.usuario.Cliente;
-import com.banduu.sistema.GestorArchivos;
+import com.banduu.musica.modelos.Cancion;
+import com.banduu.usuario.modelos.Cliente;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

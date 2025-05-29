@@ -1,8 +1,8 @@
-package com.banduu.modelos.usuario;
+package com.banduu.usuario.modelos;
 
-import com.banduu.modelos.musica.Album;
-import com.banduu.modelos.musica.Artista;
-import com.banduu.modelos.musica.Cancion;
+import com.banduu.musica.modelos.Album;
+import com.banduu.musica.modelos.Artista;
+import com.banduu.musica.modelos.Cancion;
 
 import java.util.ArrayList;
 import java.util.List;

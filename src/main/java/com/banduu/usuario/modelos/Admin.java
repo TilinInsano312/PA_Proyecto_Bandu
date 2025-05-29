@@ -1,4 +1,4 @@
-package com.banduu.modelos.usuario;
+package com.banduu.usuario.modelos;
 
 import java.util.Objects;
 

@@ -2,7 +2,7 @@ package com.banduu.sistema;
 
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.banduu.modelos.usuario.Cliente;
+import com.banduu.usuario.modelos.Cliente;
 
 
 import java.io.File;

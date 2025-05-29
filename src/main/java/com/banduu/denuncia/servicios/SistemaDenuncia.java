@@ -1,7 +1,8 @@
-package com.banduu.sistema;
+package com.banduu.denuncia.servicios;
 
-import com.banduu.modelos.denuncia.Denuncia;
-import com.banduu.modelos.usuario.Cliente;
+import com.banduu.denuncia.modelos.Denuncia;
+import com.banduu.sistema.GestorArchivos;
+import com.banduu.usuario.modelos.Cliente;
 
 import java.util.List;
 import java.util.logging.Logger;

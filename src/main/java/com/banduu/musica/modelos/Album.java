@@ -1,4 +1,4 @@
-package com.banduu.modelos.musica;
+package com.banduu.musica.modelos;
 
 import java.util.Objects;
 

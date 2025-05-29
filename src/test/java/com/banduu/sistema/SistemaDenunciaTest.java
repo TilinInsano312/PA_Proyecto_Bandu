@@ -1,9 +1,8 @@
 package com.banduu.sistema;
 
-import com.banduu.modelos.denuncia.Denuncia;
-import com.banduu.modelos.usuario.Cliente;
-import com.banduu.sistema.GestorArchivos;
-import com.banduu.sistema.SistemaDenuncia;
+import com.banduu.denuncia.modelos.Denuncia;
+import com.banduu.denuncia.servicios.SistemaDenuncia;
+import com.banduu.usuario.modelos.Cliente;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;

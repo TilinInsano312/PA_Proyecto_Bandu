@@ -1,10 +1,11 @@
-package com.banduu.sistema;
+package com.banduu.musica.servicios;
+import com.banduu.spotify.servicios.SpotifyToken;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.banduu.modelos.musica.Album;
-import com.banduu.modelos.musica.Artista;
-import com.banduu.modelos.musica.Cancion;
+import com.banduu.musica.modelos.Album;
+import com.banduu.musica.modelos.Artista;
+import com.banduu.musica.modelos.Cancion;
 
 import java.io.IOException;
 import java.net.*;
@@ -24,7 +25,7 @@ public class ServicioMusica {
 	private static final String ACCESS_TOKEN;
     static {
         try {
-            ACCESS_TOKEN = "Bearer "+SpotifyToken.obtenerAccessToken();
+            ACCESS_TOKEN = "Bearer "+ SpotifyToken.obtenerAccessToken();
         } catch (Exception e) {
             throw new IllegalArgumentException(e);
         }

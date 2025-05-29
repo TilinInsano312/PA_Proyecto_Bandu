@@ -1,4 +1,4 @@
-package com.banduu.sistema;
+package com.banduu.spotify.servicios;
 
 import java.io.IOException;
 import java.net.URI;
