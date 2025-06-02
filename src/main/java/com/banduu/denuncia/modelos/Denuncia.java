@@ -3,6 +3,8 @@ package com.banduu.denuncia.modelos;
 import com.banduu.usuario.modelos.Cliente;
 
 import lombok.*;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 /**
  * Clase que representa una denuncia en el sistema.
@@ -17,7 +19,11 @@ import lombok.*;
 @Getter
 @EqualsAndHashCode
 @ToString
+@Document(collection = "denuncias")
 public class Denuncia {
+
+	@Id
+	private String id;
 
 	private Cliente perfilDenunciado;
 	private String descripcion;

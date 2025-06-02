@@ -4,6 +4,8 @@ import com.banduu.musica.modelos.Album;
 import com.banduu.musica.modelos.Artista;
 import com.banduu.musica.modelos.Cancion;
 import lombok.*;
+import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.annotation.Id;
 
 import java.util.List;
 
@@ -19,7 +21,11 @@ import java.util.List;
 @Getter
 @EqualsAndHashCode(callSuper = true)
 @ToString
+@Document(collection = "clientes")
 public class Cliente extends Usuario {
+
+	@Id
+	private String id;
 
 	private String nombre;
 	private String apellido;

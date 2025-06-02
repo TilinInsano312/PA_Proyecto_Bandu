@@ -1,6 +1,8 @@
 package com.banduu.usuario.modelos;
 
 import lombok.*;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 /**
  * Clase que representa un usuario en el sistema.
@@ -15,9 +17,13 @@ import lombok.*;
 @Getter
 @EqualsAndHashCode
 @ToString
+@Document(collection = "usuarios")
 public class Usuario {
 
-	private String usuario;
+	@Id
+	private String id;
+
+	private String nombreUsuario;
 	private String contrasena;
 	private String email;
 

@@ -1,6 +1,8 @@
 package com.banduu.musica.modelos;
 
 import lombok.*;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 /**
  * Clase que representa un artista en el sistema.
@@ -14,7 +16,12 @@ import lombok.*;
 @Getter
 @EqualsAndHashCode
 @ToString
+@Document(collection = "artistas")
 public class Artista {
+
+    @Id
+    private String id;
+
     private String nombreArtista;
     private String generoArtista;
     private String imagenArtista;

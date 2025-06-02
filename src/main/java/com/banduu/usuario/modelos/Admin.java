@@ -1,6 +1,8 @@
 package com.banduu.usuario.modelos;
 
 import lombok.*;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 /**
  * Clase que representa un administrador en el sistema.
@@ -14,7 +16,11 @@ import lombok.*;
 @Getter
 @EqualsAndHashCode(callSuper = true)
 @ToString
+@Document(collection = "administradores")
 public class Admin extends Usuario {
+
+	@Id
+	private String id;
 
 	private String nombre;
 
