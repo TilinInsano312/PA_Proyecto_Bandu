@@ -27,7 +27,7 @@ public class SistemaEmparejamiento {
 	 */
 	public List<Cliente> referencia(String usuario){
 		return GestorArchivos.leerListaObjetos("Cliente.json", Cliente.class).stream()
-				.filter(perfilUsuario -> perfilUsuario.getUsuario().equals((usuario))).toList();
+				.filter(perfilUsuario -> perfilUsuario.getNombreUsuario().equals((usuario))).toList();
 	}
 
 	/**
@@ -39,7 +39,7 @@ public class SistemaEmparejamiento {
 	 */
 	public List<Cliente> general(String usuario){
 		return GestorArchivos.leerListaObjetos("Cliente.json", Cliente.class).stream()
-				.filter(perfilUsuario -> !perfilUsuario.getUsuario().equals((usuario))).toList();
+				.filter(perfilUsuario -> !perfilUsuario.getNombreUsuario().equals((usuario))).toList();
 	}
 
 	/**
@@ -61,7 +61,7 @@ public class SistemaEmparejamiento {
 					}
 				}
 			}
-			puntuacion.put(cliente.getUsuario(), contador);
+			puntuacion.put(cliente.getNombreUsuario(), contador);
 		}
 		return puntuacion;
 	}
@@ -85,7 +85,7 @@ public class SistemaEmparejamiento {
 					}
 				}
 			}
-			puntuacion.put(cliente.getUsuario(), contador);
+			puntuacion.put(cliente.getNombreUsuario(), contador);
 		}
 		return puntuacion;
 	}
@@ -109,7 +109,7 @@ public class SistemaEmparejamiento {
 					}
 				}
 			}
-			puntuacion.put(cliente.getUsuario(), contador);
+			puntuacion.put(cliente.getNombreUsuario(), contador);
 		}
 
 		return puntuacion;
@@ -132,7 +132,7 @@ public class SistemaEmparejamiento {
 					contador+=1;
 				}
 			}
-			puntuacion.put(cliente.getUsuario(), contador);
+			puntuacion.put(cliente.getNombreUsuario(), contador);
 		}
 		return puntuacion;
 	}
@@ -154,7 +154,7 @@ public class SistemaEmparejamiento {
 					contador+=1;
 				}
 			}
-			puntuacion.put(cliente.getUsuario(), contador);
+			puntuacion.put(cliente.getNombreUsuario(), contador);
 		}
 		return puntuacion;
 	}
@@ -176,7 +176,7 @@ public class SistemaEmparejamiento {
 					contador+=1;
 				}
 			}
-			puntuacion.put(cliente.getUsuario(), contador);
+			puntuacion.put(cliente.getNombreUsuario(), contador);
 		}
 		return puntuacion;
 	}
@@ -200,7 +200,7 @@ public class SistemaEmparejamiento {
 					}
 				}
 			}
-			puntuacion.put(cliente.getUsuario(), contador);
+			puntuacion.put(cliente.getNombreUsuario(), contador);
 		}
 		return puntuacion;
 	}
