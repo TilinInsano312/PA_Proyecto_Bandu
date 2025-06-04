@@ -24,9 +24,6 @@ import java.util.List;
 @Document(collection = "clientes")
 public class Cliente extends Usuario {
 
-	@Id
-	private String id;
-
 	private String nombre;
 	private String apellido;
 	private int edad;

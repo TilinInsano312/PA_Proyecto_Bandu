@@ -19,9 +19,6 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Document(collection = "administradores")
 public class Admin extends Usuario {
 
-	@Id
-	private String id;
-
 	private String nombre;
 
 }
