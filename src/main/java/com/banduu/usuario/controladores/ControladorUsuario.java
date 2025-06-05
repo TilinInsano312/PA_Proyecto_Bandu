@@ -14,9 +14,6 @@ public class ControladorUsuario {
     public ControladorUsuario(ServicioUsuario servicioUsuario) {
         this.servicioUsuario = servicioUsuario;
     }
-    @PostMapping
-    public void insertUsuario(@RequestBody UsuarioDTO usuarioDTO) {
-        this.servicioUsuario.save(usuarioDTO);
-    }
+
 
 }

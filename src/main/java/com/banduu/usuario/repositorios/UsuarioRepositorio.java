@@ -1,6 +1,5 @@
 package com.banduu.usuario.repositorios;
 
-import com.banduu.usuario.dto.UsuarioDTO;
 import com.banduu.usuario.modelos.Usuario;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
@@ -11,5 +10,5 @@ import org.springframework.stereotype.Repository;
 public interface UsuarioRepositorio extends MongoRepository<Usuario, String> {
 
 
-    void insert(UsuarioDTO usuarioDTO);
+    Usuario insert(Usuario usuario);
 }

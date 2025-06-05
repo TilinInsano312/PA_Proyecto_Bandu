@@ -16,13 +16,73 @@ import java.util.List;
  * @author Vicente Salazar, Sebastian Sandoval
  * @version 2.0
  */
-@AllArgsConstructor
-@NoArgsConstructor
-@Getter
+
 @EqualsAndHashCode(callSuper = true)
 @ToString
 @Document(collection = "clientes")
 public class Cliente extends Usuario {
+
+	public Cliente() {
+	}
+
+	public Cliente(String nombre, String apellido, int edad, String carrera,  boolean mismaCarrera, String orientacion, String genero, List<String> generosMusicales, List<Cancion> canciones, List<Artista> artistas, List<Album> albums) {
+		this.nombre = nombre;
+		this.apellido = apellido;
+		this.edad = edad;
+		this.carrera = carrera;
+		this.mismaCarrera = mismaCarrera;
+		this.orientacion = orientacion;
+		this.genero = genero;
+		this.generosMusicales = generosMusicales;
+		this.canciones = canciones;
+		this.artistas = artistas;
+		this.albums = albums;
+	}
+
+	public String getNombre() {
+		return nombre;
+	}
+
+	public String getApellido() {
+		return apellido;
+	}
+
+	public int getEdad() {
+		return edad;
+	}
+
+	public String getCarrera() {
+		return carrera;
+	}
+
+	public boolean isMismaCarrera() {
+		return mismaCarrera;
+	}
+
+	public String getOrientacion() {
+		return orientacion;
+	}
+
+	public String getGenero() {
+		return genero;
+	}
+
+	public List<String> getGenerosMusicales() {
+		return generosMusicales;
+	}
+
+	public List<Cancion> getCanciones() {
+		return canciones;
+	}
+
+	public List<Artista> getArtistas() {
+		return artistas;
+	}
+
+	public List<Album> getAlbums() {
+		return albums;
+	}
+
 
 	private String nombre;
 	private String apellido;

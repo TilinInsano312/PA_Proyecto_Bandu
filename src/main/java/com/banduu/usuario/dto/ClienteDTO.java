@@ -8,7 +8,6 @@ import java.util.List;
 
 public record ClienteDTO(
 
-        String id,
          String nombre,
          String apellido,
          int edad,

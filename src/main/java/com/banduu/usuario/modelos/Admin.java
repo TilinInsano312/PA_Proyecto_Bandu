@@ -11,13 +11,22 @@ import org.springframework.data.mongodb.core.mapping.Document;
  * @author Vicente Salazar, Sebastian Sandoval
  * @version 1.0
  */
-@AllArgsConstructor
-@NoArgsConstructor
-@Getter
+
 @EqualsAndHashCode(callSuper = true)
 @ToString
 @Document(collection = "administradores")
 public class Admin extends Usuario {
+
+	public Admin() {
+	}
+	public Admin(String nombre) {
+		this.nombre = nombre;
+	}
+
+	public String getNombre() {
+		return nombre;
+	}
+
 
 	private String nombre;
 

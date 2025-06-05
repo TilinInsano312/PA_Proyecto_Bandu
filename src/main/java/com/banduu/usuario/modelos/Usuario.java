@@ -12,13 +12,22 @@ import org.springframework.data.mongodb.core.mapping.Document;
  * @version 1.0
  */
 
-@AllArgsConstructor
-@NoArgsConstructor
+
 @Getter
 @EqualsAndHashCode
 @ToString
 @Document(collection = "usuarios")
 public class Usuario {
+
+	public Usuario() {
+	}
+
+	public Usuario(String id, String nombreUsuario, String contrasena, String email) {
+		this.id = id;
+		this.nombreUsuario = nombreUsuario;
+		this.contrasena = contrasena;
+		this.email = email;
+	}
 
 	@Id
 	private String id;
