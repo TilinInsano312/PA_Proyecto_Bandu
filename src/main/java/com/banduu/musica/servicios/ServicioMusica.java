@@ -23,10 +23,12 @@ import java.net.http.HttpResponse;
  */
 
 public class ServicioMusica {
+
+	private static final String temp =SpotifyToken.obtenerAccessToken();
 	private static final String ACCESS_TOKEN;
     static {
         try {
-            ACCESS_TOKEN = "Bearer "+ SpotifyToken.obtenerAccessToken();
+            ACCESS_TOKEN = "Bearer "+ temp;
         } catch ( Exception e) {
             throw new IllegalArgumentException(e);
         }

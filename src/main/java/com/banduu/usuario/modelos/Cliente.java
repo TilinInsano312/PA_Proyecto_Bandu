@@ -5,7 +5,6 @@ import com.banduu.musica.modelos.Artista;
 import com.banduu.musica.modelos.Cancion;
 import lombok.*;
 import org.springframework.data.mongodb.core.mapping.Document;
-import org.springframework.data.annotation.Id;
 
 import java.util.List;
 

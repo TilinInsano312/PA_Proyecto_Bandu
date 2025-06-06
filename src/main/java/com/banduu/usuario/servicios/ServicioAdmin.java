@@ -19,7 +19,7 @@ public class ServicioAdmin {
     public List<AdminDTO> findAll() {
         this.adminRepositorio.findAll();
         return this.adminRepositorio.findAll().stream()
-                .map(admin -> new AdminDTO(admin.getNombre()))
+                .map(admin -> new AdminDTO(admin.getNombre(),AdminDTO.class.toString()))
                 .toList();
     }
     public Admin dtoToEntity(AdminDTO dto) {
