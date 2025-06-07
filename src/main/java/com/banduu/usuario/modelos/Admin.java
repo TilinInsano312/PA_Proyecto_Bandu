@@ -23,6 +23,12 @@ public class Admin extends Usuario {
 		this.nombre = nombre;
 	}
 
+	public Admin(String id, String nombreUsuario, String contrasena, String email, String nombre) {
+		super(id, nombreUsuario, contrasena, email);
+		this.nombre = nombre;
+	}
+
+
 	public String getNombre() {
 		return nombre;
 	}

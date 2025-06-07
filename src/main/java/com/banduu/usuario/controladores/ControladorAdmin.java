@@ -1,7 +1,10 @@
 package com.banduu.usuario.controladores;
 
-import com.banduu.usuario.dto.AdminDTO;
+import com.banduu.usuario.dto.abreviado.AdminDTO;
+import com.banduu.usuario.dto.abreviado.UsuarioDTO;
+import com.banduu.usuario.dto.insert.AdminInsertDTO;
 import com.banduu.usuario.servicios.ServicioAdmin;
+import com.banduu.usuario.servicios.ServicioUsuario;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -18,13 +21,13 @@ public class ControladorAdmin {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public void insertAdmin(@RequestBody AdminDTO adminDTO) {
+    public void insertAdmin(@RequestBody AdminInsertDTO adminDTO) {
         this.servicioAdmin.save(adminDTO);
     }
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<List<AdminDTO>> allAdmins() {
+    public List<AdminDTO> allAdmins() {
          return servicioAdmin.findAll();
     }
 }

@@ -38,6 +38,21 @@ public class Cliente extends Usuario {
 		this.albums = albums;
 	}
 
+	public Cliente(String id, String nombreUsuario, String contrasena, String email, String nombre, List<Artista> artistas, String apellido, int edad, String carrera, boolean mismaCarrera, String orientacion, String genero, List<String> generosMusicales, List<Cancion> canciones, List<Album> albums) {
+		super(id, nombreUsuario, contrasena, email);
+		this.nombre = nombre;
+		this.artistas = artistas;
+		this.apellido = apellido;
+		this.edad = edad;
+		this.carrera = carrera;
+		this.mismaCarrera = mismaCarrera;
+		this.orientacion = orientacion;
+		this.genero = genero;
+		this.generosMusicales = generosMusicales;
+		this.canciones = canciones;
+		this.albums = albums;
+	}
+
 	public String getNombre() {
 		return nombre;
 	}

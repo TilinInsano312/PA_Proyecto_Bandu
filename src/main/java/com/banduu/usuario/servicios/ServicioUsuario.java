@@ -1,8 +1,6 @@
 package com.banduu.usuario.servicios;
 
-import com.banduu.usuario.dto.ClienteDTO;
-import com.banduu.usuario.dto.UsuarioDTO;
-import com.banduu.usuario.modelos.Cliente;
+import com.banduu.usuario.dto.abreviado.UsuarioDTO;
 import com.banduu.usuario.modelos.Usuario;
 import com.banduu.usuario.repositorios.UsuarioRepositorio;
 import org.springframework.stereotype.Service;

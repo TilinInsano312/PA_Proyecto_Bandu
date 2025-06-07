@@ -1,4 +1,4 @@
-package com.banduu.usuario.dto;
+package com.banduu.usuario.dto.abreviado;
 
 import com.banduu.musica.modelos.Album;
 import com.banduu.musica.modelos.Artista;
@@ -7,7 +7,7 @@ import com.banduu.musica.modelos.Cancion;
 import java.util.List;
 
 public record ClienteDTO(
-
+         String id,
          String nombre,
          String apellido,
          int edad,

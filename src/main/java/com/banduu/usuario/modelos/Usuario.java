@@ -13,7 +13,6 @@ import org.springframework.data.mongodb.core.mapping.Document;
  */
 
 
-@Getter
 @EqualsAndHashCode
 @ToString
 @Document(collection = "usuarios")
@@ -27,6 +26,22 @@ public class Usuario {
 		this.nombreUsuario = nombreUsuario;
 		this.contrasena = contrasena;
 		this.email = email;
+	}
+
+	public String getId() {
+		return id;
+	}
+
+	public String getNombreUsuario() {
+		return nombreUsuario;
+	}
+
+	public String getContrasena() {
+		return contrasena;
+	}
+
+	public String getEmail() {
+		return email;
 	}
 
 	@Id

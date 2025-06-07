@@ -1,9 +1,6 @@
 package com.banduu.usuario.controladores;
 
-import com.banduu.usuario.dto.UsuarioDTO;
 import com.banduu.usuario.servicios.ServicioUsuario;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
