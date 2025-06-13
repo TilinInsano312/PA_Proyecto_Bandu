@@ -4,6 +4,7 @@ import com.banduu.musica.modelos.Album;
 import com.banduu.musica.modelos.Artista;
 import com.banduu.musica.modelos.Cancion;
 import lombok.*;
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.List;
@@ -16,20 +17,21 @@ import java.util.List;
  * @version 2.0
  */
 
-@EqualsAndHashCode(callSuper = true)
 @ToString
 @Document(collection = "clientes")
-public class Cliente extends Usuario {
+public class Cliente {
 
 	public Cliente() {
 	}
-
-	public Cliente(String nombre, String apellido, int edad, String carrera,  boolean mismaCarrera, String orientacion, String genero, List<String> generosMusicales, List<Cancion> canciones, List<Artista> artistas, List<Album> albums) {
+	public Cliente(String id, String idUsuario, String nombre, String apellido, int edad, String carrera,
+	                String orientacion, String genero, List<String> generosMusicales,
+	               List<Cancion> canciones, List<Artista> artistas, List<Album> albums) {
+		this.id = id;
+		this.idUsuario = idUsuario;
 		this.nombre = nombre;
 		this.apellido = apellido;
 		this.edad = edad;
 		this.carrera = carrera;
-		this.mismaCarrera = mismaCarrera;
 		this.orientacion = orientacion;
 		this.genero = genero;
 		this.generosMusicales = generosMusicales;
@@ -38,21 +40,13 @@ public class Cliente extends Usuario {
 		this.albums = albums;
 	}
 
-	public Cliente(String id, String nombreUsuario, String contrasena, String email, String nombre, List<Artista> artistas, String apellido, int edad, String carrera, boolean mismaCarrera, String orientacion, String genero, List<String> generosMusicales, List<Cancion> canciones, List<Album> albums) {
-		super(id, nombreUsuario, contrasena, email);
-		this.nombre = nombre;
-		this.artistas = artistas;
-		this.apellido = apellido;
-		this.edad = edad;
-		this.carrera = carrera;
-		this.mismaCarrera = mismaCarrera;
-		this.orientacion = orientacion;
-		this.genero = genero;
-		this.generosMusicales = generosMusicales;
-		this.canciones = canciones;
-		this.albums = albums;
-	}
 
+	public String getId() {
+		return id;
+	}
+	public String getIdUsuario() {
+		return idUsuario;
+	}
 	public String getNombre() {
 		return nombre;
 	}
@@ -67,10 +61,6 @@ public class Cliente extends Usuario {
 
 	public String getCarrera() {
 		return carrera;
-	}
-
-	public boolean isMismaCarrera() {
-		return mismaCarrera;
 	}
 
 	public String getOrientacion() {
@@ -97,12 +87,13 @@ public class Cliente extends Usuario {
 		return albums;
 	}
 
-
+	@Id
+	private String id;
+	private String idUsuario;
 	private String nombre;
 	private String apellido;
 	private int edad;
 	private String carrera;
-	private boolean mismaCarrera;
 	private String orientacion;
 	private String genero;
 	private List<String> generosMusicales;

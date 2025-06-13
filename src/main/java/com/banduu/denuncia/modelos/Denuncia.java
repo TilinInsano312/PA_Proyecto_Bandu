@@ -14,13 +14,35 @@ import org.springframework.data.mongodb.core.mapping.Document;
  * @version 1.0
  */
 
-@AllArgsConstructor
-@NoArgsConstructor
-@Getter
-@EqualsAndHashCode
-@ToString
+
 @Document(collection = "denuncias")
 public class Denuncia {
+
+	public Denuncia(String id, Cliente perfilDenunciado, String descripcion, String tipoDenuncia) {
+		this.id = id;
+		this.perfilDenunciado = perfilDenunciado;
+		this.descripcion = descripcion;
+		this.tipoDenuncia = tipoDenuncia;
+	}
+
+	public Denuncia() {
+	}
+
+	public String getId() {
+		return id;
+	}
+
+	public Cliente getPerfilDenunciado() {
+		return perfilDenunciado;
+	}
+
+	public String getDescripcion() {
+		return descripcion;
+	}
+
+	public String getTipoDenuncia() {
+		return tipoDenuncia;
+	}
 
 	@Id
 	private String id;

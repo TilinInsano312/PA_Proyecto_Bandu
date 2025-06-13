@@ -1,6 +1,7 @@
 package com.banduu.usuario.modelos;
 
 import lombok.*;
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 /**
@@ -11,28 +12,36 @@ import org.springframework.data.mongodb.core.mapping.Document;
  * @version 1.0
  */
 
-@EqualsAndHashCode(callSuper = true)
 @ToString
 @Document(collection = "administradores")
-public class Admin extends Usuario {
+public class Admin {
+
 
 	public Admin() {
 	}
-	public Admin(String nombre) {
+
+	public Admin(String id, String idUsuario, String nombre) {
+		this.id = id;
+		this.idUsuario = idUsuario;
 		this.nombre = nombre;
 	}
 
-	public Admin(String id, String nombreUsuario, String contrasena, String email, String nombre) {
-		super(id, nombreUsuario, contrasena, email);
-		this.nombre = nombre;
+	public String getId() {
+		return id;
 	}
 
+	public String getIdUsuario() {
+		return idUsuario;
+	}
 
 	public String getNombre() {
 		return nombre;
 	}
 
+	@Id
+	private String id;
 
+	private String idUsuario;
 	private String nombre;
 
 }

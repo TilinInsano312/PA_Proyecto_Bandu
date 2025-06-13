@@ -10,6 +10,8 @@ import java.util.List;
 @EnableMongoRepositories
 @Repository
 public interface AdminRepositorio extends MongoRepository<Admin, String> {
+    @Override
     Admin insert(Admin admin);
+    @Override
     List<Admin> findAll();
 }

@@ -1,12 +1,12 @@
 package com.banduu.usuario.controladores;
 
-import com.banduu.usuario.dto.abreviado.ClienteDTO;
+import com.banduu.usuario.dto.ClienteDTO;
 import com.banduu.usuario.servicios.ServicioCliente;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api/usuario")
+@RequestMapping("/api/cliente")
 public class ControladorCliente {
     private ServicioCliente servicioCliente;
     public ControladorCliente(ServicioCliente servicioCliente) {

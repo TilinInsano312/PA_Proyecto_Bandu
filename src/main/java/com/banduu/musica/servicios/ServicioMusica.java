@@ -6,6 +6,7 @@ import com.banduu.spotify.servicios.SpotifyToken;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.stereotype.Service;
 
 
 import java.io.IOException;
@@ -21,7 +22,7 @@ import java.net.http.HttpResponse;
  * @author Vicente Salazar
  * @version 2.0
  */
-
+@Service
 public class ServicioMusica {
 
 	private static final String temp =SpotifyToken.obtenerAccessToken();
@@ -42,6 +43,9 @@ public class ServicioMusica {
 	private static final HttpClient client = HttpClient.newHttpClient();
 	private static final String TEXTOGENERO = "genres";
 
+	public ServicioMusica() {
+	}
+
 	/**
 	 *
 	 * El metodo generaliza la accion de realizar una peticion HTTP a la API de Spotify y devuelve la respuesta.
@@ -52,7 +56,7 @@ public class ServicioMusica {
 	 * @throws IOException si la peticion es interrumpida
 	 */
 
-	public HttpResponse<String> respuestaHTTP(String url){
+	private HttpResponse<String> respuestaHTTP(String url){
 		HttpRequest peticion = HttpRequest.newBuilder()
 				.uri(URI.create(url))
 				.header("Authorization", ACCESS_TOKEN)

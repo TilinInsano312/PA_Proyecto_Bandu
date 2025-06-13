@@ -1,8 +1,7 @@
 package com.banduu.usuario.servicios;
 
-import com.banduu.usuario.dto.abreviado.AdminDTO;
-import com.banduu.usuario.dto.insert.AdminInsertDTO;
-import com.banduu.usuario.mapper.IConvertidorAdmin;
+import com.banduu.usuario.dto.AdminDTO;
+import com.banduu.usuario.modelos.Admin;
 import com.banduu.usuario.repositorios.AdminRepositorio;
 import org.springframework.stereotype.Service;
 
@@ -10,18 +9,20 @@ import java.util.List;
 
 @Service
 public class ServicioAdmin {
-    private final AdminRepositorio adminRepositorio;
-    private IConvertidorAdmin convertidorAdmin;
+    private AdminRepositorio adminRepositorio;
     public ServicioAdmin(AdminRepositorio adminRepositorio) {
         this.adminRepositorio = adminRepositorio;
     }
-    public void save(AdminInsertDTO admin) {
-        this.adminRepositorio.insert(convertidorAdmin.DTOaEntidad(admin));
+    public void save(AdminDTO admin) {
+        this.adminRepositorio.insert(DTOaEntidad(admin));
     }
     public List<AdminDTO> findAll() {
-        this.adminRepositorio.findAll();
-        return this.adminRepositorio.findAll().stream()
-                .map(admin -> new AdminDTO(admin.getId(), admin.getNombre()))
+        adminRepositorio.findAll();
+        return adminRepositorio.findAll().stream()
+                .map(admin -> new AdminDTO(admin.getId(), admin.getIdUsuario(), admin.getNombre()))
                 .toList();
+    }
+    private Admin DTOaEntidad(AdminDTO dto) {
+        return new Admin(dto.id(), dto.idUsuario(), dto.nombre());
     }
 }

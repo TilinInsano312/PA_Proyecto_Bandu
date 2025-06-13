@@ -1,4 +1,4 @@
-package com.banduu.usuario.dto.abreviado;
+package com.banduu.usuario.dto;
 
 public record UsuarioDTO(
     String id,
