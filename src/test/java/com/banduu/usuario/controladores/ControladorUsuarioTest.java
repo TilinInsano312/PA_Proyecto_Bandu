@@ -1,4 +1,38 @@
 package com.banduu.usuario.controladores;
 
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.web.servlet.MockMvc;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+
+@SpringBootTest
+@AutoConfigureMockMvc
 public class ControladorUsuarioTest {
+    @Autowired
+    private MockMvc mockMvc;
+
+    @Test
+    public void testListarUsuarios() throws Exception {
+        mockMvc.perform(org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get("/api/usuario").header("Authorization", "Bearer "))
+                .andExpect(org.springframework.test.web.servlet.result.MockMvcResultMatchers.status().isOk())
+                .andExpect(org.springframework.test.web.servlet.result.MockMvcResultMatchers.content().contentType("application/json"));
+    }
+    @Test
+    public void testBuscarUsuarioPorId() throws Exception {
+        mockMvc.perform(org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get("/api/usuario/1"))
+                .andExpect(org.springframework.test.web.servlet.result.MockMvcResultMatchers.status().isOk())
+                .andExpect(org.springframework.test.web.servlet.result.MockMvcResultMatchers.content().contentType("application/json"));
+    }
+    @Test
+    public void testGuardarUsuario() throws Exception {
+        mockMvc.perform(org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post("/api/usuario").header("Authorization", "Basic " )
+                .contentType("application/json")
+                .content("{\"contrasena\": \"111111111\", \"email\": \"test@example.com\", \"nombreUsuario\": \"test\"}"))
+                .andExpect(org.springframework.test.web.servlet.result.MockMvcResultMatchers.status().isOk());
+    }
 }
