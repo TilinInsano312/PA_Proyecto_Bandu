@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.*;
+import java.util.logging.Logger;
 
 /**
  * Clase que representa el sistema de emparejamiento en la aplicacion.
@@ -19,6 +20,7 @@ import java.util.*;
 public class ImplementacionEmparejamiento implements EmparejamientoRepositorio {
 
     private ServicioCliente servicioCliente;
+    Logger logger = Logger.getLogger(getClass().getName());
 	public ImplementacionEmparejamiento() {//Constructor vacio
 	}
     @Autowired
@@ -38,16 +40,20 @@ public class ImplementacionEmparejamiento implements EmparejamientoRepositorio {
         ClienteDTO usuario = servicioCliente.buscarPorId(idUsuario);
 		Map<String, Integer> puntuacion = new HashMap<>();
         for (ClienteDTO cliente: servicioCliente.findAll()) {
-            if (cliente.idUsuario().equals(usuario.id())) {
+            if (cliente.id().equals(usuario.id())) {
                 continue;
             }
             int contador = 0;
             for (Object o : cliente.albums()) {
-                if (usuario.albums().contains(o)) {
-                    contador += 2;
+                for (Object album : usuario.albums()) {
+                    if (album.equals(o)) {
+                        contador += 2; // Si el album coincide, se suma 2 puntos
+                        logger.info("Comparando album: " + o + " con " + album);
+                    }
+
                 }
             }
-            puntuacion.put(cliente.idUsuario(), contador);
+            puntuacion.put(cliente.id(), contador);
         }
 		return puntuacion;
 	}
@@ -64,16 +70,19 @@ public class ImplementacionEmparejamiento implements EmparejamientoRepositorio {
         ClienteDTO usuario = servicioCliente.buscarPorId(idUsuario);
         Map<String, Integer> puntuacion = new HashMap<>();
         for (ClienteDTO cliente: servicioCliente.findAll()) {
-            if (cliente.idUsuario().equals(usuario.id())) {
+            if (cliente.id().equals(usuario.id())) {
                 continue;
             }
             int contador = 0;
             for (Object o : cliente.artistas()) {
-                if (usuario.artistas().contains(o)) {
-                    contador += 3;
+                for (Object artista : usuario.artistas()) {
+                    if (artista.equals(o)) {
+                        contador += 3; // Si el artista coincide, se suma 3 puntos
+                        logger.info("Comparando artista: " + o + " con " + artista);
+                    }
                 }
             }
-            puntuacion.put(cliente.idUsuario(), contador);
+            puntuacion.put(cliente.id(), contador);
         }
 		return puntuacion;
 	}
@@ -90,16 +99,19 @@ public class ImplementacionEmparejamiento implements EmparejamientoRepositorio {
         ClienteDTO usuario = servicioCliente.buscarPorId(idUsuario);
         Map<String, Integer> puntuacion = new HashMap<>();
         for (ClienteDTO cliente: servicioCliente.findAll()) {
-            if (cliente.idUsuario().equals(usuario.id())) {
+            if (cliente.id().equals(usuario.id())) {
                 continue;
             }
             int contador = 0;
             for (Object o : cliente.canciones()) {
-                if (usuario.canciones().contains(o)) {
-                    contador += 1;
+                for (Object cancion : usuario.canciones()) {
+                    if (cancion.equals(o)) {
+                        contador += 1; // Si la cancion coincide, se suma 1 punto
+                        logger.info("Comparando cancion: " + o + " con " + cancion);
+                    }
                 }
             }
-            puntuacion.put(cliente.idUsuario(), contador);
+            puntuacion.put(cliente.id(), contador);
         }
 		return puntuacion;
 	}
