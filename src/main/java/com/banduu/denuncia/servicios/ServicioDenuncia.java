@@ -26,8 +26,8 @@ public class ServicioDenuncia {
 		this.denunciaRepositorio = denunciaRepositorio;
 	}
 
-	public void save(DenunciaDTO denuncia) {
-		denunciaRepositorio.insert(DTOaEntidad(denuncia));
+	public DenunciaDTO save(DenunciaDTO denuncia) {
+		return entidadADTO(denunciaRepositorio.insert(DTOaEntidad(denuncia)));
 	}
 	public List<DenunciaDTO> findAll() {
 		return this.denunciaRepositorio.findAll().stream()
@@ -65,6 +65,9 @@ public class ServicioDenuncia {
 	}
 	private Denuncia DTOaEntidad(DenunciaDTO dto){
 		return new Denuncia(dto.id(), dto.perfilDenunciado(), dto.descripcion() ,dto.tipoDenuncia() );
+	}
+	private DenunciaDTO entidadADTO(Denuncia denuncia){
+		return new DenunciaDTO(denuncia.getId(), denuncia.getPerfilDenunciado(), denuncia.getDescripcion(), denuncia.getTipoDenuncia());
 	}
 
 }

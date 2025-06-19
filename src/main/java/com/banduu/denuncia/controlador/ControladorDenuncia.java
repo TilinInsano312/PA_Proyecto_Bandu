@@ -16,9 +16,8 @@ public class ControladorDenuncia {
     }
 
     @PostMapping
-    public ResponseEntity<Void> guardarDenuncia(@RequestBody DenunciaDTO denunciaDTO) {
-        servicioDenuncia.save(denunciaDTO);
-        return ResponseEntity.ok().build();
+    public ResponseEntity<DenunciaDTO> guardarDenuncia(@RequestBody DenunciaDTO denunciaDTO) {
+        return ResponseEntity.ok(servicioDenuncia.save(denunciaDTO));
     }
 
     @GetMapping
