@@ -26,6 +26,13 @@ public class ControladorUsuario {
         this.servicioUsuario.findAll();
         return ResponseEntity.ok().build();
     }
-
+    @GetMapping("/{id}")
+    public ResponseEntity<UsuarioDTO> findUsuarioById(@PathVariable Long id) {
+        UsuarioDTO usuarioDTO = this.servicioUsuario.buscarPorId(String.valueOf(id));
+        if (usuarioDTO == null) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(usuarioDTO);
+    }
 
 }
