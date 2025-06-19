@@ -36,7 +36,7 @@ public class SecurityConfig {
                 .httpBasic(Customizer.withDefaults())
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth ->{
-                        auth.requestMatchers( "api/login", "api/register", "api/usuario", "api/cliente", "api/admin", "api/").permitAll();
+                        auth.requestMatchers( "api/login", "api/register", "api/usuario", "api/cliente", "api/admin", "api/**").permitAll();
                         auth.requestMatchers("api/admin/**").hasRole("ADMIN");
                         auth.anyRequest().hasRole("USER");
                 })

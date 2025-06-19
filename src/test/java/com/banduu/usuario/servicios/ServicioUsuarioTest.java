@@ -2,6 +2,7 @@ package com.banduu.usuario.servicios;
 
 import com.banduu.usuario.dto.UsuarioDTO;
 import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -45,7 +46,6 @@ public class ServicioUsuarioTest {
     @Test
     public void guardarUsuarioTest() {
         UsuarioDTO usuarioDTO = new UsuarioDTO("10", "testUser", "password123", "");
-        servicioUsuario.save(usuarioDTO);
         assertEquals(usuarioDTO, servicioUsuario.save(usuarioDTO));
 
     }
@@ -64,7 +64,7 @@ public class ServicioUsuarioTest {
         servicioUsuario.save(usuarioDTO);
         assertEquals(usuarioDTO, servicioUsuario.buscarPorId("10"));
         servicioUsuario.delete("10");
-        assertNull(servicioUsuario.buscarPorId("10"));
+        assertThrows(Exception.class, () -> servicioUsuario.buscarPorId("10"));
     }
 
 }

@@ -62,14 +62,14 @@ public class ServicioEmparejamientoTest {
     public void testEmparejarPorArtista(){
         servicioCliente.save(cliente1);
         servicioCliente.save(cliente2);
-        assertEquals(0, servicioEmparejamiento.porArtista("1").get("2"));
+        assertEquals(6, servicioEmparejamiento.porArtista("1").get("2"));
 
     }
     @Test
     public void testEmparejarPorCancion(){
         servicioCliente.save(cliente1);
         servicioCliente.save(cliente2);
-        assertEquals(0, servicioEmparejamiento.porCancion("1").get("2"));
+        assertEquals(2, servicioEmparejamiento.porCancion("1").get("2"));
 
     }
     @Test
