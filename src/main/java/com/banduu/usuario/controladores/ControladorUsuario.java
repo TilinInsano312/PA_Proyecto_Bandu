@@ -15,9 +15,9 @@ public class ControladorUsuario {
         this.servicioUsuario = servicioUsuario;
     }
     @PostMapping
-    public ResponseEntity<Void> insertUsuario(@RequestBody UsuarioDTO usuarioDTO) {
-        servicioUsuario.save(usuarioDTO);
-        return ResponseEntity.status(201).build();
+    public ResponseEntity<UsuarioDTO> insertUsuario(@RequestBody UsuarioDTO usuarioDTO) {
+        return ResponseEntity.status(HttpStatus.CREATED)
+                .body(this.servicioUsuario.save(usuarioDTO));
     }
 
     @GetMapping

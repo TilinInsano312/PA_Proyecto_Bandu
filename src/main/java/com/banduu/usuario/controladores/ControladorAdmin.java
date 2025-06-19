@@ -19,9 +19,9 @@ public class ControladorAdmin {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public ResponseEntity<Void> insertAdmin(@RequestBody AdminDTO adminDTO) {
-        this.servicioAdmin.save(adminDTO);
-        return ResponseEntity.ok().build();
+    public ResponseEntity<AdminDTO> insertAdmin(@RequestBody AdminDTO adminDTO) {
+        return ResponseEntity.status(HttpStatus.CREATED)
+                .body(this.servicioAdmin.save(adminDTO));
     }
 
     @GetMapping

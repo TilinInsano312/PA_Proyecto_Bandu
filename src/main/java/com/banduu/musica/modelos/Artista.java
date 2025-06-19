@@ -11,19 +11,33 @@ import org.springframework.data.mongodb.core.mapping.Document;
  * @author Vicente Salazar, Sebastian Sandoval
  * @version 1.0
  */
-@AllArgsConstructor
-@NoArgsConstructor
-@Getter
+
 @EqualsAndHashCode
 @ToString
-@Document(collection = "artistas")
 public class Artista {
-
-    @Id
-    private String id;
 
     private String nombreArtista;
     private String generoArtista;
     private String imagenArtista;
 
+    public Artista(String nombreArtista, String generoArtista, String imagenArtista) {
+        this.nombreArtista = nombreArtista;
+        this.generoArtista = generoArtista;
+        this.imagenArtista = imagenArtista;
+    }
+
+    public Artista() {
+    }
+
+    public String getNombreArtista() {
+        return nombreArtista;
+    }
+
+    public String getGeneroArtista() {
+        return generoArtista;
+    }
+
+    public String getImagenArtista() {
+        return imagenArtista;
+    }
 }

@@ -10,19 +10,27 @@ import java.util.List;
 @Service
 public class ServicioAdmin {
     private AdminRepositorio adminRepositorio;
+
     public ServicioAdmin(AdminRepositorio adminRepositorio) {
         this.adminRepositorio = adminRepositorio;
     }
-    public void save(AdminDTO admin) {
-        this.adminRepositorio.insert(DTOaEntidad(admin));
+
+    public AdminDTO save(AdminDTO admin) {
+        return entidadADTO(adminRepositorio.insert(DTOaEntidad(admin)));
     }
+
     public List<AdminDTO> findAll() {
         adminRepositorio.findAll();
         return adminRepositorio.findAll().stream()
                 .map(admin -> new AdminDTO(admin.getId(), admin.getIdUsuario(), admin.getNombre()))
                 .toList();
     }
+
     private Admin DTOaEntidad(AdminDTO dto) {
         return new Admin(dto.id(), dto.idUsuario(), dto.nombre());
+    }
+
+    private AdminDTO entidadADTO(Admin admin) {
+        return new AdminDTO(admin.getId(), admin.getIdUsuario(), admin.getNombre());
     }
 }

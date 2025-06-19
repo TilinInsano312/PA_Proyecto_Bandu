@@ -25,22 +25,28 @@ public class ControladorEmparejamiento {
     @GetMapping("/artista/{idUsuario}")
     public ResponseEntity<Map<String, Integer>> emparejamientoPorArtista(@PathVariable String idUsuario) {
         return ResponseEntity.ok(servicioEmparejamiento.porArtista(idUsuario));
-    }@GetMapping("/cancion/{idUsuario}")
+    }
+    @GetMapping("/cancion/{idUsuario}")
     public ResponseEntity<Map<String, Integer>> emparejamientoPorCancion(@PathVariable String idUsuario) {
         return ResponseEntity.ok(servicioEmparejamiento.porCancion(idUsuario));
-    }@GetMapping("/carrera/{idUsuario}")
+    }
+    @GetMapping("/carrera/{idUsuario}")
     public ResponseEntity<Map<String, Integer>> emparejamientoPorCarrera(@PathVariable String idUsuario) {
         return ResponseEntity.ok(servicioEmparejamiento.porCarrera(idUsuario));
-    }@GetMapping("/orientacion/{idUsuario}")
+    }
+    @GetMapping("/orientacion/{idUsuario}")
     public ResponseEntity<Map<String, Integer>> emparejamientoPorOrientacion(@PathVariable String idUsuario) {
         return ResponseEntity.ok(servicioEmparejamiento.porOrientacion(idUsuario));
-    }@GetMapping("/genero/{idUsuario}")
+    }
+    @GetMapping("/genero/{idUsuario}")
     public ResponseEntity<Map<String, Integer>> emparejamiento(@PathVariable String idUsuario) {
         return ResponseEntity.ok(servicioEmparejamiento.porGenero(idUsuario));
-    }@GetMapping("/generosmusicales/{idUsuario}")
+    }
+    @GetMapping("/generosmusicales/{idUsuario}")
     public ResponseEntity<Map<String, Integer>> emparejamientoPorGenerosMusicales(@PathVariable String idUsuario) {
         return ResponseEntity.ok(servicioEmparejamiento.porGenerosMusicales(idUsuario));
-    }@GetMapping("/descartar/{idUsuario}")
+    }
+    @GetMapping("/descartar/{idUsuario}")
     public ResponseEntity<List<String>> blacklistPorMismaCarrera(@PathVariable String idUsuario) {
         return ResponseEntity.ok(servicioEmparejamiento.descartarMismaCarrera(idUsuario));
     }
