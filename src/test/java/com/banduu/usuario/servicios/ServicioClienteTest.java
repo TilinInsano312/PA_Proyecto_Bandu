@@ -3,6 +3,7 @@ package com.banduu.usuario.servicios;
 import com.banduu.usuario.dto.ClienteDTO;
 import com.banduu.usuario.dto.UsuarioDTO;
 import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -22,6 +23,10 @@ public class ServicioClienteTest {
     @Autowired
     private ServicioCliente servicioCliente;
 
+    @BeforeEach
+    public void limpiar() {
+        servicioCliente.findAll().forEach(cliente -> servicioCliente.delete(cliente.id()));
+    }
     @AfterEach
     public void limpiarDatos() {
         servicioCliente.findAll().forEach(cliente -> servicioCliente.delete(cliente.id()));
