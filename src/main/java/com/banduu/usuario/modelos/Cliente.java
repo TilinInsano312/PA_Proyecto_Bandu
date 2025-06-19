@@ -5,6 +5,7 @@ import com.banduu.musica.modelos.Artista;
 import com.banduu.musica.modelos.Cancion;
 import lombok.*;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.ArrayList;
@@ -90,7 +91,10 @@ public class Cliente {
 
 	@Id
 	private String id;
+
+	@Indexed(unique = true)
 	private String idUsuario;
+
 	private String nombre;
 	private String apellido;
 	private int edad;

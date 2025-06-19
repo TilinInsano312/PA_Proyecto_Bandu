@@ -2,6 +2,7 @@ package com.banduu.usuario.modelos;
 
 import lombok.*;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 /**
@@ -46,7 +47,7 @@ public class Usuario {
 
 	@Id
 	private String id;
-
+	@Indexed(unique = true)
 	private String nombreUsuario;
 	private String contrasena;
 	private String email;
