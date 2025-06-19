@@ -11,8 +11,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
  * @author Vicente Salazar, Sebastian Sandoval
  * @version 1.0
  */
-@EqualsAndHashCode
-@ToString
+
 public class Album {
 
     private String nombreAlbum;
@@ -44,5 +43,15 @@ public class Album {
 
     public String getImagenAlbum() {
         return imagenAlbum;
+    }
+
+    @Override
+    public String toString() {
+        return "Album{" +
+                "nombreAlbum='" + nombreAlbum + '\'' +
+                ", artistaAlbum='" + artistaAlbum + '\'' +
+                ", generoAlbum='" + generoAlbum + '\'' +
+                ", imagenAlbum='" + imagenAlbum + '\'' +
+                '}';
     }
 }
