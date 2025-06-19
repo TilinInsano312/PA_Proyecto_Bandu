@@ -41,4 +41,5 @@ public class ServicioCliente {
         return new ClienteDTO(cliente.getId(), cliente.getIdUsuario(),cliente.getNombre(), cliente.getApellido(), cliente.getEdad(), cliente.getCarrera(), cliente.getOrientacion(), cliente.getGenero(), cliente.getGenerosMusicales(), cliente.getCanciones(), cliente.getArtistas(), cliente.getAlbums());
     }
 
+
 }

@@ -19,9 +19,9 @@ public record ClienteDTO(
          String orientacion,
          String genero,
          List<String>generosMusicales,
-         List<CancionDTO> canciones,
-         List<ArtistaDTO> artistas,
-         List<AlbumDTO> albums
+         List<Cancion> canciones,
+         List<Artista> artistas,
+         List<Album> albums
 
 ) {
 }
