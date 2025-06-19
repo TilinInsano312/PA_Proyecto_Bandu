@@ -13,11 +13,15 @@ import java.util.Optional;
 import java.util.logging.Logger;
 
 @Service
-@RequiredArgsConstructor
 public class CustomUserDetailService implements UserDetailsService {
 
     private final UsuarioRepositorio usuarioRepositorio;
     private final AdminRepositorio adminRepositorio;
+
+    public CustomUserDetailService(UsuarioRepositorio usuarioRepositorio, AdminRepositorio adminRepositorio) {
+        this.usuarioRepositorio = usuarioRepositorio;
+        this.adminRepositorio = adminRepositorio;
+    }
 
     Logger logger = Logger.getLogger(CustomUserDetailService.class.getName());
     @Override
