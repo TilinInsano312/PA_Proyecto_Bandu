@@ -5,8 +5,10 @@ import com.banduu.musica.modelos.Artista;
 import com.banduu.musica.modelos.Cancion;
 import lombok.*;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -39,7 +41,6 @@ public class Cliente {
 		this.artistas = artistas;
 		this.albums = albums;
 	}
-
 
 	public String getId() {
 		return id;
@@ -87,9 +88,13 @@ public class Cliente {
 		return albums;
 	}
 
+
 	@Id
 	private String id;
+
+	@Indexed(unique = true)
 	private String idUsuario;
+
 	private String nombre;
 	private String apellido;
 	private int edad;
@@ -97,9 +102,8 @@ public class Cliente {
 	private String orientacion;
 	private String genero;
 	private List<String> generosMusicales;
-
-	List<Cancion> canciones;
-	List<Artista> artistas;
-	List<Album> albums;
+	private List<Cancion> canciones;
+	private List<Artista> artistas;
+	private List<Album> albums;
 
 }

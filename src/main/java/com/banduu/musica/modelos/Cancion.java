@@ -1,7 +1,6 @@
 package com.banduu.musica.modelos;
 
 import lombok.*;
-import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 /**
@@ -11,20 +10,40 @@ import org.springframework.data.mongodb.core.mapping.Document;
  * @author Vicente Salazar, Sebastian Sandoval
  * @version 1.0
  */
-@AllArgsConstructor
-@NoArgsConstructor
-@Getter
+
 @EqualsAndHashCode
 @ToString
-@Document(collection = "canciones")
 public class Cancion {
 
-    @Id
-    private String id;
 
     private String nombreCancion;
     private String artistaCancion;
     private String generoCancion;
     private String imagenCancion;
 
+    public Cancion(String nombreCancion, String artistaCancion, String generoCancion, String imagenCancion) {
+        this.nombreCancion = nombreCancion;
+        this.artistaCancion = artistaCancion;
+        this.generoCancion = generoCancion;
+        this.imagenCancion = imagenCancion;
+    }
+
+    public Cancion() {
+    }
+
+    public String getNombreCancion() {
+        return nombreCancion;
+    }
+
+    public String getArtistaCancion() {
+        return artistaCancion;
+    }
+
+    public String getGeneroCancion() {
+        return generoCancion;
+    }
+
+    public String getImagenCancion() {
+        return imagenCancion;
+    }
 }

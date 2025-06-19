@@ -3,7 +3,10 @@ package com.banduu.usuario.controladores;
 import com.banduu.usuario.dto.ClienteDTO;
 import com.banduu.usuario.servicios.ServicioCliente;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/cliente")
@@ -15,13 +18,14 @@ public class ControladorCliente {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public void insertCliente(@RequestBody ClienteDTO clienteDTO) {
-        this.servicioCliente.save(clienteDTO);
+    public ResponseEntity<ClienteDTO> insertCliente(@RequestBody ClienteDTO clienteDTO) {
+        return ResponseEntity.status(HttpStatus.CREATED)
+                .body(this.servicioCliente.save(clienteDTO));
     }
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    public void allClientes() {
-        this.servicioCliente.findAll();
+    public ResponseEntity<List<ClienteDTO>> allClientes() {
+        return ResponseEntity.ok(this.servicioCliente.findAll());
     }
 }

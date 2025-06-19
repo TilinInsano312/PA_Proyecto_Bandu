@@ -15,8 +15,8 @@ public class ServicioCliente {
         this.clienteRepositorio = clienteRepositorio;
     }
 
-    public void save(ClienteDTO clienteDTO) {
-        clienteRepositorio.insert(DTOaEntidad(clienteDTO));
+    public ClienteDTO save(ClienteDTO clienteDTO) {
+       return entityToDTO(clienteRepositorio.insert(DTOaEntidad(clienteDTO)));
 
     }
     public List<ClienteDTO> findAll() {
