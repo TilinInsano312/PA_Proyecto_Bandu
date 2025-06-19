@@ -21,12 +21,14 @@ import org.springframework.security.web.SecurityFilterChain;
 @Configuration
 @EnableWebSecurity
 @EnableMethodSecurity
-@RequiredArgsConstructor
 public class SecurityConfig {
 
 
     private final CustomUserDetailService customUserDetailsService;
 
+    public SecurityConfig(CustomUserDetailService customUserDetailsService) {
+        this.customUserDetailsService = customUserDetailsService;
+    }
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
@@ -34,7 +36,7 @@ public class SecurityConfig {
                 .httpBasic(Customizer.withDefaults())
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth ->{
-                        auth.requestMatchers( "api/login", "api/register").permitAll();
+                        auth.requestMatchers( "api/login", "api/register", "api/usuario").permitAll();
                         auth.requestMatchers("api/admin/**").hasRole("ADMIN");
                         auth.anyRequest().hasRole("USER");
                 })
