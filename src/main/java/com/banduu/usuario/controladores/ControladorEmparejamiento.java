@@ -1,6 +1,6 @@
 package com.banduu.usuario.controladores;
 
-import com.banduu.usuario.servicios.ServicioEmparejamiento;
+import com.banduu.usuario.repositorios.impl.ImplementacionEmparejamiento;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -13,8 +13,8 @@ import java.util.Map;
 @RestController
 @RequestMapping("/api/emparejamiento")
 public class ControladorEmparejamiento {
-    private final ServicioEmparejamiento servicioEmparejamiento;
-    public ControladorEmparejamiento(ServicioEmparejamiento servicioEmparejamiento) {
+    private final ImplementacionEmparejamiento servicioEmparejamiento;
+    public ControladorEmparejamiento(ImplementacionEmparejamiento servicioEmparejamiento) {
         this.servicioEmparejamiento = servicioEmparejamiento;
     }
 
