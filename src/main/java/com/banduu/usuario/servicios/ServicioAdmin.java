@@ -25,6 +25,9 @@ public class ServicioAdmin {
                 .map(admin -> new AdminDTO(admin.getId(), admin.getIdUsuario(), admin.getNombre()))
                 .toList();
     }
+    public void delete(String id) {
+        adminRepositorio.deleteById(id);
+    }
 
     private Admin DTOaEntidad(AdminDTO dto) {
         return new Admin(dto.id(), dto.idUsuario(), dto.nombre());

@@ -25,6 +25,9 @@ public class ServicioUsuario {
                 .map(usuario -> new UsuarioDTO(usuario.getId(), usuario.getNombreUsuario(), usuario.getContrasena(), usuario.getEmail()))
                 .toList();
     }
+    public void delete(String id) {
+        usuarioRepositorio.deleteById(id);
+    }
     private Usuario DTOaEntidad(UsuarioDTO dto){
         return new Usuario(dto.id(), dto.nombreUsuario(), dto.contrasena(), dto.email());
     }

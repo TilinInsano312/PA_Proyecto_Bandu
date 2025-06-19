@@ -1,5 +1,8 @@
 package com.banduu.usuario.dto;
 
+import com.banduu.musica.dto.AlbumDTO;
+import com.banduu.musica.dto.ArtistaDTO;
+import com.banduu.musica.dto.CancionDTO;
 import com.banduu.musica.modelos.Album;
 import com.banduu.musica.modelos.Artista;
 import com.banduu.musica.modelos.Cancion;
@@ -16,9 +19,9 @@ public record ClienteDTO(
          String orientacion,
          String genero,
          List<String>generosMusicales,
-         List<Cancion> canciones,
-         List<Artista> artistas,
-         List<Album> albums
+         List<CancionDTO> canciones,
+         List<ArtistaDTO> artistas,
+         List<AlbumDTO> albums
 
 ) {
 }
