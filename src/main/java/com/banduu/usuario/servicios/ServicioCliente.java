@@ -28,9 +28,11 @@ public class ServicioCliente {
     public ClienteDTO buscarPorId(String id) {
         return entityToDTO(this.clienteRepositorio.findById(id).orElse(null));
     }
+
     public void delete(String id) {
         clienteRepositorio.deleteById(id);
     }
+
 
     private Cliente DTOaEntidad(ClienteDTO dto) {
         return new Cliente(dto.id() ,dto.idUsuario(),dto.nombre(),  dto.apellido(), dto.edad(), dto.carrera(), dto.orientacion(), dto.genero(), dto.generosMusicales(), dto.canciones(), dto.artistas(), dto.albums());
