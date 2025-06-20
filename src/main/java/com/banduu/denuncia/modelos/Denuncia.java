@@ -2,7 +2,6 @@ package com.banduu.denuncia.modelos;
 
 import com.banduu.usuario.modelos.Cliente;
 
-import lombok.*;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 

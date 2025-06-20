@@ -1,8 +1,6 @@
 package com.banduu.musica.modelos;
 
 import lombok.*;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
 
 /**
  * Clase que representa un artista en el sistema.

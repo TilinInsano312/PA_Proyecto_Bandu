@@ -20,7 +20,7 @@ import java.util.logging.Logger;
 public class ServicioDenuncia {
 
 	private static final Logger logger = Logger.getLogger(ServicioDenuncia.class.getName());
-	private DenunciaRepositorio denunciaRepositorio;
+	private final DenunciaRepositorio denunciaRepositorio;
 	private ServicioCliente servicioCliente;
 	public ServicioDenuncia(DenunciaRepositorio denunciaRepositorio) {
 		this.denunciaRepositorio = denunciaRepositorio;

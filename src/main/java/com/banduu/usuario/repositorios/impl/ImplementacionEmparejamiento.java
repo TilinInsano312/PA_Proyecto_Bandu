@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.*;
-import java.util.logging.Logger;
 
 /**
  * Clase que representa el sistema de emparejamiento en la aplicacion.
@@ -20,7 +19,6 @@ import java.util.logging.Logger;
 public class ImplementacionEmparejamiento implements EmparejamientoRepositorio {
 
     private ServicioCliente servicioCliente;
-    Logger logger = Logger.getLogger(getClass().getName());
 	public ImplementacionEmparejamiento() {//Constructor vacio
 	}
     @Autowired
@@ -48,7 +46,6 @@ public class ImplementacionEmparejamiento implements EmparejamientoRepositorio {
                 for (Object album : usuario.albums()) {
                     if (album.equals(o)) {
                         contador += 2; // Si el album coincide, se suma 2 puntos
-                        logger.info("Comparando album: " + o + " con " + album);
                     }
 
                 }
@@ -78,7 +75,6 @@ public class ImplementacionEmparejamiento implements EmparejamientoRepositorio {
                 for (Object artista : usuario.artistas()) {
                     if (artista.equals(o)) {
                         contador += 3; // Si el artista coincide, se suma 3 puntos
-                        logger.info("Comparando artista: " + o + " con " + artista);
                     }
                 }
             }
@@ -107,7 +103,6 @@ public class ImplementacionEmparejamiento implements EmparejamientoRepositorio {
                 for (Object cancion : usuario.canciones()) {
                     if (cancion.equals(o)) {
                         contador += 1; // Si la cancion coincide, se suma 1 punto
-                        logger.info("Comparando cancion: " + o + " con " + cancion);
                     }
                 }
             }
