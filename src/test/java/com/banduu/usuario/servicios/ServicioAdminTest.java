@@ -11,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 @ActiveProfiles("test")
 @SpringBootTest
-public class ServicioAdminTest {
+class ServicioAdminTest {
 
     @Autowired
     private ServicioAdmin servicioAdmin;
@@ -20,27 +20,22 @@ public class ServicioAdminTest {
     private ServicioUsuario servicioUsuario;
 
     @AfterEach
-    public void limpiarDatos() {
+    void limpiarDatos() {
         servicioAdmin.findAll().forEach(admin -> servicioAdmin.delete(admin.id()));
         servicioUsuario.findAll().forEach(usuario -> servicioUsuario.delete(usuario.id()));
     }
 
     @Test
-    public void testCrearAdmin() {
+    void testCrearAdmin() {
         AdminDTO adminDTO = new AdminDTO("1", "adminUser", "adminPass");
         assertEquals(adminDTO, servicioAdmin.save(adminDTO));
     }
     @Test
-    public void testListarAdmins() {
+    void testListarAdmins() {
         AdminDTO admin1 = new AdminDTO("1", "admin1", "pass1");
         AdminDTO admin2 = new AdminDTO("2", "admin2", "pass2");
         servicioAdmin.save(admin1);
         servicioAdmin.save(admin2);
         assertEquals(2, servicioAdmin.findAll().size());
-    }
-    @Test
-    public void testEliminarAdmin() {
-        // Aquí puedes agregar la lógica para probar la eliminación de un administrador
-        // Por ejemplo, eliminar un administrador y verificar que ya no esté en la lista
     }
 }
