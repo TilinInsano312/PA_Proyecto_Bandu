@@ -11,30 +11,30 @@ import org.springframework.test.web.servlet.MockMvc;
 @ActiveProfiles("test")
 @SpringBootTest
 @AutoConfigureMockMvc
-public class ControladorUsuarioTest {
+class ControladorUsuarioTest {
     @Autowired
     private MockMvc mockMvc;
     @Autowired
     private ServicioUsuario servicioUsuario;
 
     @BeforeEach
-    public void setUp() {
+    void setUp() {
         servicioUsuario.findAll().forEach(usuario -> servicioUsuario.delete(usuario.id()));
     }
     @Test
-    public void testListarUsuarios() throws Exception {
+    void testListarUsuarios() throws Exception {
         servicioUsuario.save( new com.banduu.usuario.dto.UsuarioDTO("1", "user1", "pass1", "a"));
         mockMvc.perform(org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get("/api/usuario").header("Authorization", "no Auth" ))
                 .andExpect(org.springframework.test.web.servlet.result.MockMvcResultMatchers.status().isOk());
     }
     @Test
-    public void testBuscarUsuarioPorId() throws Exception {
+    void testBuscarUsuarioPorId() throws Exception {
         servicioUsuario.save( new com.banduu.usuario.dto.UsuarioDTO("1", "user1", "pass1", "a"));
         mockMvc.perform(org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get("/api/usuario/1").header("Authorization", "no Auth" ))
                 .andExpect(org.springframework.test.web.servlet.result.MockMvcResultMatchers.status().isOk());
     }
     @Test
-    public void testGuardarUsuario() throws Exception {
+    void testGuardarUsuario() throws Exception {
         mockMvc.perform(org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post("/api/usuario").header("Authorization", "no Auth" )
                 .contentType("application/json")
                 .content("{\"nombreUsuario\": \"111111111\", \"contrasena\": \"test@example.com\", \"email\": \"test\"}"))

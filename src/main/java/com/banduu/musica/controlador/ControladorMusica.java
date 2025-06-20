@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api/musica")
 public class ControladorMusica {
-    private ServicioMusica servicioMusica;
+    private final ServicioMusica servicioMusica;
     public ControladorMusica(ServicioMusica servicioMusica) {
         this.servicioMusica = servicioMusica;
     }

@@ -10,7 +10,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/denuncia")
 public class ControladorDenuncia {
-    private ServicioDenuncia servicioDenuncia;
+    private final ServicioDenuncia servicioDenuncia;
     public ControladorDenuncia(ServicioDenuncia servicioDenuncia) {
         this.servicioDenuncia = servicioDenuncia;
     }

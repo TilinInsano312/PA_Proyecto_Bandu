@@ -9,7 +9,7 @@ import java.util.List;
 
 @Service
 public class ServicioAdmin {
-    private AdminRepositorio adminRepositorio;
+    private final AdminRepositorio adminRepositorio;
 
     public ServicioAdmin(AdminRepositorio adminRepositorio) {
         this.adminRepositorio = adminRepositorio;

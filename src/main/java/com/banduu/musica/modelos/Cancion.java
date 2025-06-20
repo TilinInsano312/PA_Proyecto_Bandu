@@ -1,7 +1,6 @@
 package com.banduu.musica.modelos;
 
 import lombok.*;
-import org.springframework.data.mongodb.core.mapping.Document;
 
 /**
  * Clase que representa una cancion en el sistema.
