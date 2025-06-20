@@ -1,0 +1,53 @@
+package com.banduu.musica.modelos;
+
+/**
+ * Clase que representa un álbum en el sistema.
+ * Contiene atributos como nombre, artista, genero e imagen del álbum.
+ *
+ * @author Vicente Salazar, Sebastian Sandoval
+ * @version 1.0
+ */
+
+public class Album {
+
+    private String nombreAlbum;
+    private String artistaAlbum;
+    private String generoAlbum;
+    private String imagenAlbum;
+
+    public Album(String nombreAlbum, String artistaAlbum, String generoAlbum, String imagenAlbum) {
+        this.nombreAlbum = nombreAlbum;
+        this.artistaAlbum = artistaAlbum;
+        this.generoAlbum = generoAlbum;
+        this.imagenAlbum = imagenAlbum;
+    }
+
+    public Album() {
+    }
+
+    public String getNombreAlbum() {
+        return nombreAlbum;
+    }
+
+    public String getArtistaAlbum() {
+        return artistaAlbum;
+    }
+
+    public String getGeneroAlbum() {
+        return generoAlbum;
+    }
+
+    public String getImagenAlbum() {
+        return imagenAlbum;
+    }
+
+    @Override
+    public String toString() {
+        return "Album{" +
+                "nombreAlbum='" + nombreAlbum + '\'' +
+                ", artistaAlbum='" + artistaAlbum + '\'' +
+                ", generoAlbum='" + generoAlbum + '\'' +
+                ", imagenAlbum='" + imagenAlbum + '\'' +
+                '}';
+    }
+}

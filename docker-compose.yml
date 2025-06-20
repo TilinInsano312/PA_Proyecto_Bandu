@@ -1,0 +1,7 @@
+services:
+  mongodb_external:
+    image: mongo:5.0.17
+    ports:
+      - "27018:27017"
+    environment:
+        MONGO_INITDB_DATABASE: test
