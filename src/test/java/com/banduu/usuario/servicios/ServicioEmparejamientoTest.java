@@ -74,6 +74,12 @@ class ServicioEmparejamientoTest {
 
     }
     @Test
+    void testEmparejarPorOrientacion(){
+        servicioCliente.save(cliente1);
+        servicioCliente.save(cliente2);
+        assertEquals(1, servicioEmparejamiento.porOrientacion("1").get("cliente2"));
+    }
+    @Test
     void testEmparejarPorGenero(){
         servicioCliente.save(cliente1);
         servicioCliente.save(cliente2);
