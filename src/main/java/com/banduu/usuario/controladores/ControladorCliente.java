@@ -22,6 +22,10 @@ public class ControladorCliente {
         return ResponseEntity.status(HttpStatus.CREATED)
                 .body(this.servicioCliente.save(clienteDTO));
     }
+    @GetMapping("/{id}")
+    public ResponseEntity<ClienteDTO> buscarPorId(@PathVariable String id) {
+        return ResponseEntity.ok(this.servicioCliente.buscarPorId(id));
+    }
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
