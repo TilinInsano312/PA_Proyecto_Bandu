@@ -18,12 +18,15 @@ public class SpotifyToken {
     private static final String CLIENTE_ID = "62655e57acdd4410b9dcb4c6811bf2ad";
     private static final String CLIENTE_SECRETRO = "e640bc028c484c7994aaa4f886d1c171";
 
+    private static final HttpClient cliente = HttpClient.newHttpClient();
+
+
     /**
      * El metodo obtiene un token de acceso de Spotify utilizando el flujo de credenciales del cliente.
      * Se necesita las credenciales de la web API de spotify para realizar la peticion.
      *
      * @return El token de acceso como una cadena.
-     * @throws Exception Si ocurre un error al realizar la petición HTTP ademas del codigo de error.
+     * @throws Exception Sí ocurre un error al realizar la petición HTTP además del codigo de error.
      */
 
     public static String obtenerAccessToken() {
@@ -37,7 +40,6 @@ public class SpotifyToken {
                 .POST(HttpRequest.BodyPublishers.ofString("grant_type=client_credentials"))
                 .build();
 
-        HttpClient cliente = HttpClient.newHttpClient();
         HttpResponse<String> respuesta;
         try {
             respuesta = cliente.send(peticion, BodyHandlers.ofString());

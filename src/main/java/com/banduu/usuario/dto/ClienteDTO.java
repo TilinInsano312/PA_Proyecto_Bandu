@@ -1,8 +1,5 @@
 package com.banduu.usuario.dto;
 
-import com.banduu.musica.dto.AlbumDTO;
-import com.banduu.musica.dto.ArtistaDTO;
-import com.banduu.musica.dto.CancionDTO;
 import com.banduu.musica.modelos.Album;
 import com.banduu.musica.modelos.Artista;
 import com.banduu.musica.modelos.Cancion;

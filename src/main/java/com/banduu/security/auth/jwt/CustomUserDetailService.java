@@ -3,7 +3,6 @@ package com.banduu.security.auth.jwt;
 import com.banduu.usuario.modelos.Usuario;
 import com.banduu.usuario.repositorios.AdminRepositorio;
 import com.banduu.usuario.repositorios.UsuarioRepositorio;
-import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;

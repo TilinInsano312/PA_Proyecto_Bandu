@@ -12,21 +12,21 @@ import static org.junit.jupiter.api.Assertions.*;
 
 @ActiveProfiles("test")
 @SpringBootTest
-public class ServicioMusicaTest {
+class ServicioMusicaTest {
 
     @Autowired
     private ServicioMusica servicioMusica;
 
     @Test
-    public void testBuscarMusicaPorCancion() {
+    void testBuscarMusicaPorCancion() {
         assertEquals(CancionDTO.class, servicioMusica.buscarCancion("Song 2").getClass());
     }
     @Test
-    public void testBuscarMusicaPorAlbum() {
+    void testBuscarMusicaPorAlbum() {
         assertEquals(AlbumDTO.class, servicioMusica.buscarAlbum("Weezer").getClass());
     }
     @Test
-    public void testBuscarMusicaPorArtista() {
+    void testBuscarMusicaPorArtista() {
         assertEquals(ArtistaDTO.class, servicioMusica.buscarArtista("Luis Jara").getClass());
     }
 }
