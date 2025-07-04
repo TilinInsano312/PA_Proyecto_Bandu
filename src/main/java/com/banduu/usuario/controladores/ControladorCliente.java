@@ -36,8 +36,8 @@ public class ControladorCliente {
         return ResponseEntity.ok(this.servicioCliente.findAll());
     }
 
-    @PostMapping("/{id}/nombre/{nombre}")
-    public ResponseEntity<Void> modificarNombre(@PathVariable String id, @PathVariable String nombre) {
+    @PostMapping("/{id}/nombre")
+    public ResponseEntity<Void> modificarNombre(@PathVariable String id, @RequestBody String nombre) {
         ClienteDTO clienteDTO = this.servicioCliente.buscarPorId(id);
         if (clienteDTO == null) {
             return ResponseEntity.notFound().build();
@@ -48,8 +48,8 @@ public class ControladorCliente {
         }
         return ResponseEntity.ok().build();
     }
-    @PostMapping("/{id}/apellido/{apellido}")
-    public ResponseEntity<Void> modificarApellido(@PathVariable String id, @PathVariable String apellido) {
+    @PostMapping("/{id}/apellido")
+    public ResponseEntity<Void> modificarApellido(@PathVariable String id, @RequestBody String apellido) {
         ClienteDTO clienteDTO = this.servicioCliente.buscarPorId(id);
         if (clienteDTO == null) {
             return ResponseEntity.notFound().build();
@@ -60,8 +60,8 @@ public class ControladorCliente {
         }
         return ResponseEntity.ok().build();
     }
-    @PostMapping("/{id}/edad/{edad}")
-    public ResponseEntity<Void> modificarEdad(@PathVariable String id, @PathVariable int edad) {
+    @PostMapping("/{id}/edad")
+    public ResponseEntity<Void> modificarEdad(@PathVariable String id, @RequestBody int edad) {
         ClienteDTO clienteDTO = this.servicioCliente.buscarPorId(id);
         if (clienteDTO == null) {
             return ResponseEntity.notFound().build();
@@ -72,8 +72,8 @@ public class ControladorCliente {
         }
         return ResponseEntity.ok().build();
     }
-    @PostMapping("/{id}/imagen/{imagen}")
-    public ResponseEntity<Void> modificarImagen(@PathVariable String id, @PathVariable String imagen) {
+    @PostMapping("/{id}/imagen")
+    public ResponseEntity<Void> modificarImagen(@PathVariable String id, @RequestBody String imagen) {
         ClienteDTO clienteDTO = this.servicioCliente.buscarPorId(id);
         if (clienteDTO == null) {
             return ResponseEntity.notFound().build();
@@ -84,8 +84,8 @@ public class ControladorCliente {
         }
         return ResponseEntity.ok().build();
     }
-    @PostMapping("/{id}/carrera/{carrera}")
-    public ResponseEntity<Void> modificarCarrera(@PathVariable String id, @PathVariable String carrera) {
+    @PostMapping("/{id}/carrera")
+    public ResponseEntity<Void> modificarCarrera(@PathVariable String id, @RequestBody String carrera) {
         ClienteDTO clienteDTO = this.servicioCliente.buscarPorId(id);
         if (clienteDTO == null) {
             return ResponseEntity.notFound().build();
@@ -96,8 +96,8 @@ public class ControladorCliente {
         }
         return ResponseEntity.ok().build();
     }
-    @PostMapping("/{id}/orientacion/{orientacion}")
-    public ResponseEntity<Void> modificarOrientacion(@PathVariable String id, @PathVariable String orientacion) {
+    @PostMapping("/{id}/orientacion")
+    public ResponseEntity<Void> modificarOrientacion(@PathVariable String id, @RequestBody String orientacion) {
         ClienteDTO clienteDTO = this.servicioCliente.buscarPorId(id);
         if (clienteDTO == null) {
             return ResponseEntity.notFound().build();
@@ -108,8 +108,8 @@ public class ControladorCliente {
         }
         return ResponseEntity.ok().build();
     }
-    @PostMapping("/{id}/genero/{genero}")
-    public ResponseEntity<Void> modificarGenero(@PathVariable String id, @PathVariable String genero) {
+    @PostMapping("/{id}/genero")
+    public ResponseEntity<Void> modificarGenero(@PathVariable String id, @RequestBody String genero) {
         ClienteDTO clienteDTO = this.servicioCliente.buscarPorId(id);
         if (clienteDTO == null) {
             return ResponseEntity.notFound().build();
