@@ -24,14 +24,14 @@ public class Cliente {
 
 	public Cliente() {
 	}
-	public Cliente(String id, String idUsuario, String nombre, String apellido, int edad, String carrera,
-	                String orientacion, String genero, List<String> generosMusicales,
-	               List<Cancion> canciones, List<Artista> artistas, List<Album> albums) {
+
+	public Cliente(String id, String idUsuario, String nombre, String apellido, int edad, String imagen, String carrera, String orientacion, String genero, List<String> generosMusicales, List<Cancion> canciones, List<Artista> artistas, List<Album> albums) {
 		this.id = id;
 		this.idUsuario = idUsuario;
 		this.nombre = nombre;
 		this.apellido = apellido;
 		this.edad = edad;
+		this.imagen = imagen;
 		this.carrera = carrera;
 		this.orientacion = orientacion;
 		this.genero = genero;
@@ -87,6 +87,13 @@ public class Cliente {
 		return albums;
 	}
 
+	public String getImagen() {
+		return imagen;
+	}
+
+	public void setImagen(String imagen) {
+		this.imagen = imagen;
+	}
 
 	@Id
 	private String id;
@@ -97,6 +104,7 @@ public class Cliente {
 	private String nombre;
 	private String apellido;
 	private int edad;
+	private String imagen;
 	private String carrera;
 	private String orientacion;
 	private String genero;

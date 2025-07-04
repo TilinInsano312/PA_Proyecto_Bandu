@@ -22,7 +22,7 @@ public class ServicioCliente {
     public List<ClienteDTO> findAll() {
         clienteRepositorio.findAll();
         return this.clienteRepositorio.findAll().stream()
-                .map(cliente -> new ClienteDTO( cliente.getId(), cliente.getIdUsuario(), cliente.getNombre(), cliente.getApellido(), cliente.getEdad(), cliente.getCarrera(), cliente.getOrientacion(), cliente.getGenero(), cliente.getGenerosMusicales(), cliente.getCanciones(), cliente.getArtistas(), cliente.getAlbums()))
+                .map(cliente -> new ClienteDTO( cliente.getId(), cliente.getIdUsuario(), cliente.getNombre(), cliente.getApellido(), cliente.getEdad(),cliente.getImagen(), cliente.getCarrera(), cliente.getOrientacion(), cliente.getGenero(), cliente.getGenerosMusicales(), cliente.getCanciones(), cliente.getArtistas(), cliente.getAlbums()))
                 .toList();
     }
     public ClienteDTO buscarPorId(String id) {
@@ -35,10 +35,10 @@ public class ServicioCliente {
 
 
     private Cliente DTOaEntidad(ClienteDTO dto) {
-        return new Cliente(dto.id() ,dto.idUsuario(),dto.nombre(),  dto.apellido(), dto.edad(), dto.carrera(), dto.orientacion(), dto.genero(), dto.generosMusicales(), dto.canciones(), dto.artistas(), dto.albums());
+        return new Cliente(dto.id() ,dto.idUsuario(),dto.nombre(),  dto.apellido(), dto.edad(),dto.imagen(), dto.carrera(), dto.orientacion(), dto.genero(), dto.generosMusicales(), dto.canciones(), dto.artistas(), dto.albums());
     }
     private ClienteDTO entityToDTO(Cliente cliente) {
-        return new ClienteDTO(cliente.getId(), cliente.getIdUsuario(),cliente.getNombre(), cliente.getApellido(), cliente.getEdad(), cliente.getCarrera(), cliente.getOrientacion(), cliente.getGenero(), cliente.getGenerosMusicales(), cliente.getCanciones(), cliente.getArtistas(), cliente.getAlbums());
+        return new ClienteDTO(cliente.getId(), cliente.getIdUsuario(),cliente.getNombre(), cliente.getApellido(), cliente.getEdad(),cliente.getImagen(), cliente.getCarrera(), cliente.getOrientacion(), cliente.getGenero(), cliente.getGenerosMusicales(), cliente.getCanciones(), cliente.getArtistas(), cliente.getAlbums());
     }
 
 
