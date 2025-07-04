@@ -34,5 +34,33 @@ public class ControladorUsuario {
         }
         return ResponseEntity.ok(usuarioDTO);
     }
+    @PostMapping("/{id}/contrasena")
+    public ResponseEntity<Void> modificarContrasena(@PathVariable String id, @RequestBody String contrasena) {
+        UsuarioDTO usuarioDTO = this.servicioUsuario.buscarPorId(String.valueOf(id));
+        if (usuarioDTO == null) {
+            return ResponseEntity.notFound().build();
+        }
+        else if (contrasena == null || contrasena.isEmpty()) {
+            return ResponseEntity.badRequest().build();
+        }
+        else {
+            this.servicioUsuario.modificarContrasena(id, contrasena);
+        }
+        return ResponseEntity.ok().build();
+    }
+    @PostMapping("/{id}/email")
+    public ResponseEntity<Void> modificarEmail(@PathVariable String id, @RequestBody String email) {
+        UsuarioDTO usuarioDTO = this.servicioUsuario.buscarPorId(String.valueOf(id));
+        if (usuarioDTO == null) {
+            return ResponseEntity.notFound().build();
+        }
+        else if (email == null || email.isEmpty()) {
+            return ResponseEntity.badRequest().build();
+        }
+        else {
+            this.servicioUsuario.modificarEmail(id, email);
+        }
+        return ResponseEntity.ok().build();
+    }
 
 }
