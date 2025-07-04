@@ -44,7 +44,7 @@ public class ControladorCliente {
         } else if (nombre == null || nombre.isEmpty()) {
             return ResponseEntity.badRequest().build();
         } else {
-            this.servicioCliente.modificarNombre(nombre, id);
+            this.servicioCliente.modificarNombre(id, nombre);
         }
         return ResponseEntity.ok().build();
     }
@@ -56,7 +56,7 @@ public class ControladorCliente {
         } else if (apellido == null || apellido.isEmpty()) {
             return ResponseEntity.badRequest().build();
         } else {
-            this.servicioCliente.modificarApellido(apellido, id);
+            this.servicioCliente.modificarApellido(id, apellido);
         }
         return ResponseEntity.ok().build();
     }
@@ -68,7 +68,7 @@ public class ControladorCliente {
         } else if (edad < 0) {
             return ResponseEntity.badRequest().build();
         } else {
-            this.servicioCliente.modificarEdad(edad, id);
+            this.servicioCliente.modificarEdad(id, edad);
         }
         return ResponseEntity.ok().build();
     }
@@ -80,7 +80,7 @@ public class ControladorCliente {
         } else if (imagen == null || imagen.isEmpty()) {
             return ResponseEntity.badRequest().build();
         } else {
-            this.servicioCliente.modificarImagen(imagen, id);
+            this.servicioCliente.modificarImagen(id, imagen);
         }
         return ResponseEntity.ok().build();
     }
@@ -92,7 +92,7 @@ public class ControladorCliente {
         } else if (carrera == null || carrera.isEmpty()) {
             return ResponseEntity.badRequest().build();
         } else {
-            this.servicioCliente.modificarCarrera(carrera, id);
+            this.servicioCliente.modificarCarrera(id, carrera);
         }
         return ResponseEntity.ok().build();
     }
@@ -104,7 +104,7 @@ public class ControladorCliente {
         } else if (orientacion == null || orientacion.isEmpty()) {
             return ResponseEntity.badRequest().build();
         } else {
-            this.servicioCliente.modificarOrientacion(orientacion, id);
+            this.servicioCliente.modificarOrientacion(id, orientacion);
         }
         return ResponseEntity.ok().build();
     }
@@ -116,7 +116,7 @@ public class ControladorCliente {
         } else if (genero == null || genero.isEmpty()) {
             return ResponseEntity.badRequest().build();
         } else {
-            this.servicioCliente.modificarGenero(genero, id);
+            this.servicioCliente.modificarGenero(id, genero);
         }
         return ResponseEntity.ok().build();
     }
@@ -128,7 +128,7 @@ public class ControladorCliente {
         } else if (generosMusicales == null || generosMusicales.isEmpty()) {
             return ResponseEntity.badRequest().build();
         } else {
-            this.servicioCliente.modificarGenerosMusicales(generosMusicales, id);
+            this.servicioCliente.modificarGenerosMusicales(id, generosMusicales);
         }
         return ResponseEntity.ok().build();
     }
@@ -140,7 +140,7 @@ public class ControladorCliente {
         } else if (canciones == null || canciones.isEmpty()) {
             return ResponseEntity.badRequest().build();
         } else {
-            this.servicioCliente.modificarCanciones(canciones, id);
+            this.servicioCliente.modificarCanciones(id, canciones);
         }
         return ResponseEntity.ok().build();
     }
@@ -152,7 +152,7 @@ public class ControladorCliente {
         } else if (artistas == null || artistas.isEmpty()) {
             return ResponseEntity.badRequest().build();
         } else {
-            this.servicioCliente.modificarArtistas(artistas, id);
+            this.servicioCliente.modificarArtistas(id, artistas);
         }
         return ResponseEntity.ok().build();
     }
@@ -164,7 +164,7 @@ public ResponseEntity<Void> modificarAlbums(@PathVariable String id, @RequestBod
         } else if (albums == null || albums.isEmpty()) {
             return ResponseEntity.badRequest().build();
         } else {
-            this.servicioCliente.modificarAlbums(albums, id);
+            this.servicioCliente.modificarAlbums(id,albums);
         }
         return ResponseEntity.ok().build();
     }

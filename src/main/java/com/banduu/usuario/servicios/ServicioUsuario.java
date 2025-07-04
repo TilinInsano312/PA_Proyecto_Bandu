@@ -36,9 +36,9 @@ public class ServicioUsuario {
     }
 
     public void modificarContrasena(String id, String contrasena) {
-        usuarioRepositorio.updateContrasenaById(contrasena, id);
+        usuarioRepositorio.updateContrasenaById(id, contrasena);
     }
     public void modificarEmail(String id, String email) {
-        usuarioRepositorio.updateEmailById(email, id);
+        usuarioRepositorio.updateEmailById(id, email);
     }
 }

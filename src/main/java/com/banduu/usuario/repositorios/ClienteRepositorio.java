@@ -20,37 +20,37 @@ public interface ClienteRepositorio extends MongoRepository<Cliente, String> {
 
     @Query("{'idUsuario': ?0}")
     @Update("{'$set': {'nombre': ?1}}")
-    void updateNombreByIdUsuario(String nombre, String idUsuario);
+    void updateNombreByIdUsuario(String idUsuario,String nombre );
     @Query("{'idUsuario': ?0}")
     @Update("{'$set': {'apellido': ?1}}")
-    void updateApellidoByIdUsuario(String apellido, String idUsuario);
+    void updateApellidoByIdUsuario(String idUsuario,String apellido);
     @Query("{'idUsuario': ?0}")
     @Update("{'$set': {'edad': ?1}}")
-    void updateEdadByIdUsuario(int edad, String idUsuario);
+    void updateEdadByIdUsuario(String idUsuario,int edad );
     @Query("{'idUsuario': ?0}")
     @Update("{'$set': {'imagen': ?1}}")
-    void updateImagenByIdUsuario(String imagen, String idUsuario);
+    void updateImagenByIdUsuario(String idUsuario,String imagen );
     @Query("{'idUsuario': ?0}")
     @Update("{'$set': {'carrera': ?1}}")
-    void updateCarreraByIdUsuario(String carrera, String idUsuario);
+    void updateCarreraByIdUsuario(String idUsuario, String carrera );
     @Query("{'idUsuario': ?0}")
     @Update("{'$set': {'orientacion': ?1}}")
-    void updateOrientacionByIdUsuario(String orientacion, String idUsuario);
+    void updateOrientacionByIdUsuario(String idUsuario, String orientacion);
     @Query("{'idUsuario': ?0}")
     @Update("{'$set': {'genero': ?1}}")
-    void updateGeneroByIdUsuario(String genero, String idUsuario);
+    void updateGeneroByIdUsuario(String idUsuario, String genero);
     @Query("{'idUsuario': ?0}")
     @Update("{'$set': {'generoMusicales': ?1}}")
-    void updateGeneroMusicalesByIdUsuario(List<String> generoMusicales, String idUsuario);
+    void updateGeneroMusicalesByIdUsuario(String idUsuario, List<String> generoMusicales);
     @Query("{'idUsuario': ?0}")
     @Update("{'$set': {'canciones': ?1}}")
-    void updateCancionesByIdUsuario(List<Cancion> canciones, String idUsuario);
+    void updateCancionesByIdUsuario(String idUsuario, List<Cancion> canciones);
     @Query("{'idUsuario': ?0}")
     @Update("{'$set': {'artistas': ?1}}")
-    void updateArtistasByIdUsuario(List<Artista> artistas, String idUsuario);
+    void updateArtistasByIdUsuario(String idUsuario, List<Artista> artistas);
     @Query("{'idUsuario': ?0}")
     @Update("{'$set': {'albums': ?1}}")
-    void updateAlbumByIdUsuario(List<Album> album, String idUsuario);
+    void updateAlbumByIdUsuario(String idUsuario, List<Album> album);
 
 
 }

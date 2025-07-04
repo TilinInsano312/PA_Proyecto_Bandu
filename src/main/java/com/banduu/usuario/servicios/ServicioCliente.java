@@ -56,46 +56,46 @@ public class ServicioCliente {
         return new Artista(artista.nombreArtista(), artista.generoArtista(), artista.imagenArtista());
     }
 
-    public void modificarNombre(String nombre, String idUsuario) {
-        clienteRepositorio.updateNombreByIdUsuario(nombre, idUsuario);
+    public void modificarNombre(String idUsuario, String nombre ) {
+        clienteRepositorio.updateNombreByIdUsuario(idUsuario, nombre);
     }
-    public void modificarApellido(String apellido, String idUsuario) {
-        clienteRepositorio.updateApellidoByIdUsuario(apellido, idUsuario);
+    public void modificarApellido(String idUsuario, String apellido) {
+        clienteRepositorio.updateApellidoByIdUsuario(idUsuario, apellido);
     }
-    public void modificarEdad(int edad, String idUsuario) {
-        clienteRepositorio.updateEdadByIdUsuario(edad, idUsuario);
+    public void modificarEdad(String idUsuario, int edad) {
+        clienteRepositorio.updateEdadByIdUsuario(idUsuario, edad);
     }
-    public void modificarImagen(String imagen, String idUsuario) {
-        clienteRepositorio.updateImagenByIdUsuario(imagen, idUsuario);
+    public void modificarImagen(String idUsuario, String imagen) {
+        clienteRepositorio.updateImagenByIdUsuario(idUsuario, imagen);
     }
-    public void modificarCarrera(String carrera, String idUsuario) {
-        clienteRepositorio.updateCarreraByIdUsuario(carrera, idUsuario);
+    public void modificarCarrera(String idUsuario, String carrera) {
+        clienteRepositorio.updateCarreraByIdUsuario(idUsuario, carrera);
     }
-    public void modificarOrientacion(String orientacion, String idUsuario) {
-        clienteRepositorio.updateOrientacionByIdUsuario(orientacion, idUsuario);
+    public void modificarOrientacion(String idUsuario, String orientacion) {
+        clienteRepositorio.updateOrientacionByIdUsuario(idUsuario, orientacion);
     }
-    public void modificarGenero(String genero, String idUsuario) {
-        clienteRepositorio.updateGeneroByIdUsuario(genero, idUsuario);
+    public void modificarGenero(String idUsuario, String genero) {
+        clienteRepositorio.updateGeneroByIdUsuario(idUsuario, genero);
     }
-    public void modificarGenerosMusicales(List<String> generosMusicales, String idUsuario) {
-        clienteRepositorio.updateGeneroMusicalesByIdUsuario(generosMusicales, idUsuario);
+    public void modificarGenerosMusicales(String idUsuario, List<String> generosMusicales) {
+        clienteRepositorio.updateGeneroMusicalesByIdUsuario(idUsuario, generosMusicales);
     }
-    public void modificarCanciones(List<CancionDTO> canciones, String idUsuario) {
+    public void modificarCanciones(String idUsuario, List<CancionDTO> canciones) {
         List<Cancion> cancionesEntidades = canciones.stream()
                 .map(this::DTOtoCancion)
                 .toList();
-        clienteRepositorio.updateCancionesByIdUsuario(cancionesEntidades, idUsuario);
+        clienteRepositorio.updateCancionesByIdUsuario(idUsuario, cancionesEntidades);
     }
-    public void modificarArtistas(List<ArtistaDTO> artistas, String idUsuario) {
+    public void modificarArtistas(String idUsuario, List<ArtistaDTO> artistas) {
         List<Artista> artistasEntidades = artistas.stream()
                 .map(this::DTOtoArtista)
                 .toList();
-        clienteRepositorio.updateArtistasByIdUsuario(artistasEntidades, idUsuario);
+        clienteRepositorio.updateArtistasByIdUsuario(idUsuario, artistasEntidades);
     }
-    public void modificarAlbums(List<AlbumDTO> albums, String idUsuario) {
+    public void modificarAlbums(String idUsuario, List<AlbumDTO> albums) {
         List<Album> albumsEntidades = albums.stream()
                 .map(this::DTOtoAlbum)
                 .toList();
-        clienteRepositorio.updateAlbumByIdUsuario(albumsEntidades, idUsuario);
+        clienteRepositorio.updateAlbumByIdUsuario(idUsuario, albumsEntidades);
     }
 }
