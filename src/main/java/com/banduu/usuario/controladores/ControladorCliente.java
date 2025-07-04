@@ -1,5 +1,8 @@
 package com.banduu.usuario.controladores;
 
+import com.banduu.musica.dto.AlbumDTO;
+import com.banduu.musica.dto.ArtistaDTO;
+import com.banduu.musica.dto.CancionDTO;
 import com.banduu.usuario.dto.ClienteDTO;
 import com.banduu.usuario.servicios.ServicioCliente;
 import org.springframework.http.HttpStatus;
@@ -11,7 +14,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/cliente")
 public class ControladorCliente {
-    private ServicioCliente servicioCliente;
+    private final ServicioCliente servicioCliente;
     public ControladorCliente(ServicioCliente servicioCliente) {
         this.servicioCliente = servicioCliente;
     }
@@ -31,5 +34,138 @@ public class ControladorCliente {
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<List<ClienteDTO>> allClientes() {
         return ResponseEntity.ok(this.servicioCliente.findAll());
+    }
+
+    @PostMapping("/{id}/nombre/{nombre}")
+    public ResponseEntity<Void> modificarNombre(@PathVariable String id, @PathVariable String nombre) {
+        ClienteDTO clienteDTO = this.servicioCliente.buscarPorId(id);
+        if (clienteDTO == null) {
+            return ResponseEntity.notFound().build();
+        } else if (nombre == null || nombre.isEmpty()) {
+            return ResponseEntity.badRequest().build();
+        } else {
+            this.servicioCliente.modificarNombre(nombre, id);
+        }
+        return ResponseEntity.ok().build();
+    }
+    @PostMapping("/{id}/apellido/{apellido}")
+    public ResponseEntity<Void> modificarApellido(@PathVariable String id, @PathVariable String apellido) {
+        ClienteDTO clienteDTO = this.servicioCliente.buscarPorId(id);
+        if (clienteDTO == null) {
+            return ResponseEntity.notFound().build();
+        } else if (apellido == null || apellido.isEmpty()) {
+            return ResponseEntity.badRequest().build();
+        } else {
+            this.servicioCliente.modificarApellido(apellido, id);
+        }
+        return ResponseEntity.ok().build();
+    }
+    @PostMapping("/{id}/edad/{edad}")
+    public ResponseEntity<Void> modificarEdad(@PathVariable String id, @PathVariable int edad) {
+        ClienteDTO clienteDTO = this.servicioCliente.buscarPorId(id);
+        if (clienteDTO == null) {
+            return ResponseEntity.notFound().build();
+        } else if (edad < 0) {
+            return ResponseEntity.badRequest().build();
+        } else {
+            this.servicioCliente.modificarEdad(edad, id);
+        }
+        return ResponseEntity.ok().build();
+    }
+    @PostMapping("/{id}/imagen/{imagen}")
+    public ResponseEntity<Void> modificarImagen(@PathVariable String id, @PathVariable String imagen) {
+        ClienteDTO clienteDTO = this.servicioCliente.buscarPorId(id);
+        if (clienteDTO == null) {
+            return ResponseEntity.notFound().build();
+        } else if (imagen == null || imagen.isEmpty()) {
+            return ResponseEntity.badRequest().build();
+        } else {
+            this.servicioCliente.modificarImagen(imagen, id);
+        }
+        return ResponseEntity.ok().build();
+    }
+    @PostMapping("/{id}/carrera/{carrera}")
+    public ResponseEntity<Void> modificarCarrera(@PathVariable String id, @PathVariable String carrera) {
+        ClienteDTO clienteDTO = this.servicioCliente.buscarPorId(id);
+        if (clienteDTO == null) {
+            return ResponseEntity.notFound().build();
+        } else if (carrera == null || carrera.isEmpty()) {
+            return ResponseEntity.badRequest().build();
+        } else {
+            this.servicioCliente.modificarCarrera(carrera, id);
+        }
+        return ResponseEntity.ok().build();
+    }
+    @PostMapping("/{id}/orientacion/{orientacion}")
+    public ResponseEntity<Void> modificarOrientacion(@PathVariable String id, @PathVariable String orientacion) {
+        ClienteDTO clienteDTO = this.servicioCliente.buscarPorId(id);
+        if (clienteDTO == null) {
+            return ResponseEntity.notFound().build();
+        } else if (orientacion == null || orientacion.isEmpty()) {
+            return ResponseEntity.badRequest().build();
+        } else {
+            this.servicioCliente.modificarOrientacion(orientacion, id);
+        }
+        return ResponseEntity.ok().build();
+    }
+    @PostMapping("/{id}/genero/{genero}")
+    public ResponseEntity<Void> modificarGenero(@PathVariable String id, @PathVariable String genero) {
+        ClienteDTO clienteDTO = this.servicioCliente.buscarPorId(id);
+        if (clienteDTO == null) {
+            return ResponseEntity.notFound().build();
+        } else if (genero == null || genero.isEmpty()) {
+            return ResponseEntity.badRequest().build();
+        } else {
+            this.servicioCliente.modificarGenero(genero, id);
+        }
+        return ResponseEntity.ok().build();
+    }
+    @PostMapping("/{id}/generosMusicales")
+    public ResponseEntity<Void> modificarGenerosMusicales(@PathVariable String id, @RequestBody List<String> generosMusicales) {
+        ClienteDTO clienteDTO = this.servicioCliente.buscarPorId(id);
+        if (clienteDTO == null) {
+            return ResponseEntity.notFound().build();
+        } else if (generosMusicales == null || generosMusicales.isEmpty()) {
+            return ResponseEntity.badRequest().build();
+        } else {
+            this.servicioCliente.modificarGenerosMusicales(generosMusicales, id);
+        }
+        return ResponseEntity.ok().build();
+    }
+    @PostMapping("/{id}/canciones")
+    public ResponseEntity<Void> modificarCanciones(@PathVariable String id, @RequestBody List<CancionDTO> canciones) {
+        ClienteDTO clienteDTO = this.servicioCliente.buscarPorId(id);
+        if (clienteDTO == null) {
+            return ResponseEntity.notFound().build();
+        } else if (canciones == null || canciones.isEmpty()) {
+            return ResponseEntity.badRequest().build();
+        } else {
+            this.servicioCliente.modificarCanciones(canciones, id);
+        }
+        return ResponseEntity.ok().build();
+    }
+    @PostMapping("/{id}/artistas")
+    public ResponseEntity<Void> modificarArtistas(@PathVariable String id, @RequestBody List<ArtistaDTO> artistas) {
+        ClienteDTO clienteDTO = this.servicioCliente.buscarPorId(id);
+        if (clienteDTO == null) {
+            return ResponseEntity.notFound().build();
+        } else if (artistas == null || artistas.isEmpty()) {
+            return ResponseEntity.badRequest().build();
+        } else {
+            this.servicioCliente.modificarArtistas(artistas, id);
+        }
+        return ResponseEntity.ok().build();
+    }
+    @PostMapping("/{id}/albums")
+public ResponseEntity<Void> modificarAlbums(@PathVariable String id, @RequestBody List<AlbumDTO> albums) {
+        ClienteDTO clienteDTO = this.servicioCliente.buscarPorId(id);
+        if (clienteDTO == null) {
+            return ResponseEntity.notFound().build();
+        } else if (albums == null || albums.isEmpty()) {
+            return ResponseEntity.badRequest().build();
+        } else {
+            this.servicioCliente.modificarAlbums(albums, id);
+        }
+        return ResponseEntity.ok().build();
     }
 }
