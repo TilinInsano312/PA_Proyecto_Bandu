@@ -35,4 +35,10 @@ public class ServicioUsuario {
         return new UsuarioDTO(usuario.getId(), usuario.getNombreUsuario(), usuario.getContrasena(), usuario.getEmail());
     }
 
+    public void modificarContrasena(String id, String contrasena) {
+        usuarioRepositorio.updateContrasenaById(contrasena, id);
+    }
+    public void modificarEmail(String id, String email) {
+        usuarioRepositorio.updateEmailById(email, id);
+    }
 }
