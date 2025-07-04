@@ -38,7 +38,7 @@ class ControladorClienteTest {
     }
     @Test
     void testBuscarClientePorId() throws Exception {
-        ClienteDTO clienteDTO = new ClienteDTO("1", "cliente1","","",10,"","","", List.of(),List.of(),List.of(),List.of());
+        ClienteDTO clienteDTO = new ClienteDTO("1", "cliente1","","",18,"","","","", List.of(),List.of(),List.of(),List.of());
         servicioCliente.save(clienteDTO);
         mockMvc.perform(org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get("/api/cliente/1")
                 .header("Authorization", "no Auth"))

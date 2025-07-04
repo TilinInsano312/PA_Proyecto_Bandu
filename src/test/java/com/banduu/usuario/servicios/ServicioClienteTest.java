@@ -32,26 +32,26 @@ class ServicioClienteTest {
     }
     @Test
     void testCrearCliente() {
-        ClienteDTO clienteDTO = new ClienteDTO("20", "a","","",10,"","","", List.of(),List.of(),List.of(),List.of());
+        ClienteDTO clienteDTO = new ClienteDTO("20", "a","","",10,"","","","", List.of(),List.of(),List.of(),List.of());
         assertEquals(clienteDTO, servicioCliente.save(clienteDTO));
     }
     @Test
     void testListarClientes() {
-        ClienteDTO cliente1 = new ClienteDTO("1", "cliente1","","",10,"","","",List.of(),List.of(),List.of(),List.of());
-        ClienteDTO cliente2 = new ClienteDTO("2", "cliente2","","",20,"","","",List.of(),List.of(),List.of(),List.of());
+        ClienteDTO cliente1 = new ClienteDTO("1", "cliente1","","",10,"","","","",List.of(),List.of(),List.of(),List.of());
+        ClienteDTO cliente2 = new ClienteDTO("2", "cliente2","","",20,"","","","",List.of(),List.of(),List.of(),List.of());
         servicioCliente.save(cliente1);
         servicioCliente.save(cliente2);
         assertEquals(2, servicioCliente.findAll().size());
     }
     @Test
     void testBuscarClientePorId() {
-        ClienteDTO clienteDTO = new ClienteDTO("1", "cliente1","","",10,"","","",List.of(),List.of(),List.of(),List.of());
+        ClienteDTO clienteDTO = new ClienteDTO("1", "cliente1","","",10,"","","","",List.of(),List.of(),List.of(),List.of());
         servicioCliente.save(clienteDTO);
         assertEquals(clienteDTO, servicioCliente.buscarPorId("1"));
     }
     @Test
     void testEliminarCliente() {
-        ClienteDTO clienteDTO = new ClienteDTO("1", "cliente1","","",10,"","","",List.of(),List.of(),List.of(),List.of());
+        ClienteDTO clienteDTO = new ClienteDTO("1", "cliente1","","",10,"","","","",List.of(),List.of(),List.of(),List.of());
         servicioCliente.save(clienteDTO);
         assertEquals(clienteDTO, servicioCliente.buscarPorId("1"));
         servicioCliente.delete("1");
