@@ -4,7 +4,6 @@ import com.banduu.musica.modelos.Album;
 import com.banduu.musica.modelos.Artista;
 import com.banduu.musica.modelos.Cancion;
 import com.banduu.usuario.modelos.Cliente;
-import com.banduu.usuario.modelos.Usuario;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.mongodb.repository.Query;
 import org.springframework.data.mongodb.repository.Update;
