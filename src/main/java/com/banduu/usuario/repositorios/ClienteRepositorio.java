@@ -4,6 +4,7 @@ import com.banduu.musica.modelos.Album;
 import com.banduu.musica.modelos.Artista;
 import com.banduu.musica.modelos.Cancion;
 import com.banduu.usuario.modelos.Cliente;
+import com.banduu.usuario.modelos.Usuario;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.mongodb.repository.Query;
 import org.springframework.data.mongodb.repository.Update;
@@ -11,12 +12,14 @@ import org.springframework.data.mongodb.repository.config.EnableMongoRepositorie
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @EnableMongoRepositories
 @Repository
 public interface ClienteRepositorio extends MongoRepository<Cliente, String> {
     Cliente insert(Cliente cliente);
 
+    Optional<Cliente> findByIdUsuario(String idUsuario);
 
     @Query("{'idUsuario': ?0}")
     @Update("{'$set': {'nombre': ?1}}")

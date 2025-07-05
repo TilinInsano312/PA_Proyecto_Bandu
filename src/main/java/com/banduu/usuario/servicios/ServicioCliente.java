@@ -34,6 +34,9 @@ public class ServicioCliente {
     public ClienteDTO buscarPorId(String id) {
         return entityToDTO(this.clienteRepositorio.findById(id).orElse(null));
     }
+    public ClienteDTO buscarPorIdUsuario(String idUsuario) {
+        return entityToDTO(this.clienteRepositorio.findByIdUsuario(idUsuario).orElse(null));
+    }
 
     public void delete(String id) {
         clienteRepositorio.deleteById(id);
