@@ -21,14 +21,14 @@ public class ServicioMensaje {
                 mensaje.getIdDestinatario(),
                 true
         ).orElseThrow(() -> new RuntimeException("No se pudo obtener el ID de la conversación"));
-        mensaje.setIdEnlace(idConversacion);
+        mensaje.setConversacionId(idConversacion);
         repositorioMensaje.save(mensaje);
         return mensaje;
     }
 
     public List<Mensaje> obtenerMensajes(String idRemitente, String idDestinatario) {
         var conversacionId = servicioConversacion.obtenerIdConversacion(idRemitente, idDestinatario, false);
-        return conversacionId.map(repositorioMensaje::findByIdEnlace).orElse(new ArrayList<>());
+        return conversacionId.map(repositorioMensaje::findByConversacionId).orElse(new ArrayList<>());
     }
 
 }
