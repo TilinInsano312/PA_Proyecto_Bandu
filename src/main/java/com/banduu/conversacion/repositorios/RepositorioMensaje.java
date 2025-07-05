@@ -9,6 +9,5 @@ import java.util.List;
 @Repository
 public interface RepositorioMensaje extends MongoRepository<Mensaje, String> {
 
-
-    List<Mensaje> findByIdEnlace(String idEnlace);
+    List<Mensaje> findByConversacionId(String conversacionId);
 }
