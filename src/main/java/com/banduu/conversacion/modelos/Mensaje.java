@@ -5,8 +5,6 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import java.time.LocalDateTime;
 
-
-
 @Builder
 @ToString
 @Getter
@@ -18,7 +16,6 @@ public class Mensaje {
 
     @Id
     private String id;
-    private String idEnlace;
     private String idRemitente;
     private String idDestinatario;
     private String contenido;
