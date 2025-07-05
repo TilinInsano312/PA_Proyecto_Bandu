@@ -14,7 +14,7 @@ public class ServicioConversacion {
     private final RepositorioConversacion repositorioConversacion;
 
     public Optional<String> obtenerIdConversacion(String idUsuario1, String idUsuario2, boolean crearSiNoExiste) {
-      return repositorioConversacion.findByIdRemitenteAndIdDestinatario(idUsuario1, idUsuario2)
+      return repositorioConversacion.findByParticipantes(idUsuario1, idUsuario2)
               .map(Conversacion::getId)
               .or(() -> {
                   if (crearSiNoExiste){
@@ -26,21 +26,18 @@ public class ServicioConversacion {
     }
 
     private String crearIdConversacion(String idUsuario1, String idUsuario2) {
-        var conversacionId = String.format("%s-%s", idUsuario1, idUsuario2);
-        Conversacion remitenteDestinatario = Conversacion.builder()
+        String conversacionId = idUsuario1.compareTo(idUsuario2) < 0
+                ? String.format("%s-%s", idUsuario1, idUsuario2)
+                : String.format("%s-%s", idUsuario2, idUsuario1);
+
+        Conversacion conversacion = Conversacion.builder()
                 .id(conversacionId)
                 .idRemitente(idUsuario1)
                 .idDestinatario(idUsuario2)
+                .ultimaActividad(java.time.LocalDateTime.now())
                 .build();
 
-        Conversacion destinatarioRemitente = Conversacion.builder()
-                .id(conversacionId)
-                .idRemitente(idUsuario2)
-                .idDestinatario(idUsuario1)
-                .build();
-
-        repositorioConversacion.save(remitenteDestinatario);
-        repositorioConversacion.save(destinatarioRemitente);
+        repositorioConversacion.save(conversacion);
         return conversacionId;
 
     }
