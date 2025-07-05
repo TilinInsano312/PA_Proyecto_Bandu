@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Controller
@@ -23,17 +24,20 @@ public class ControladorMensajes {
 
     @MessageMapping("/mensaje")
     public void procesarMensaje(@Payload Mensaje mensaje) {
-        Mensaje mensajeGuardado = servicioMensaje.save(mensaje);
-        simpMessagingTemplate.convertAndSendToUser(
-                mensaje.getIdRemitente(), "/cola/mensajes",
-                new NotificacionMensaje(
-                        mensajeGuardado.getId(),
-                        mensajeGuardado.getIdRemitente(),
-                        mensajeGuardado.getIdDestinatario(),
-                        mensajeGuardado.getContenido()
-                )
-        );
+       mensaje.setFechaEnvio(LocalDateTime.now());
+       mensaje.setLeido(false);
 
+       Mensaje mensajeGuardado = servicioMensaje.save(mensaje);
+
+       simpMessagingTemplate.convertAndSendToUser(
+               mensaje.getIdDestinatario(), "/cola/mensajes",
+               new NotificacionMensaje(
+                       mensajeGuardado.getId(),
+                       mensajeGuardado.getIdRemitente(),
+                       mensajeGuardado.getIdDestinatario(),
+                       mensajeGuardado.getContenido()
+               )
+       );
     }
 
 
