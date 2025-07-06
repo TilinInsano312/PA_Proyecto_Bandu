@@ -1,5 +1,7 @@
 package com.banduu.musica.modelos;
 
+import java.util.Objects;
+
 /**
  * Clase que representa un álbum en el sistema.
  * Contiene atributos como nombre, artista, genero e imagen del álbum.
@@ -49,5 +51,18 @@ public class Album {
                 ", generoAlbum='" + generoAlbum + '\'' +
                 ", imagenAlbum='" + imagenAlbum + '\'' +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Album album = (Album) o;
+        return Objects.equals(nombreAlbum, album.nombreAlbum) && Objects.equals(artistaAlbum, album.artistaAlbum) && Objects.equals(generoAlbum, album.generoAlbum) && Objects.equals(imagenAlbum, album.imagenAlbum);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(nombreAlbum, artistaAlbum, generoAlbum, imagenAlbum);
     }
 }

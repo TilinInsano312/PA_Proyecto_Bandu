@@ -12,6 +12,7 @@ public record ClienteDTO(
          String nombre,
          String apellido,
          int edad,
+         String imagen,
          String carrera,
          String orientacion,
          String genero,
