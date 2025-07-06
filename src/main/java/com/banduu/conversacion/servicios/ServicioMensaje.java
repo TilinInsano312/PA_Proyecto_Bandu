@@ -7,7 +7,13 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-
+/**
+ * Servicio que gestiona las operaciones relacionadas con mensajes.
+ * Proporciona funcionalidades para guardar mensajes y recuperar historial de conversaciones.
+ *
+ * @author Vicente Salazar, Sebastian Sandoval
+ * @version 1.0
+ */
 @Service
 @RequiredArgsConstructor
 public class ServicioMensaje {
@@ -15,6 +21,13 @@ public class ServicioMensaje {
     private final RepositorioMensaje repositorioMensaje;
     private final ServicioConversacion servicioConversacion;
 
+    /**
+     * Guarda un mensaje en la base de datos asociandolo a una conversacion.
+     * Si no existe una conversacion entre los participantes, la crea automaticamente.
+     *
+     * @param mensaje El mensaje a guardar, debe contener idRemitente e idDestinatario
+     * @return El mensaje guardado con el ID de conversacion asignado
+     */
     public Mensaje save(Mensaje mensaje) {
         var idConversacion = servicioConversacion.obtenerIdConversacion(
                 mensaje.getIdRemitente(),
@@ -25,6 +38,7 @@ public class ServicioMensaje {
         repositorioMensaje.save(mensaje);
         return mensaje;
     }
+
 
     public List<Mensaje> obtenerMensajes(String idRemitente, String idDestinatario) {
         var conversacionId = servicioConversacion.obtenerIdConversacion(idRemitente, idDestinatario, false);

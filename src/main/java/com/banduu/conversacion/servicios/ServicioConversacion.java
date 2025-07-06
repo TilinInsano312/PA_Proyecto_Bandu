@@ -6,7 +6,13 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import java.util.Optional;
 
-
+/**
+ * Servicio que gestiona las conversaciones entre usuarios.
+ * Maneja la creacion y obtencion de conversaciones basadas en los participantes.
+ *
+ * @author Vicente Salazar, Sebastian Sandoval
+ * @version 1.0
+ */
 @Service
 @RequiredArgsConstructor
 public class ServicioConversacion {

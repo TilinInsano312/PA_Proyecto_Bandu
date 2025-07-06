@@ -4,7 +4,13 @@ import lombok.*;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import java.time.LocalDateTime;
-
+/**
+ * Clase que representa un mensaje en el sistema de conversaciones.
+ * Contiene informacion del remitente, destinatario y contenido.
+ *
+ * @author Vicente Salazar, Sebastian Sandoval
+ * @version 1.0
+ */
 @Builder
 @ToString
 @Getter
