@@ -1,5 +1,8 @@
 package com.banduu.spotify.servicios;
 
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
+
 import java.io.IOException;
 import java.net.URI;
 import java.net.http.*;
@@ -13,12 +16,15 @@ import java.util.Base64;
  * @author Vicente Salazar
  * @version 1.0
  */
+@Component
 public class SpotifyToken {
 
-    private static final String CLIENTE_ID = "62655e57acdd4410b9dcb4c6811bf2ad";
-    private static final String CLIENTE_SECRETRO = "e640bc028c484c7994aaa4f886d1c171";
+    @Value("${spotify.client.id}")
+    private String CLIENTE_ID;
+    @Value("${spotify.client.secret}")
+    private String CLIENTE_SECRETRO;
 
-    private static final HttpClient cliente = HttpClient.newHttpClient();
+    private final HttpClient cliente = HttpClient.newHttpClient();
 
 
     /**
@@ -29,10 +35,9 @@ public class SpotifyToken {
      * @throws Exception Sí ocurre un error al realizar la petición HTTP además del codigo de error.
      */
 
-    public static String obtenerAccessToken() {
+    public String obtenerAccessToken() {
         String auth = CLIENTE_ID + ":" + CLIENTE_SECRETRO;
         String encodedAuth = Base64.getEncoder().encodeToString(auth.getBytes());
-
         HttpRequest peticion = HttpRequest.newBuilder()
                 .uri(URI.create("https://accounts.spotify.com/api/token"))
                 .header("Authorization", "Basic " + encodedAuth)
