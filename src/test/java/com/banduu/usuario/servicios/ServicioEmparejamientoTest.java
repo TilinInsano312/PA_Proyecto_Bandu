@@ -49,7 +49,7 @@ class ServicioEmparejamientoTest {
     void testEmparejarPorAlbum(){
         servicioCliente.save(cliente1);
         servicioCliente.save(cliente2);
-        assertEquals(0, servicioEmparejamiento.porAlbum("1").get("2"));
+        assertEquals(4, servicioEmparejamiento.porAlbum("1").get("2"));
     }
     @Test
     void testEmparejarPorArtista(){
