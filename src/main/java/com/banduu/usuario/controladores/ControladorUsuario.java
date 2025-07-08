@@ -27,8 +27,8 @@ public class ControladorUsuario {
         return ResponseEntity.ok().build();
     }
     @GetMapping("/{id}")
-    public ResponseEntity<UsuarioDTO> findUsuarioById(@PathVariable Long id) {
-        UsuarioDTO usuarioDTO = this.servicioUsuario.buscarPorId(String.valueOf(id));
+    public ResponseEntity<UsuarioDTO> findUsuarioById(@PathVariable String id) {
+        UsuarioDTO usuarioDTO = this.servicioUsuario.buscarPorId(id);
         if (usuarioDTO == null) {
             return ResponseEntity.notFound().build();
         }
