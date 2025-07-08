@@ -1,15 +1,15 @@
 package com.banduu.usuario.repositorios;
 
-import com.banduu.musica.modelos.Album;
+
 import com.banduu.usuario.modelos.Usuario;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.mongodb.repository.Query;
 import org.springframework.data.mongodb.repository.Update;
 import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
-import org.springframework.data.repository.query.Param;
+
 import org.springframework.stereotype.Repository;
 
-import java.util.List;
+
 import java.util.Optional;
 
 @EnableMongoRepositories
