@@ -1,6 +1,7 @@
 package com.banduu.conversacion.modelos;
 
 import lombok.*;
+import org.springframework.data.annotation.Id;
 
 @Getter
 @Setter
@@ -9,6 +10,7 @@ import lombok.*;
 @Builder
 public class NotificacionMensaje {
 
+    @Id
     private String id;
     private String idRemitente;
     private String idDestinatario;
