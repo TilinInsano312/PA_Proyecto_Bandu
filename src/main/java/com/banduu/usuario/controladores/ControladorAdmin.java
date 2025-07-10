@@ -11,7 +11,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/admin")
 public class ControladorAdmin {
-    private ServicioAdmin servicioAdmin;
+    private final ServicioAdmin servicioAdmin;
 
     public ControladorAdmin(ServicioAdmin servicioAdmin) {
         this.servicioAdmin = servicioAdmin;

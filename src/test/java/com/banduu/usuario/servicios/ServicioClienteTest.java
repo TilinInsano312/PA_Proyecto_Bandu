@@ -56,6 +56,12 @@ class ServicioClienteTest {
         assertEquals(clienteDTO, servicioCliente.buscarPorId("1"));
     }
     @Test
+    void testBuscarIdUsuario(){
+        ClienteDTO clienteDTO = new ClienteDTO("1", "cliente1","","",10,"","","","",List.of(),List.of(),List.of(),List.of());
+        servicioCliente.save(clienteDTO);
+        assertEquals(1, servicioCliente.buscarPorIdUsuario("cliente1").id());
+    }
+    @Test
     void testEliminarCliente() {
         ClienteDTO clienteDTO = new ClienteDTO("1", "cliente1","","",10,"","","","",List.of(),List.of(),List.of(),List.of());
         servicioCliente.save(clienteDTO);
@@ -114,10 +120,10 @@ class ServicioClienteTest {
     }
     @Test
     void testModificarGenerosMusicales() {
-        ClienteDTO clienteDTO = new ClienteDTO("1", "cliente1","","",10,"","","","",List.of("so"),List.of(),List.of(),List.of());
+        ClienteDTO clienteDTO = new ClienteDTO("1", "1","","",10,"","","","",List.of("so"),List.of(),List.of(),List.of());
         servicioCliente.save(clienteDTO);
         List<String> generosMusicales = List.of("Rock", "Pop");
-        servicioCliente.modificarGenerosMusicales("cliente1", generosMusicales);
+        servicioCliente.modificarGenerosMusicales("1", generosMusicales);
         assertEquals(generosMusicales, servicioCliente.buscarPorId("1").generosMusicales());
     }
     @Test

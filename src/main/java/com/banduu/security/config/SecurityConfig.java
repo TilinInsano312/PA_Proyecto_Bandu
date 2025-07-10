@@ -35,7 +35,7 @@ public class SecurityConfig {
                 .httpBasic(Customizer.withDefaults())
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth ->{
-                        auth.requestMatchers("/api/login", "/api/register").permitAll();
+                        auth.requestMatchers("/api/**","api/**", "/api/register","api/musica/**").permitAll();
                         auth.requestMatchers("/api/admin/**").hasRole("ADMIN");
                         auth.anyRequest().hasRole("USER");
                 })

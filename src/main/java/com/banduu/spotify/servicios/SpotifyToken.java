@@ -20,9 +20,9 @@ import java.util.Base64;
 public class SpotifyToken {
 
     @Value("${spotify.client.id}")
-    private String CLIENTE_ID;
+    private String clienteID;
     @Value("${spotify.client.secret}")
-    private String CLIENTE_SECRETRO;
+    private String clienteSecret;
 
     private final HttpClient cliente = HttpClient.newHttpClient();
 
@@ -36,7 +36,7 @@ public class SpotifyToken {
      */
 
     public String obtenerAccessToken() {
-        String auth = CLIENTE_ID + ":" + CLIENTE_SECRETRO;
+        String auth = clienteID + ":" + clienteSecret;
         String encodedAuth = Base64.getEncoder().encodeToString(auth.getBytes());
         HttpRequest peticion = HttpRequest.newBuilder()
                 .uri(URI.create("https://accounts.spotify.com/api/token"))

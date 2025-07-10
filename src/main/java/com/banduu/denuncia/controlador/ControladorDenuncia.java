@@ -26,12 +26,12 @@ public class ControladorDenuncia {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> eliminarDenuncia(@RequestParam String id) {
+    public ResponseEntity<Void> eliminarDenuncia(@PathVariable String id) {
         servicioDenuncia.delete(id);
         return ResponseEntity.ok().build();
     }
     @PostMapping("/validar/{estado}")
-    public ResponseEntity<Void> validarDenuncia(@RequestBody DenunciaDTO denunciaDTO, @RequestParam boolean estado) {
+    public ResponseEntity<Void> validarDenuncia(@RequestBody DenunciaDTO denunciaDTO, @PathVariable boolean estado) {
         servicioDenuncia.validarDenuncia(denunciaDTO, estado);
         return ResponseEntity.ok().build();
     }

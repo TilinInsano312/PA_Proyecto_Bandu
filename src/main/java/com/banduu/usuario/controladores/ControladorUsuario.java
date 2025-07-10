@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/api/usuario")
 public class ControladorUsuario {
-    private ServicioUsuario servicioUsuario;
+    private final ServicioUsuario servicioUsuario;
     public ControladorUsuario(ServicioUsuario servicioUsuario) {
         this.servicioUsuario = servicioUsuario;
     }

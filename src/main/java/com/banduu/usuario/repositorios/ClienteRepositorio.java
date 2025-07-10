@@ -42,7 +42,7 @@ public interface ClienteRepositorio extends MongoRepository<Cliente, String> {
     @Update("{'$set': {'genero': ?1}}")
     void updateGeneroByIdUsuario(String idUsuario, String genero);
     @Query("{'idUsuario': ?0}")
-    @Update("{'$set': {'generoMusicales': ?1}}")
+    @Update("{'$set': {'generosMusicales': ?1}}")
     void updateGeneroMusicalesByIdUsuario(String idUsuario, List<String> generoMusicales);
     @Query("{'idUsuario': ?0}")
     @Update("{'$set': {'canciones': ?1}}")
