@@ -1,6 +1,5 @@
 package com.banduu.musica.modelos;
 
-import lombok.*;
 
 import java.util.Objects;
 
