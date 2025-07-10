@@ -79,7 +79,7 @@ class ControladorClienteTest {
         mockMvc.perform(org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post("/api/cliente/cliente1/edad")
                 .header("Authorization", "no Auth")
                 .contentType("application/json")
-                .content("{\"edad\": 20}"))
+                .content("20"))
                 .andExpect(org.springframework.test.web.servlet.result.MockMvcResultMatchers.status().isOk());
     }
     @Test
@@ -126,10 +126,10 @@ class ControladorClienteTest {
     void testModificarGeneroMusicalesCliente() throws Exception{
         ClienteDTO clienteDTO = new ClienteDTO("1", "cliente1","","",18,"","","","", List.of(),List.of(),List.of(),List.of());
         servicioCliente.save(clienteDTO);
-        mockMvc.perform(org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post("/api/cliente/cliente1/generoMusicales")
+        mockMvc.perform(org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post("/api/cliente/cliente1/generosMusicales")
                         .header("Authorization", "no Auth")
                         .contentType("application/json")
-                        .content("{\"generosMusicales\": [\"rock\", \"pop\"]}"))
+                        .content("[\"rock\", \"pop\"]"))
                 .andExpect(org.springframework.test.web.servlet.result.MockMvcResultMatchers.status().isOk());
     }
     @Test
@@ -139,7 +139,7 @@ class ControladorClienteTest {
         mockMvc.perform(org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post("/api/cliente/cliente1/canciones")
                         .header("Authorization", "no Auth")
                         .contentType("application/json")
-                        .content("{\"canciones\": [{\"nombreCancion\": \"cancion1\", \"artistaCancion\": \"Cancion 1\", \"generoCancion\": \"genero\", \"imagenCancion\": \"img\"}]}"))
+                        .content("[{\"nombreCancion\": \"cancion1\", \"artistaCancion\": \"Cancion 1\", \"generoCancion\": \"genero\", \"imagenCancion\": \"img\"}]"))
                 .andExpect(org.springframework.test.web.servlet.result.MockMvcResultMatchers.status().isOk());
     }
     @Test
@@ -149,17 +149,17 @@ class ControladorClienteTest {
         mockMvc.perform(org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post("/api/cliente/cliente1/artistas")
                         .header("Authorization", "no Auth")
                         .contentType("application/json")
-                        .content("{\"artistas\": [{\"nombreArtista\": \"artista1\", \"generoArtista\": \"Artista 1\", \"imagenArtista\": \"img\"}]}"))
+                        .content("[{\"nombreArtista\": \"artista1\", \"generoArtista\": \"Artista 1\", \"imagenArtista\": \"img\"}]"))
                 .andExpect(org.springframework.test.web.servlet.result.MockMvcResultMatchers.status().isOk());
     }
     @Test
     void testModificarAlbumesCliente() throws Exception{
         ClienteDTO clienteDTO = new ClienteDTO("1", "cliente1","","",18,"","","","", List.of(),List.of(),List.of(),List.of());
         servicioCliente.save(clienteDTO);
-        mockMvc.perform(org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post("/api/cliente/cliente1/albumes")
+        mockMvc.perform(org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post("/api/cliente/cliente1/albums")
                         .header("Authorization", "no Auth")
                         .contentType("application/json")
-                        .content("{\"albumes\": [{\"nombreAlbum\": \"album1\", \"artistaAlbum\": \"Album 1\", \"generoAlbum\": \"genero\", \"imagenAlbum\": \"img\"}]}"))
+                        .content("[{\"nombreAlbum\": \"album1\", \"artistaAlbum\": \"Album 1\", \"generoAlbum\": \"genero\", \"imagenAlbum\": \"img\"}]"))
                 .andExpect(org.springframework.test.web.servlet.result.MockMvcResultMatchers.status().isOk());
     }
 }
