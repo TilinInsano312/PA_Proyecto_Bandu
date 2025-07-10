@@ -19,7 +19,7 @@ class LoginScreen extends HookWidget {
               duration: Duration(seconds: 2),
             ),
           );
-          
+          Navigator.pushReplacementNamed(context, '/main');
         });
       }
       return null;
@@ -398,37 +398,43 @@ class LoginTestWidget extends HookWidget {
       case LoginState.idle:
         return Colors.grey;
       case LoginState.loading:
-        return Colors.orange;
+        return Colors.blue;
       case LoginState.success:
         return Colors.green;
       case LoginState.error:
         return Colors.red;
+      case LoginState.validating:
+        return Colors.orange;
     }
   }
 
   IconData _getStateIcon(LoginState state) {
     switch (state) {
       case LoginState.idle:
-        return Icons.circle_outlined;
+        return Icons.radio_button_unchecked;
       case LoginState.loading:
-        return Icons.sync;
+        return Icons.refresh;
       case LoginState.success:
         return Icons.check_circle;
       case LoginState.error:
         return Icons.error;
+      case LoginState.validating:
+        return Icons.search;
     }
   }
 
   String _getStateText(LoginState state) {
     switch (state) {
       case LoginState.idle:
-        return 'Esperando';
+        return 'Inactivo';
       case LoginState.loading:
-        return 'Procesando login...';
+        return 'Cargando...';
       case LoginState.success:
-        return 'Login exitoso';
+        return 'Éxito';
       case LoginState.error:
-        return 'Error en login';
+        return 'Error';
+      case LoginState.validating:
+        return 'Validando...';
     }
   }
 }

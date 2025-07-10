@@ -3,12 +3,13 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import '../../domain/servicios/login_service.dart';
 import '../../domain/modelos/login_request.dart';
 
-
+/// Estados posibles del proceso de login
 enum LoginState {
-  idle,
-  loading,
-  success,
-  error,
+  idle,           // Estado inicial
+  loading,        // Procesando login
+  success,        // Login exitoso
+  error,          // Error en login
+  validating,     // Validando formulario
 }
 
 class LoginHook {
@@ -55,13 +56,18 @@ class LoginHook {
         contrasena: passwordController.text,
       );
 
-      final response = await _loginService.login(loginRequest);
+      final response = await _loginService.login(loginRequest).timeout(
+        const Duration(seconds: 30),
+        onTimeout: () {
+          throw Exception('La conexión tardó demasiado. Inténtelo nuevamente.');
+        },
+      );
 
-      if (response.exito) {
+      if (response.success) {
         loginState.value = LoginState.success;
         errorMessage.value = null;
       } else {
-        _setError(response.mensaje);
+        _setError(response.message);
       }
     } catch (e) {
       _setError('Error inesperado: $e');
@@ -83,6 +89,25 @@ class LoginHook {
     }
   }
 
+  Future<void> checkUsernameExists() async {
+    final username = usernameController.text.trim();
+    if (username.isEmpty || username.length < 3) return;
+
+    loginState.value = LoginState.validating;
+    
+    try {
+      final exists = await _loginService.checkUsernameExists(username);
+      if (!exists) {
+        _setError('El usuario "$username" no existe');
+      } else {
+        loginState.value = LoginState.idle;
+        errorMessage.value = null;
+      }
+    } catch (e) {
+      loginState.value = LoginState.idle;
+    }
+  }
+
   void clearForm() {
     usernameController.clear();
     passwordController.clear();
@@ -98,7 +123,6 @@ class LoginHook {
 }
 
 LoginHook useLogin() {
-  
   final usernameController = useTextEditingController();
   final passwordController = useTextEditingController();
   
@@ -106,6 +130,8 @@ LoginHook useLogin() {
   final loginState = useState<LoginState>(LoginState.idle);
   final errorMessage = useState<String?>(null);
   final isFormValid = useState(false);
+  
+  final loginService = useMemoized(() => LoginService(), []);
   
   final loginHook = useMemoized(
     () => LoginHook(
@@ -115,7 +141,7 @@ LoginHook useLogin() {
       loginState: loginState,
       errorMessage: errorMessage,
       isFormValid: isFormValid,
-      loginService: LoginService(),
+      loginService: loginService,
     ),
     [usernameController, passwordController],
   );
@@ -131,6 +157,11 @@ LoginHook useLogin() {
       passwordController.removeListener(listener);
     };
   }, [usernameController, passwordController]);
+
+  useEffect(() {
+    return () {
+    };
+  }, []);
 
   return loginHook;
 }

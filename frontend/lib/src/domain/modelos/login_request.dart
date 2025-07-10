@@ -11,14 +11,14 @@ class LoginRequest{
   Map<String, dynamic> toJson() {
     return {
       'username': nombreUsuario,
-      'password': contrasena,    
+      'password': contrasena,
     };
   }
   
   factory LoginRequest.fromJson(Map<String, dynamic> json) {
     return LoginRequest(
-      nombreUsuario: json['nombreUsuario'] as String,
-      contrasena: json['contrasena'] as String,
+      nombreUsuario: json['username'] as String,
+      contrasena: json['password'] as String,
     );
   }
 

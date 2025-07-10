@@ -22,6 +22,9 @@ class RegisterHook {
   final ValueNotifier<String?> errorMessage;
   final ValueNotifier<bool> isFormValid;
   final LoginService _loginService;
+  
+  RegisterRequest? _temporaryUserData;
+  String? _temporaryUserId;
 
   RegisterHook({
     required this.usernameController,
@@ -36,10 +39,11 @@ class RegisterHook {
   }) : _loginService = LoginService();
 
   bool get isLoading => registerState.value == RegisterState.loading;
-
   bool get hasError => registerState.value == RegisterState.error;
-
   bool get isSuccess => registerState.value == RegisterState.success;
+  
+  RegisterRequest? get temporaryUserData => _temporaryUserData;
+  String? get temporaryUserId => _temporaryUserId;
 
   void togglePasswordVisibility() {
     obscurePassword.value = !obscurePassword.value;
@@ -70,14 +74,18 @@ class RegisterHook {
         contrasena: passwordController.text,
       );
 
-      final response = await _loginService.register(registerRequest);
+      _temporaryUserData = registerRequest;
 
-      if (response.exito) {
-        registerState.value = RegisterState.success;
-        errorMessage.value = null;
-      } else {
-        _setError(response.mensaje);
+      final userExists = await _loginService.checkUsernameExists(registerRequest.nombreUsuario);
+      
+      if (userExists) {
+        _setError('El nombre de usuario ya existe. Por favor elige otro.');
+        return;
       }
+
+      registerState.value = RegisterState.success;
+      errorMessage.value = null;
+
     } catch (e) {
       _setError('Error inesperado: $e');
     }
