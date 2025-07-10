@@ -1,9 +1,17 @@
 import 'package:flutter/material.dart';
+import 'src/presentation/screens/welcome_screen.dart';
 import 'src/presentation/screens/login_screen.dart';
 import 'src/presentation/screens/register_screen.dart';
+import 'src/presentation/screens/profile_setup_screen.dart';
+import 'src/presentation/screens/main_screen.dart';
 import 'src/core/app_config.dart';
+import 'src/domain/servicios/auth_service.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  await AuthService().initialize();
+  
   runApp(const BanduuApp());
 }
 
@@ -60,11 +68,14 @@ class BanduuApp extends StatelessWidget {
         ),
       ),
       
-      home: const LoginScreen(), 
+      home: const WelcomeScreen(), 
       
       routes: {
+        '/welcome': (context) => const WelcomeScreen(),
         '/login': (context) => const LoginScreen(),
         '/register': (context) => const RegisterScreen(),
+        '/profile-setup': (context) => const ProfileSetupScreen(),
+        '/main': (context) => const MainScreen(),
       },
     );
   }
