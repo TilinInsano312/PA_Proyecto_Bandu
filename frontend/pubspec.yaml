@@ -43,6 +43,18 @@ dependencies:
   
   # Shared Preferences - Para almacenar datos de sesión localmente
   shared_preferences: ^2.2.2
+  
+  # Flutter Secure Storage - Para almacenar tokens de manera segura
+  flutter_secure_storage: ^9.0.0
+  
+  # Image Picker - Para seleccionar imágenes desde galería o cámara
+  image_picker: ^1.0.7
+  
+  # Path Provider - Para obtener directorios del sistema
+  path_provider: ^2.1.2
+  
+  # Crypto - Para generar firmas SHA1 para Cloudinary
+  crypto: ^3.0.3
 
 dev_dependencies:
   flutter_test:
@@ -67,9 +79,8 @@ flutter:
   uses-material-design: true
 
   # To add assets to your application, add an assets section, like this:
-  # assets:
-  #   - images/a_dot_burr.jpeg
-  #   - images/a_dot_ham.jpeg
+  assets:
+    - assets/imagenes/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images
