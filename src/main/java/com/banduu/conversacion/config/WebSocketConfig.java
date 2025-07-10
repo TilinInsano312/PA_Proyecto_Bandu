@@ -13,7 +13,14 @@ import org.springframework.web.socket.config.annotation.WebSocketMessageBrokerCo
 import java.util.List;
 
 import static org.springframework.util.MimeTypeUtils.APPLICATION_JSON;
-
+/**
+ * Configuracion del WebSocket para la aplicacion.
+ * Esta clase configura el broker de mensajes y los endpoints.
+ * Utiliza un convertidor de mensajes para manejar el formato JSON.
+ *
+ * @author Vicente Salazar
+ * @version 1.0
+ */
 @Configuration
 @EnableWebSocketMessageBroker
 public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {

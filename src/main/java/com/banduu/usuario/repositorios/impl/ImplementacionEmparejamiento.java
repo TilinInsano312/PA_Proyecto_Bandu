@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 import java.util.*;
 
 /**
- * Clase que representa el sistema de emparejamiento en la aplicacion.
+ * Componente que representa el sistema de emparejamiento en la aplicacion.
  * Contiene metodos para comparar usuarios y obtener puntuaciones segun diferentes criterios.
  *
  * @author Vicente Salazar

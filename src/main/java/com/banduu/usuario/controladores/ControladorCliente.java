@@ -10,7 +10,13 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
+/**
+ * Controlador para gestionar las operaciones relacionadas con los clientes del sistema.
+ * Permite insertar nuevos clientes, buscar por ID, obtener todos los clientes y modificar sus atributos.
+ *
+ * @author Vicente Salazar, Sebastian Sandoval
+ * @version 2.0
+ */
 @RestController
 @RequestMapping("/api/cliente")
 public class ControladorCliente {

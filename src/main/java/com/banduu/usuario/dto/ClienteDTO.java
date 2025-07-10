@@ -5,7 +5,14 @@ import com.banduu.musica.modelos.Artista;
 import com.banduu.musica.modelos.Cancion;
 
 import java.util.List;
-
+/**
+ * Clase que representa un cliente en el sistema.
+ * Contiene atributos como id, idUsuario, nombre, apellido, edad, imagen, carrera, orientacion, genero,
+ * generosMusicales, canciones, artistas y albums.
+ *
+ * @author Vicente Salazar, Sebastian Sandoval
+ * @version 2.0
+ */
 public record ClienteDTO(
          String id,
          String idUsuario,

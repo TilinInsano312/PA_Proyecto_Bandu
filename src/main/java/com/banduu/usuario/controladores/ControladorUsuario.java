@@ -6,7 +6,13 @@ import com.banduu.usuario.servicios.ServicioUsuario;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
+/**
+ * Controlador para gestionar las operaciones relacionadas con los usuarios del sistema.
+ * Permite insertar nuevos usuarios, buscar por ID, obtener todos los usuarios y modificar sus atributos.
+ *
+ * @author Vicente Salazar, Sebastian Sandoval
+ * @version 1.0
+ */
 @RestController
 @RequestMapping("/api/usuario")
 public class ControladorUsuario {
