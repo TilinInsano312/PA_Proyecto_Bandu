@@ -14,7 +14,13 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
-
+/**
+ * Controlador para manejar las operaciones de auntentificacion y registro de usuarios.
+ * Proporciona endpoints para iniciar sesión y registrar nuevos usuarios.
+ *
+ * @author Vicente Salazar, Sebastian Sandoval
+ * @version 1.0
+ */
 @RestController
 @RequestMapping("/api")
 public class ControladorAutenticacion {

@@ -7,7 +7,13 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
+/**
+ * Controlador para gestionar las operaciones relacionadas con los administradores del sistema.
+ * Permite insertar nuevos administradores y obtener una lista de todos los administradores.
+ *
+ * @author Vicente Salazar, Sebastian Sandoval
+ * @version 1.0
+ */
 @RestController
 @RequestMapping("/api/admin")
 public class ControladorAdmin {

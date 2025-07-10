@@ -5,7 +5,12 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Map;
-
+/**
+ * Servicio para gestionar el emparejamiento de usuarios basado en sus preferencias musicales.
+ *
+ * @author Vicente Salazar, Sebastian Sandoval
+ * @version 1.0
+ */
 @Service
 public class ServicioEmparejamiento {
 

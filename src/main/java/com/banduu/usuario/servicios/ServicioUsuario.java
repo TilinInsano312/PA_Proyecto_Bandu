@@ -6,7 +6,13 @@ import com.banduu.usuario.repositorios.UsuarioRepositorio;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-
+/**
+ * Servicio para gestionar las operaciones relacionadas con los usuarios.
+ * Proporciona metodos para guardar, listar, buscar por ID y eliminar usuarios.
+ *
+ * @author Vicente Salazar, Sebastian Sandoval
+ * @version 1.0
+ */
 @Service
 public class ServicioUsuario {
 

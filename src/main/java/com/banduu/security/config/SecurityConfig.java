@@ -16,7 +16,14 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
-
+/**
+ * Configuración de seguridad para la aplicación.
+ * Define las reglas de autorizacion, autentificacion y manejo de sesiones.
+ * Utiliza JWT para la autentificacion y BCrypt para el cifrado de contraseñas.
+ *
+ * @author Vicente Salazar, Sebastian Sandoval
+ * @version 1.0
+ */
 @Configuration
 @EnableWebSecurity
 @EnableMethodSecurity

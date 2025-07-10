@@ -12,7 +12,14 @@ import com.banduu.usuario.repositorios.ClienteRepositorio;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-
+/**
+ * Servicio para gestionar las operaciones relacionadas con los clientes.
+ * Proporciona metodos para guardar, listar, buscar y eliminar clientes,
+ * así como para modificar sus atributos.
+ *
+ * @author Vicente Salazar, Sebastian Sandoval
+ * @version 1.0
+ */
 @Service
 public class ServicioCliente {
     private final ClienteRepositorio clienteRepositorio;

@@ -59,7 +59,7 @@ class ServicioClienteTest {
     void testBuscarIdUsuario(){
         ClienteDTO clienteDTO = new ClienteDTO("1", "cliente1","","",10,"","","","",List.of(),List.of(),List.of(),List.of());
         servicioCliente.save(clienteDTO);
-        assertEquals(1, servicioCliente.buscarPorIdUsuario("cliente1").id());
+        assertEquals("1", servicioCliente.buscarPorIdUsuario("cliente1").id());
     }
     @Test
     void testEliminarCliente() {

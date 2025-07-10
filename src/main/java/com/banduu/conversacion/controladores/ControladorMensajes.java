@@ -14,7 +14,14 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 import java.time.LocalDateTime;
 import java.util.List;
-
+/**
+ * Controlador para manejar los mensajes en la aplicacion.
+ * Permite procesar mensajes entrantes y enviar notificaciones a los destinatarios.
+ * También proporciona un endpoint para obtener mensajes entre remitentes y destinatarios específicos.
+ *
+ * @author Sebastian Sandoval
+ * @version 1.0
+ */
 @Controller
 @RequiredArgsConstructor
 public class ControladorMensajes {

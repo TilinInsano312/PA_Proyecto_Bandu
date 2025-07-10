@@ -10,7 +10,13 @@ import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 import java.util.logging.Logger;
-
+/**
+ * Servicio personalizado para cargar los detalles del usuario.
+ * Implementa UserDetailsService para proporcionar la funcionalidad de autentificaion.
+ *
+ * @author Vicente Salazar, Sebastian Sandoval
+ * @version 1.0
+ */
 @Service
 public class CustomUserDetailService implements UserDetailsService {
 

@@ -6,7 +6,13 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
+/**
+ * Controlador REST para manejar las peticiones relacionadas con las denuncias.
+ * Permite guardar, listar y eliminar denuncias, así como validar una denuncia.
+ *
+ * @author Vicente Salazar, Sebastian Sandoval
+ * @version 1.0
+ */
 @RestController
 @RequestMapping("/api/denuncia")
 public class ControladorDenuncia {
