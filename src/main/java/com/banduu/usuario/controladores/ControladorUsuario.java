@@ -6,11 +6,17 @@ import com.banduu.usuario.servicios.ServicioUsuario;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
+/**
+ * Controlador para gestionar las operaciones relacionadas con los usuarios del sistema.
+ * Permite insertar nuevos usuarios, buscar por ID, obtener todos los usuarios y modificar sus atributos.
+ *
+ * @author Vicente Salazar, Sebastian Sandoval
+ * @version 1.0
+ */
 @RestController
 @RequestMapping("/api/usuario")
 public class ControladorUsuario {
-    private ServicioUsuario servicioUsuario;
+    private final ServicioUsuario servicioUsuario;
     public ControladorUsuario(ServicioUsuario servicioUsuario) {
         this.servicioUsuario = servicioUsuario;
     }
@@ -27,12 +33,40 @@ public class ControladorUsuario {
         return ResponseEntity.ok().build();
     }
     @GetMapping("/{id}")
-    public ResponseEntity<UsuarioDTO> findUsuarioById(@PathVariable Long id) {
-        UsuarioDTO usuarioDTO = this.servicioUsuario.buscarPorId(String.valueOf(id));
+    public ResponseEntity<UsuarioDTO> findUsuarioById(@PathVariable String id) {
+        UsuarioDTO usuarioDTO = this.servicioUsuario.buscarPorId(id);
         if (usuarioDTO == null) {
             return ResponseEntity.notFound().build();
         }
         return ResponseEntity.ok(usuarioDTO);
+    }
+    @PostMapping("/{id}/contrasena")
+    public ResponseEntity<Void> modificarContrasena(@PathVariable String id, @RequestBody String contrasena) {
+        UsuarioDTO usuarioDTO = this.servicioUsuario.buscarPorId(String.valueOf(id));
+        if (usuarioDTO == null) {
+            return ResponseEntity.notFound().build();
+        }
+        else if (contrasena == null || contrasena.isEmpty()) {
+            return ResponseEntity.badRequest().build();
+        }
+        else {
+            this.servicioUsuario.modificarContrasena(id, contrasena);
+        }
+        return ResponseEntity.ok().build();
+    }
+    @PostMapping("/{id}/email")
+    public ResponseEntity<Void> modificarEmail(@PathVariable String id, @RequestBody String email) {
+        UsuarioDTO usuarioDTO = this.servicioUsuario.buscarPorId(String.valueOf(id));
+        if (usuarioDTO == null) {
+            return ResponseEntity.notFound().build();
+        }
+        else if (email == null || email.isEmpty()) {
+            return ResponseEntity.badRequest().build();
+        }
+        else {
+            this.servicioUsuario.modificarEmail(id, email);
+        }
+        return ResponseEntity.ok().build();
     }
 
 }

@@ -16,7 +16,14 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
-
+/**
+ * Configuración de seguridad para la aplicación.
+ * Define las reglas de autorizacion, autentificacion y manejo de sesiones.
+ * Utiliza JWT para la autentificacion y BCrypt para el cifrado de contraseñas.
+ *
+ * @author Vicente Salazar, Sebastian Sandoval
+ * @version 1.0
+ */
 @Configuration
 @EnableWebSecurity
 @EnableMethodSecurity
@@ -35,8 +42,8 @@ public class SecurityConfig {
                 .httpBasic(Customizer.withDefaults())
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth ->{
-                        auth.requestMatchers( "api/login", "api/register", "api/usuario", "api/cliente", "api/admin", "api/**").permitAll();
-                        auth.requestMatchers("api/admin/**").hasRole("ADMIN");
+                        auth.requestMatchers("/api/**","api/**", "/api/register","api/musica/**").permitAll();
+                        auth.requestMatchers("/api/admin/**").hasRole("ADMIN");
                         auth.anyRequest().hasRole("USER");
                 })
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))

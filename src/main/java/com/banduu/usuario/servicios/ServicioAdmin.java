@@ -7,6 +7,13 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+/**
+ * Servicio para gestionar las operaciones relacionadas con los administradores.
+ * Proporciona metodos para guardar, listar y eliminar administradores.
+ *
+ * @author Vicente Salazar, Sebastian Sandoval
+ * @version 1.0
+ */
 @Service
 public class ServicioAdmin {
     private final AdminRepositorio adminRepositorio;

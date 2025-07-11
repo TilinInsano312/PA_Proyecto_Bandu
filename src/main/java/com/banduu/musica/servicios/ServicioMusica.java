@@ -25,25 +25,19 @@ import java.net.http.HttpResponse;
 @Service
 public class ServicioMusica {
 
-	private static final String temp =SpotifyToken.obtenerAccessToken();
-	private static final String ACCESS_TOKEN;
-    static {
-        try {
-            ACCESS_TOKEN = "Bearer "+ temp;
-        } catch ( Exception e) {
-            throw new IllegalArgumentException(e);
-        }
-    }
+	private final String accessToken;
 	// url
-    private static final String URLBUSQUEDA= "https://api.spotify.com/v1/search?q=";
-	private static final String URLARTIST= "https://api.spotify.com/v1/artists/";
+    private final String urlBusqueda = "https://api.spotify.com/v1/search?q=";
+	private final String urlartist = "https://api.spotify.com/v1/artists/";
 
-	private static final String TIPO = "&type=";
-	private static final String PARAMETRO = "&market=ch&limit=1&offset=0&include_external=audio";
-	private static final HttpClient client = HttpClient.newHttpClient();
-	private static final String TEXTOGENERO = "genres";
+	private final String tipo = "&type=";
+	private final String parametro = "&market=ch&limit=1&offset=0&include_external=audio";
+	private final HttpClient client;
+	private final String textoGenero = "genres";
 
-	public ServicioMusica() {
+	public ServicioMusica(SpotifyToken spotifyToken) {
+		this.accessToken = "Bearer " + spotifyToken.obtenerAccessToken();
+		this.client = HttpClient.newHttpClient();
 	}
 
 	/**
@@ -59,7 +53,7 @@ public class ServicioMusica {
 	private HttpResponse<String> respuestaHTTP(String url){
 		HttpRequest peticion = HttpRequest.newBuilder()
 				.uri(URI.create(url))
-				.header("Authorization", ACCESS_TOKEN)
+				.header("Authorization", accessToken)
 				.GET()
 				.build();
 		HttpResponse<String> respuesta;
@@ -83,7 +77,7 @@ public class ServicioMusica {
 
 	public AlbumDTO buscarAlbum(String busqueda) {
 		busqueda = busqueda.replace(" ","+");
-		String urlConsulta = URLBUSQUEDA+busqueda+TIPO+"album"+PARAMETRO;
+		String urlConsulta = urlBusqueda +busqueda+ tipo +"album"+ parametro;
 
 		//conexion y lectura del body
         ObjectMapper mapper = new ObjectMapper();
@@ -108,12 +102,12 @@ public class ServicioMusica {
 		// Obtener género del artista
         JsonNode artistaRoot;
         try {
-            artistaRoot = mapper.readTree(respuestaHTTP(URLARTIST + artistaId).body());
+            artistaRoot = mapper.readTree(respuestaHTTP(urlartist + artistaId).body());
         } catch (JsonProcessingException e) {
             throw new IllegalArgumentException(e);
         }
 
-        JsonNode generosMusicales = artistaRoot.get(TEXTOGENERO);
+        JsonNode generosMusicales = artistaRoot.get(textoGenero);
 		String genero = generosMusicales.isArray() && !generosMusicales.isEmpty() ? generosMusicales.get(0).asText() : null;
 
         return new AlbumDTO(albumName,artistaName,genero,imagenUrl);
@@ -131,7 +125,7 @@ public class ServicioMusica {
 	public ArtistaDTO buscarArtista(String busqueda) {
 		busqueda = busqueda.replace(" ","+");
 		//Conexion
-		String urlConsulta = URLBUSQUEDA+busqueda+TIPO+"artist"+PARAMETRO;
+		String urlConsulta = urlBusqueda +busqueda+ tipo +"artist"+ parametro;
 
 		//lectura del body
         ObjectMapper mapper = new ObjectMapper();
@@ -148,7 +142,7 @@ public class ServicioMusica {
 
 		//instanciar las variables del body
 		String nombreArtista = artista.get("name").asText();
-		JsonNode generos = artista.get(TEXTOGENERO);
+		JsonNode generos = artista.get(textoGenero);
 		String imagen = "images";
 		String genero = generos.isArray() && !generos.isEmpty() ? String.join(", ", mapper.convertValue(generos, String[].class))
 				: null;
@@ -170,7 +164,7 @@ public class ServicioMusica {
 
 	public CancionDTO buscarCancion(String busqueda) {
 		busqueda = busqueda.replace(" ","+");
-		String urlConsulta = URLBUSQUEDA+busqueda+TIPO+"track"+PARAMETRO;
+		String urlConsulta = urlBusqueda +busqueda+ tipo +"track"+ parametro;
 		//lectura del body
         ObjectMapper mapper = new ObjectMapper();
         JsonNode root;
@@ -194,13 +188,13 @@ public class ServicioMusica {
 		//busqueda de los generos
         JsonNode artistRoot;
         try {
-            artistRoot = mapper.readTree(respuestaHTTP(URLARTIST + artistaId).body());
+            artistRoot = mapper.readTree(respuestaHTTP(urlartist + artistaId).body());
         } catch (JsonProcessingException e) {
             throw new IllegalArgumentException(e);
         }
 
 		//instaciar los generos
-        JsonNode generosMusicales = artistRoot.get(TEXTOGENERO);
+        JsonNode generosMusicales = artistRoot.get(textoGenero);
 		String genero = generosMusicales.isArray() && !generosMusicales.isEmpty() ? String.join(", ", mapper.convertValue(generosMusicales, String[].class))
 				: null;
 		return new CancionDTO(cancionName,artistaName,genero,imagenUrl);

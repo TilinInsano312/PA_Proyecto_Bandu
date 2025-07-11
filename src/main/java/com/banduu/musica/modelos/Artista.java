@@ -1,6 +1,7 @@
 package com.banduu.musica.modelos;
 
-import lombok.*;
+
+import java.util.Objects;
 
 /**
  * Clase que representa un artista en el sistema.
@@ -10,8 +11,6 @@ import lombok.*;
  * @version 1.0
  */
 
-@EqualsAndHashCode
-@ToString
 public class Artista {
 
     private String nombreArtista;
@@ -37,5 +36,27 @@ public class Artista {
 
     public String getImagenArtista() {
         return imagenArtista;
+    }
+
+    @Override
+    public String toString() {
+        return "Artista{" +
+                "nombreArtista='" + nombreArtista + '\'' +
+                ", generoArtista='" + generoArtista + '\'' +
+                ", imagenArtista='" + imagenArtista + '\'' +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Artista artista = (Artista) o;
+        return Objects.equals(nombreArtista, artista.nombreArtista) && Objects.equals(generoArtista, artista.generoArtista) && Objects.equals(imagenArtista, artista.imagenArtista);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(nombreArtista, generoArtista, imagenArtista);
     }
 }

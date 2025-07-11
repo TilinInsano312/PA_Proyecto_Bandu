@@ -52,4 +52,19 @@ class ServicioUsuarioTest {
         assertThrows(Exception.class, () -> servicioUsuario.buscarPorId("10"));
     }
 
+    @Test
+    void testModificarContrasena() {
+        UsuarioDTO usuarioDTO = new UsuarioDTO("10", "testUser", "password123", "");
+        servicioUsuario.save(usuarioDTO);
+        servicioUsuario.modificarContrasena("10", "newPassword123");
+        assertEquals("newPassword123", servicioUsuario.buscarPorId("10").contrasena());
+    }
+    @Test
+    void testModificarEmail() {
+        UsuarioDTO usuarioDTO = new UsuarioDTO("10", "testUser", "password123", "");
+        servicioUsuario.save(usuarioDTO);
+        servicioUsuario.modificarEmail("10", "2asd@example.com");
+        assertEquals("2asd@example.com", servicioUsuario.buscarPorId("10").email());
+    }
+
 }

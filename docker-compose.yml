@@ -1,7 +1,35 @@
+version: '3.7'
 services:
+  db:
+      container_name: banduubackend_db
+      image: mongo:5.0.17
+      environment:
+        MONGO_INITDB_DATABASE: db
+        MONGO_INITDB_ROOT_HOSTNAME: db
+        MONGO_INITDB_ROOT_USERNAME: admin
+        MONGO_INITDB_ROOT_PASSWORD: admin
+      ports:
+      - "27017:27017"
+      volumes:
+        - mongodb_data_container:/data/db
+      restart: always
+  app:
+    build: .
+    container_name: banduubackend
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
+    env_file:
+      - ./.env
+    restart: always
   mongodb_external:
+    container_name: testbandu
     image: mongo:5.0.17
     ports:
       - "27018:27017"
     environment:
         MONGO_INITDB_DATABASE: test
+
+volumes:
+  mongodb_data_container:

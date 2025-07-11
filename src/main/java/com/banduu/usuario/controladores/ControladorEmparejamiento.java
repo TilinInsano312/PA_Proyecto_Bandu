@@ -9,7 +9,13 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 import java.util.Map;
-
+/**
+ * Controlador para gestionar las operaciones de emparejamiento de usuarios en la aplicacion.
+ * Permite obtener emparejamientos basados en diferentes criterios como album, artista, cancion, carrera, orientacion, genero, etc.
+ *
+ * @author Vicente Salazar
+ * @version 1.0
+ */
 @RestController
 @RequestMapping("/api/emparejamiento")
 public class ControladorEmparejamiento {

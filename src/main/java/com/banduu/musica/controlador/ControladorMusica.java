@@ -9,7 +9,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
+/**
+ * Controlador REST para manejar las peticiones relacionadas con la musica.
+ * Permite buscar canciones, artistas y albumes a traves de la API de Spotify.
+ *
+ * @author Vicente Salazar
+ * @version 1.0
+ */
 @RestController
 @RequestMapping("/api/musica")
 public class ControladorMusica {

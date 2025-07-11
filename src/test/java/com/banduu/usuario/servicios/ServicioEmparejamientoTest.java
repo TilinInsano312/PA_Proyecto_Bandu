@@ -38,8 +38,8 @@ class ServicioEmparejamientoTest {
     List<String> c4 = List.of(
             "rock", "pop", "jazz"
     );
-    ClienteDTO cliente1 = new ClienteDTO("1", "cliente1", "", "", 10, "Ing. Informatica", "Heterosexual", "Masculino", c4, c1, c2, c3);
-    ClienteDTO cliente2 = new ClienteDTO("2", "cliente2", "", "", 20, "Ing. Informatica", "Heterosexual", "Masculino", c4, c1, c2, c3);
+    ClienteDTO cliente1 = new ClienteDTO("1", "cliente1", "", "", 10,"", "Ing. Informatica", "Heterosexual", "Masculino", c4, c1, c2, c3);
+    ClienteDTO cliente2 = new ClienteDTO("2", "cliente2", "", "", 20,"", "Ing. Informatica", "Heterosexual", "Masculino", c4, c1, c2, c3);
 
     @BeforeEach
     void limpiar() {
@@ -49,7 +49,7 @@ class ServicioEmparejamientoTest {
     void testEmparejarPorAlbum(){
         servicioCliente.save(cliente1);
         servicioCliente.save(cliente2);
-        assertEquals(0, servicioEmparejamiento.porAlbum("1").get("2"));
+        assertEquals(4, servicioEmparejamiento.porAlbum("1").get("2"));
     }
     @Test
     void testEmparejarPorArtista(){

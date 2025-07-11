@@ -40,4 +40,20 @@ class ControladorUsuarioTest {
                 .content("{\"nombreUsuario\": \"111111111\", \"contrasena\": \"test@example.com\", \"email\": \"test\"}"))
                 .andExpect(org.springframework.test.web.servlet.result.MockMvcResultMatchers.status().isCreated());
     }
+    @Test
+    void testModificarContrasena() throws Exception {
+        servicioUsuario.save( new com.banduu.usuario.dto.UsuarioDTO("1", "user1", "pass1", "a"));
+        mockMvc.perform(org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post("/api/usuario/1/contrasena").header("Authorization", "no Auth" )
+                .contentType("application/json")
+                .content("{\"contrasena\": \"newPassword\"}"))
+                .andExpect(org.springframework.test.web.servlet.result.MockMvcResultMatchers.status().isOk());
+    }
+    @Test
+    void testModificarEmail() throws Exception {
+        servicioUsuario.save( new com.banduu.usuario.dto.UsuarioDTO("1", "user1", "pass1", "a"));
+        mockMvc.perform(org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post("/api/usuario/1/email").header("Authorization", "no Auth" )
+                .contentType("application/json")
+                .content("{\"email\": \"email@example.com\"}"))
+                .andExpect(org.springframework.test.web.servlet.result.MockMvcResultMatchers.status().isOk());
+    }
 }

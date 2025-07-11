@@ -45,8 +45,7 @@ public class ServicioDenuncia {
 	 *
 	 * @param denuncia El objeto denuncia a añadir en un JSON.
 	 * @param esValida Indica si la denuncia es valida o no.
-	 * @return void
-	 */
+     */
 	//Metodo para validar denuncia, al ser valida se guarda la denuncia en el registro y se borra el perfil denunciado
 	public void validarDenuncia(DenunciaDTO denuncia, boolean esValida) {
 		if(esValida) {
