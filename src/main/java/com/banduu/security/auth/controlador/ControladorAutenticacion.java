@@ -1,6 +1,7 @@
 package com.banduu.security.auth.controlador;
 
 import com.banduu.security.auth.jwt.CustomUserDetails;
+import com.banduu.security.auth.jwt.JwtUtil;
 import com.banduu.usuario.dto.UsuarioDTO;
 import com.banduu.usuario.servicios.ServicioUsuario;
 import org.springframework.http.HttpStatus;
@@ -28,13 +29,16 @@ public class ControladorAutenticacion {
     private final AuthenticationManager gestorAutenticacion;
     private final ServicioUsuario servicioUsuario;
     private final PasswordEncoder codificadorContrasena;
+    private final JwtUtil jwtUtil;
 
-    public ControladorAutenticacion(AuthenticationManager gestorAutenticacion, 
+    public ControladorAutenticacion(AuthenticationManager gestorAutenticacion,
                          ServicioUsuario servicioUsuario,
-                         PasswordEncoder codificadorContrasena) {
+                         PasswordEncoder codificadorContrasena,
+                         JwtUtil jwtUtil) {
         this.gestorAutenticacion = gestorAutenticacion;
         this.servicioUsuario = servicioUsuario;
         this.codificadorContrasena = codificadorContrasena;
+        this.jwtUtil = jwtUtil;
     }
 
     @PostMapping("/login")
@@ -49,13 +53,15 @@ public class ControladorAutenticacion {
 
             SecurityContextHolder.getContext().setAuthentication(autenticacion);
             CustomUserDetails detallesUsuario = (CustomUserDetails) autenticacion.getPrincipal();
+            String token = jwtUtil.generarToken(detallesUsuario);
 
             return ResponseEntity.ok(Map.of(
                 "exito", true,
                 "mensaje", "Inicio de sesión exitoso",
                 "nombreUsuario", detallesUsuario.getUsername(),
                 "email", detallesUsuario.email(),
-                "rol", detallesUsuario.rol()
+                "rol", detallesUsuario.rol(),
+                "token", token
             ));
 
         } catch (BadCredentialsException e) {
